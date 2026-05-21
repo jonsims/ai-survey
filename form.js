@@ -182,6 +182,10 @@ function showThanks(name) {
   document.getElementById("thanks-name").textContent =
     (name && name.split(/\s+/)[0]) || "friend";
   form.hidden = true;
+  // Hide the intro paragraph too — once the response is in, the
+  // "here's what this survey is for" framing isn't relevant anymore.
+  const masthead = document.querySelector(".masthead");
+  if (masthead) masthead.hidden = true;
   thanks.hidden = false;
   thanks.scrollIntoView({ behavior: "smooth", block: "start" });
 }
