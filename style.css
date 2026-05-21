@@ -613,6 +613,211 @@ fieldset.field.has-error > legend.field-label {
   }
 }
 
+/* --------------------------- term popover --------------------------------- */
+
+.term-info {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.4em;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  font-family: var(--sans);
+  font-size: 0.75em;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--text-muted);
+  background: rgba(0, 0, 0, 0.06);
+  cursor: help;
+  user-select: none;
+  flex-shrink: 0;
+  transition: background 0.12s ease, color 0.12s ease;
+}
+.term-info:hover,
+.term-info:focus-visible {
+  background: var(--accent);
+  color: #FFFFFF;
+  outline: none;
+}
+.chip:has(input:checked) .term-info {
+  background: rgba(255, 255, 255, 0.22);
+  color: #FFFFFF;
+}
+.chip:has(input:checked) .term-info:hover,
+.chip:has(input:checked) .term-info:focus-visible {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.term-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+.term-modal[hidden] { display: none; }
+.term-modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(26, 31, 37, 0.55);
+}
+.term-modal-card {
+  position: relative;
+  background: var(--bg);
+  border: 1px solid var(--rule-soft);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 10px 40px rgba(31, 42, 51, 0.18);
+  max-width: 460px;
+  width: 100%;
+  padding: 1.5rem 1.5rem 1.25rem;
+}
+.term-modal-title {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 1.2rem;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin: 0 0 0.65rem;
+}
+.term-modal-body {
+  font-family: var(--serif);
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--charcoal-soft);
+  margin: 0 0 1rem;
+}
+.term-modal-close {
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: transparent;
+  border: 1px solid var(--rule-soft);
+  border-radius: var(--radius);
+  padding: 0.45rem 0.95rem;
+  cursor: pointer;
+  transition: border-color 0.12s ease, color 0.12s ease;
+}
+.term-modal-close:hover,
+.term-modal-close:focus-visible {
+  border-color: var(--accent);
+  outline: none;
+}
+
+/* ----------------------- adaptive chip hiding ----------------------------- */
+/* Selection-driven affordances. When a respondent's earlier answer makes
+   later chips clearly not-for-them, we hide them rather than ask. The
+   form.dataset.* attributes are kept in sync by applyAdaptiveRules() in
+   form.js; CSS does the actual hide. */
+
+form[data-curiosity="not_for_me"] .chip:has(input[value="scripts"]),
+form[data-curiosity="not_for_me"] .chip:has(input[name="learning_openness"][value="little_tools"]),
+form[data-curiosity="not_for_me"] .chip:has(input[name="learning_openness"][value="apis"]),
+form[data-curiosity="reluctant"]  .chip:has(input[value="scripts"]),
+form[data-curiosity="reluctant"]  .chip:has(input[name="learning_openness"][value="little_tools"]),
+form[data-curiosity="reluctant"]  .chip:has(input[name="learning_openness"][value="apis"]) {
+  display: none;
+}
+
+form[data-tech-comfort="1"] .chip:has(input[name="specialized_software"][value="sql"]),
+form[data-tech-comfort="1"] .chip:has(input[name="specialized_software"][value="python_r"]),
+form[data-tech-comfort="1"] .chip:has(input[name="specialized_software"][value="stats"]),
+form[data-tech-comfort="1"] .chip:has(input[name="specialized_software"][value="erp"]) {
+  display: none;
+}
+
+form[data-ai-familiarity="1"] .chip:has(input[name="ai_concepts_known"][value="api"]),
+form[data-ai-familiarity="1"] .chip:has(input[name="ai_concepts_known"][value="rag"]),
+form[data-ai-familiarity="1"] .chip:has(input[name="ai_concepts_known"][value="agents"]) {
+  display: none;
+}
+
+/* --------------------------- resources panel ------------------------------ */
+/* Rendered into the thank-you state on successful submit. Two stacked
+   blocks: "Get set up" (always shown) + "A few things to read or watch"
+   (personalized). */
+
+.resources {
+  margin-top: 2.5rem;
+  text-align: left;
+}
+
+.resources-block + .resources-block {
+  margin-top: 2.2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--rule-faint);
+}
+
+.resources-block .kicker {
+  text-align: left;
+  margin-bottom: 0.5rem;
+}
+
+.resources-intro {
+  font-family: var(--serif);
+  font-size: 0.98rem;
+  color: var(--charcoal-soft);
+  margin: 0 0 1.3rem;
+  max-width: 56ch;
+}
+
+.resource-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.resource-card {
+  background: var(--bg);
+  border: 1px solid var(--rule-faint);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem 1.05rem;
+}
+
+.resource-title {
+  display: inline-block;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 1.02rem;
+  letter-spacing: -0.005em;
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0);
+  margin: 0 0 0.2rem;
+  transition: border-color 0.12s ease;
+}
+.resource-title:hover,
+.resource-title:focus-visible {
+  border-bottom-color: var(--accent);
+  outline: none;
+}
+
+.resource-meta {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0 0 0.55rem;
+}
+
+.resource-summary {
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--text);
+  margin: 0;
+}
+
 /* ------------------------- reduced motion --------------------------------- */
 
 @media (prefers-reduced-motion: reduce) {
