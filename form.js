@@ -7,7 +7,7 @@
       Leave as empty string during local development — submit will then
       log the payload to the console instead of POSTing, so you can
       design without round-tripping to Google. */
-const APPS_SCRIPT_URL = "";
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzwvI0d52ZDZaYBPF3qzT8z_i-Swakc1zvjJXPtGhcKdjYmcsQAA7yUYgRWplNE_Mv_/exec";
 
 /* Fields that must be filled for the form to submit. Keep this list short
    — better to capture a partial response than nag people away. */
