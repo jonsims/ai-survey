@@ -24,6 +24,8 @@
 
   <main class="page">
 
+    <h1 class="sr-only">AI Intake Survey</h1>
+
     <form id="survey" novalidate>
 
       <!-- 1. Hello -->
@@ -50,7 +52,7 @@
         <h2>How familiar are you with AI today?</h2>
         <p class="card-intro">Two quick takes &mdash; a scale and a checklist.</p>
 
-        <fieldset class="field scale-field" data-required>
+        <fieldset class="field scale-field" data-required aria-required="true">
           <legend class="field-label">Pick the description that fits best right now.</legend>
           <label class="scale-option">
             <input type="radio" name="ai_familiarity" value="1" />
@@ -117,11 +119,11 @@
           </div>
         </fieldset>
 
-        <label class="field">
-          <span class="field-label">If you've used Claude, what stood out?</span>
-          <p class="field-help">Good, bad, or surprising &mdash; one thing is fine.</p>
-          <textarea name="anthropic_experience" rows="2"></textarea>
-        </label>
+        <div class="field">
+          <label class="field-label" for="anthropic_experience">If you've used Claude, what stood out?</label>
+          <p class="field-help" id="help-anthropic_experience">Good, bad, or surprising &mdash; one thing is fine.</p>
+          <textarea id="anthropic_experience" name="anthropic_experience" rows="2" aria-describedby="help-anthropic_experience"></textarea>
+        </div>
 
         <label class="field">
           <span class="field-label">Where have these tools fallen short for you?</span>
@@ -147,11 +149,11 @@
           </div>
         </fieldset>
 
-        <label class="field">
-          <span class="field-label">Describe one specific situation where you've thought &ldquo;AI should help with this.&rdquo;</span>
-          <p class="field-help">A real moment from your work is more useful than an abstract example.</p>
-          <textarea name="specific_situation" rows="3"></textarea>
-        </label>
+        <div class="field">
+          <label class="field-label" for="specific_situation">Describe one specific situation where you've thought &ldquo;AI should help with this.&rdquo;</label>
+          <p class="field-help" id="help-specific_situation">A real moment from your work is more useful than an abstract example.</p>
+          <textarea id="specific_situation" name="specific_situation" rows="3" aria-describedby="help-specific_situation"></textarea>
+        </div>
       </section>
 
       <!-- 5. Data & privacy -->
@@ -182,7 +184,7 @@
         <h2>Your toolkit today</h2>
         <p class="card-intro">A quick look at what you already work with.</p>
 
-        <fieldset class="field scale-field" data-required>
+        <fieldset class="field scale-field" data-required aria-required="true">
           <legend class="field-label">Pick the description that fits best.</legend>
           <label class="scale-option">
             <input type="radio" name="tech_comfort" value="1" />
@@ -239,11 +241,11 @@
           </div>
         </fieldset>
 
-        <label class="field">
-          <span class="field-label">Anything industry-specific or specialized I should know you've used?</span>
-          <p class="field-help">Lab software, design suites, legal research, clinical systems, custom internal tools &mdash; whatever's specific to your world.</p>
-          <textarea name="other_software" rows="2"></textarea>
-        </label>
+        <div class="field">
+          <label class="field-label" for="other_software">Anything industry-specific or specialized I should know you've used?</label>
+          <p class="field-help" id="help-other_software">Lab software, design suites, legal research, clinical systems, custom internal tools &mdash; whatever's specific to your world.</p>
+          <textarea id="other_software" name="other_software" rows="2" aria-describedby="help-other_software"></textarea>
+        </div>
       </section>
 
       <!-- 7. What you'd want to learn -->
@@ -288,11 +290,11 @@
           <textarea name="pain_points" rows="5"></textarea>
         </label>
 
-        <label class="field">
-          <span class="field-label">If we do good work together, what's different in your week six months from now?</span>
-          <p class="field-help">Concrete is better than visionary. A morning meeting that's faster, an hour back on Fridays, a report you stop dreading.</p>
-          <textarea name="success_six_months" rows="4"></textarea>
-        </label>
+        <div class="field">
+          <label class="field-label" for="success_six_months">If we do good work together, what's different in your week six months from now?</label>
+          <p class="field-help" id="help-success_six_months">Concrete is better than visionary. A morning meeting that's faster, an hour back on Fridays, a report you stop dreading.</p>
+          <textarea id="success_six_months" name="success_six_months" rows="4" aria-describedby="help-success_six_months"></textarea>
+        </div>
       </section>
 
       <!-- 9. Anything else -->

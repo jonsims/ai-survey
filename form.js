@@ -110,11 +110,27 @@ function markFieldError(name) {
   // For radios/checkboxes the visible "field" is the wrapping fieldset;
   // for text/textarea it's the closest .field.
   const wrapper = node.closest("fieldset.field") || node.closest(".field");
-  if (wrapper) wrapper.classList.add("has-error");
+  if (!wrapper) return;
+
+  wrapper.classList.add("has-error");
+
+  // aria-invalid on the input itself (or the fieldset, for radio groups)
+  const ariaTarget = (wrapper.tagName === "FIELDSET") ? wrapper : node;
+  ariaTarget.setAttribute("aria-invalid", "true");
+
+  // inject a visible error message (the .field-error-msg CSS already exists)
+  if (!wrapper.querySelector(".field-error-msg")) {
+    const msg = document.createElement("p");
+    msg.className = "field-error-msg";
+    msg.textContent = "This one's required.";
+    wrapper.appendChild(msg);
+  }
 }
 
 function clearAllErrors() {
   form.querySelectorAll(".has-error").forEach(n => n.classList.remove("has-error"));
+  form.querySelectorAll("[aria-invalid='true']").forEach(n => n.removeAttribute("aria-invalid"));
+  form.querySelectorAll(".field-error-msg").forEach(n => n.remove());
   errorEl.hidden = true;
   errorEl.textContent = "";
 }
@@ -123,7 +139,13 @@ function clearFieldError(ev) {
   const target = ev.target;
   if (!target?.name) return;
   const wrapper = target.closest("fieldset.field") || target.closest(".field");
-  if (wrapper) wrapper.classList.remove("has-error");
+  if (wrapper) {
+    wrapper.classList.remove("has-error");
+    const msg = wrapper.querySelector(".field-error-msg");
+    if (msg) msg.remove();
+    if (wrapper.tagName === "FIELDSET") wrapper.removeAttribute("aria-invalid");
+  }
+  target.removeAttribute("aria-invalid");
   if (!form.querySelectorAll(".has-error").length) {
     errorEl.hidden = true;
   }
@@ -144,6 +166,9 @@ function scrollToFirstError() {
 function setSubmitting(yes) {
   submitBtn.disabled = yes;
   submitBtn.querySelector(".submit-label").textContent = yes ? "Sending…" : "Send my answers";
+  // Hide the italic sub-line ("it goes only to me") while submitting so the
+  // button reads cleanly as "Sending…" instead of "Sending… / it goes only to me."
+  submitBtn.querySelector(".submit-sub").hidden = yes;
 }
 
 function showThanks(name) {
