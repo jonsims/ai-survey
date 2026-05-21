@@ -103,7 +103,7 @@ const SETUP_ITEMS = [
     title: "Download the Claude desktop app",
     source: "Anthropic",
     type: "download",
-    url: "https://claude.ai/download",
+    url: "https://claude.com/download",
     summary: "The cleanest day-to-day experience — keyboard shortcuts, file uploads, a window separate from your browser tabs. Mac and Windows."
   }
 ];
@@ -113,7 +113,7 @@ const RESOURCES = [
     title: "Getting started with Claude",
     source: "Anthropic Docs",
     type: "docs",
-    url: "https://docs.anthropic.com/en/docs/welcome",
+    url: "https://platform.claude.com/docs/en/intro",
     summary: "The official starting point — chat, projects, what the model is actually good at.",
     level: [1, 2, 3], tech: [1, 2, 3, 4, 5],
     goals: ["curious", "write", "converse"],
@@ -143,7 +143,7 @@ const RESOURCES = [
     title: "Anthropic's prompt engineering guide",
     source: "Anthropic Docs",
     type: "docs",
-    url: "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview",
+    url: "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview",
     summary: "Concrete techniques for writing prompts that get the answers you actually want. Skim the headings; read the bits that surprise you.",
     level: [2, 3, 4, 5], tech: [1, 2, 3, 4, 5],
     goals: ["write", "analyze", "automate", "build"],
@@ -163,7 +163,7 @@ const RESOURCES = [
     title: "What are Projects in Claude?",
     source: "Anthropic Help",
     type: "docs",
-    url: "https://support.anthropic.com/en/articles/9519177-what-are-projects",
+    url: "https://support.claude.com/en/articles/9519177-how-can-i-create-and-manage-projects",
     summary: "Projects let you collect documents and reuse instructions in one place — the simplest version of giving AI persistent context.",
     level: [2, 3, 4], tech: [1, 2, 3],
     goals: ["write", "analyze", "automate"],
@@ -183,7 +183,7 @@ const RESOURCES = [
     title: "Claude Code",
     source: "Anthropic",
     type: "tool",
-    url: "https://www.anthropic.com/claude-code",
+    url: "https://claude.com/product/claude-code",
     summary: "An AI coding assistant that runs in your terminal — works alongside you on real codebases. The best entry point if you want to start building.",
     level: [4, 5], tech: [3, 4, 5],
     goals: ["build", "automate"],
@@ -203,7 +203,7 @@ const RESOURCES = [
     title: "Anthropic API quickstart",
     source: "Anthropic Docs",
     type: "docs",
-    url: "https://docs.anthropic.com/en/api/getting-started",
+    url: "https://platform.claude.com/docs/en/api/overview",
     summary: "The five-minute path from \"I have an idea\" to \"I have a working Python script that calls Claude.\"",
     level: [4, 5], tech: [4, 5],
     goals: ["build"],
@@ -223,7 +223,7 @@ const RESOURCES = [
     title: "Privacy and Claude",
     source: "Anthropic",
     type: "docs",
-    url: "https://privacy.anthropic.com/en/",
+    url: "https://privacy.claude.com/en/",
     summary: "How Anthropic handles your data — retention, training, and what they do (and don't do) with conversations. Worth reading before pasting anything sensitive.",
     level: [1, 2, 3, 4, 5], tech: [1, 2, 3, 4, 5],
     goals: [], topics: [],
@@ -564,7 +564,7 @@ function renderResources(data) {
   panel.innerHTML = `
     <div class="resources-block">
       <p class="kicker">Get set up</p>
-      <p class="resources-intro">If you want to dive in before we talk, these two will give you the best experience.</p>
+      <p class="resources-intro">Two things I'd ask you to set up before we talk — they'll make our conversation much easier.</p>
       <ul class="resource-list">
         ${SETUP_ITEMS.map(renderResourceItem).join("")}
       </ul>
@@ -572,7 +572,7 @@ function renderResources(data) {
     ${picks.length ? `
       <div class="resources-block">
         <p class="kicker">A few things to read or watch</p>
-        <p class="resources-intro">Based on what you said, here are a starting point or two. Just suggestions — no pressure.</p>
+        <p class="resources-intro">Picked these based on what you said. <strong>Not required reading before we meet</strong> &mdash; just suggestions for your own curiosity, if you'd like to poke around. We'll cover what matters when we talk.</p>
         <ul class="resource-list">
           ${picks.map(renderResourceItem).join("")}
         </ul>
