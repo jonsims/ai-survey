@@ -41,6 +41,7 @@ const HEADERS = [
   'pain_points',
   'success_six_months',
   'anything_else',
+  'client', // appended last so existing rows align cleanly; identifies the variant the response came from ("generic", "frank-and-brittney", future client slugs)
 ];
 
 function doPost(e) {

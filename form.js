@@ -61,7 +61,9 @@ function onSubmit(ev) {
     });
 }
 
-/* Gather all named fields into a plain object. Multi-selects become arrays. */
+/* Gather all named fields into a plain object. Multi-selects become arrays.
+   Also picks up data-client from the form element so the backend knows
+   which variant the response came from. */
 function collect(formEl) {
   const out = {};
   const fd = new FormData(formEl);
@@ -75,6 +77,11 @@ function collect(formEl) {
   // Make sure multi-select keys exist (as empty arrays) even when nothing
   // was checked, so the Sheet always has a clean blank cell.
   MULTI_SELECTS.forEach(k => { if (!(k in out)) out[k] = []; });
+
+  // Variant identifier — set per page via data-client on the <form>.
+  // Defaults to "generic" if absent.
+  out.client = formEl.dataset.client || "generic";
+
   return out;
 }
 

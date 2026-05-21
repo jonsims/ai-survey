@@ -4,14 +4,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#2C3540" />
-  <title>A short survey</title>
+  <title>A short survey · for Frank &amp; Brittney</title>
   <meta name="description" content="A short survey to map where you are with AI today and where you'd like to go." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="variant.css" />
 </head>
 <body>
 
@@ -23,15 +24,16 @@
 
     <section class="masthead">
       <p class="lede">
-        Thanks for being open to a conversation about AI. This survey is here to
-        help me understand where you are today &mdash; what you've tried, what
-        you'd like to do, and where you'd like a hand. There are no wrong
-        answers; the goal is to make our time together more useful.
+        Frank, Brittney &mdash; thanks for letting me try this with you. I've put
+        a short survey together to map where you each are with AI today and
+        where you'd like to go. Each of you fills it out on your own &mdash;
+        there are no wrong answers; the goal is to make our time together
+        more useful.
       </p>
       <p class="lede-meta">Nine short sections · about 3&ndash;4 minutes · your responses come only to me.</p>
     </section>
 
-    <form id="survey" novalidate data-client="generic">
+    <form id="survey" novalidate data-client="frank-and-brittney">
 
       <!-- 1. Hello -->
       <section class="card" data-section="hello">
@@ -329,8 +331,8 @@
     <section id="thanks" class="thanks" hidden>
       <p class="kicker">Got it.</p>
       <h2>Thanks, <span id="thanks-name">friend</span>.</h2>
-      <p class="lede">I'll read through your answers and be in touch shortly. If anything else comes to mind in the meantime, drop me a note at <a href="mailto:jon.sims@gmail.com">jon.sims@gmail.com</a>.</p>
-      <p class="signoff">&mdash; Jonathan Sims</p>
+      <p class="lede">I'll read through and we'll talk soon. Anything else, just text me.</p>
+      <p class="signoff">&mdash; Jon</p>
     </section>
 
   </main>
@@ -339,10 +341,8 @@
     <span>Jonathan Sims</span>
     <span class="dot">&middot;</span>
     <a href="mailto:jon.sims@gmail.com">jon.sims@gmail.com</a>
-    <span class="dot">&middot;</span>
-    <span>AI &amp; technology consulting</span>
   </footer>
 
-  <script src="form.js" defer></script>
+  <script src="../form.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,19 @@
+/* ==========================================================================
+   Frank & Brittney variant — accent override
+
+   This file is loaded *after* ../style.css so the :root overrides below
+   win the cascade. Everything else (typography, layout, section-cycle
+   secondary colors, dark/charcoal palette) inherits from the generic.
+
+   The primary accent shifts from forest teal to a muted burgundy so this
+   variant reads as visually distinct from the consulting-practice generic.
+   The three-color section cycle (gold, navy) is unchanged — they still
+   pair cleanly with burgundy.
+   ========================================================================== */
+
+:root {
+  --accent:              #7A4A4A;  /* muted burgundy */
+  --accent-dark:         #5C3838;  /* darker burgundy (hover, submit) */
+  --accent-tint:         #EDDDDD;  /* light wash for focused inputs */
+  --accent-tint-strong:  #DCC4C4;  /* used on stronger emphasis states */
+}
