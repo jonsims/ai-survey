@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#2C3540" />
+  <title>AI Intake — A short survey</title>
+  <meta name="description" content="A short intake survey to map where you are with AI today and where you'd like to go." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="topbar">
+    <span class="topbar-label">AI Intake</span>
+    <span class="topbar-meta">a short survey · ~4 minutes</span>
+  </header>
+
+  <div class="masthead-rule"></div>
+
+  <main class="page">
+
+    <section class="masthead">
+      <p class="kicker">Before we talk</p>
+      <h1>A short survey to map where you are.</h1>
+      <p class="lede">
+        Thanks for being open to a conversation about AI. This survey is here to
+        help me understand where you are today &mdash; what you've tried, what
+        you'd like to do, and where you'd like a hand. There are no wrong
+        answers; the goal is to make our time together more useful.
+      </p>
+      <p class="lede-meta">Nine short sections · about 3&ndash;4 minutes · your responses come only to me.</p>
+    </section>
+
+    <form id="survey" novalidate>
+
+      <!-- 1. Hello -->
+      <section class="card" data-section="hello">
+        <p class="card-num">01</p>
+        <h2>Hello</h2>
+        <p class="card-intro">Let's start easy.</p>
+
+        <div class="field-row">
+          <label class="field">
+            <span class="field-label">Your name</span>
+            <input type="text" name="name" autocomplete="name" required />
+          </label>
+          <label class="field">
+            <span class="field-label">What you do / your role</span>
+            <input type="text" name="role" autocomplete="organization-title" placeholder="e.g. founder, teacher, ops lead&hellip;" />
+          </label>
+        </div>
+      </section>
+
+      <!-- 2. AI familiarity -->
+      <section class="card" data-section="familiarity">
+        <p class="card-num">02</p>
+        <h2>How familiar are you with AI today?</h2>
+        <p class="card-intro">Two quick takes &mdash; a scale and a checklist.</p>
+
+        <fieldset class="field scale-field" data-required>
+          <legend class="field-label">Pick the description that fits best right now.</legend>
+          <label class="scale-option">
+            <input type="radio" name="ai_familiarity" value="1" />
+            <span class="scale-num">1</span>
+            <span class="scale-text">I've heard of ChatGPT.</span>
+          </label>
+          <label class="scale-option">
+            <input type="radio" name="ai_familiarity" value="2" />
+            <span class="scale-num">2</span>
+            <span class="scale-text">I've used it once or twice.</span>
+          </label>
+          <label class="scale-option">
+            <input type="radio" name="ai_familiarity" value="3" />
+            <span class="scale-num">3</span>
+            <span class="scale-text">I use it occasionally for specific tasks.</span>
+          </label>
+          <label class="scale-option">
+            <input type="radio" name="ai_familiarity" value="4" />
+            <span class="scale-num">4</span>
+            <span class="scale-text">I use it daily and have opinions about which tools are best.</span>
+          </label>
+          <label class="scale-option">
+            <input type="radio" name="ai_familiarity" value="5" />
+            <span class="scale-num">5</span>
+            <span class="scale-text">I build with AI &mdash; prompts, agents, APIs, custom workflows.</span>
+          </label>
+        </fieldset>
+
+        <fieldset class="field chips-field">
+          <legend class="field-label">Which of these have you tried or heard of?</legend>
+          <p class="field-help">Pick any that apply.</p>
+          <div class="chips">
+            <label class="chip"><input type="checkbox" name="ai_concepts_known" value="prompting" /><span>prompting / chatting</span></label>
+            <label class="chip"><input type="checkbox" name="ai_concepts_known" value="image_gen" /><span>image generation</span></label>
+            <label class="chip"><input type="checkbox" name="ai_concepts_known" value="voice" /><span>voice &amp; transcription</span></label>
+            <label class="chip"><input type="checkbox" name="ai_concepts_known" value="custom_gpts" /><span>&ldquo;Projects&rdquo; or custom GPTs</span></label>
+            <label class="chip"><input type="checkbox" name="ai_concepts_known" value="agents" /><span>agents that do tasks for you</span></label>
+            <label class="chip"><input type="checkbox" name="ai_concepts_known" value="rag" /><span>connecting AI to your own documents</span></label>
+            <label class="chip"><input type="checkbox" name="ai_concepts_known" value="code" /><span>writing code with AI</span></label>
+            <label class="chip"><input type="checkbox" name="ai_concepts_known" value="api" /><span>the API</span></label>
+          </div>
+        </fieldset>
+      </section>
+
+      <!-- 3. Tools used + Anthropic -->
+      <section class="card" data-section="tools">
+        <p class="card-num">03</p>
+        <h2>Tools you've used</h2>
+        <p class="card-intro">A quick map of what you've touched.</p>
+
+        <fieldset class="field chips-field">
+          <legend class="field-label">Which of these have you actually used?</legend>
+          <div class="chips">
+            <label class="chip"><input type="checkbox" name="tools_used" value="chatgpt" /><span>ChatGPT</span></label>
+            <label class="chip"><input type="checkbox" name="tools_used" value="claude" /><span>Claude <em class="chip-note">(Anthropic)</em></span></label>
+            <label class="chip"><input type="checkbox" name="tools_used" value="gemini" /><span>Gemini <em class="chip-note">(Google)</em></span></label>
+            <label class="chip"><input type="checkbox" name="tools_used" value="copilot_365" /><span>Copilot <em class="chip-note">(Microsoft 365)</em></span></label>
+            <label class="chip"><input type="checkbox" name="tools_used" value="github_copilot" /><span>GitHub Copilot</span></label>
+            <label class="chip"><input type="checkbox" name="tools_used" value="perplexity" /><span>Perplexity</span></label>
+            <label class="chip"><input type="checkbox" name="tools_used" value="image_gen" /><span>Midjourney / DALL&middot;E</span></label>
+            <label class="chip"><input type="checkbox" name="tools_used" value="notebooklm" /><span>NotebookLM</span></label>
+            <label class="chip"><input type="checkbox" name="tools_used" value="cursor" /><span>Cursor</span></label>
+            <label class="chip"><input type="checkbox" name="tools_used" value="other" /><span>other</span></label>
+          </div>
+        </fieldset>
+
+        <label class="field">
+          <span class="field-label">If you've used Claude, what stood out?</span>
+          <p class="field-help">Good, bad, or surprising &mdash; one thing is fine.</p>
+          <textarea name="anthropic_experience" rows="2"></textarea>
+        </label>
+
+        <label class="field">
+          <span class="field-label">Where have these tools fallen short for you?</span>
+          <textarea name="tools_shortfalls" rows="2"></textarea>
+        </label>
+      </section>
+
+      <!-- 4. Goals -->
+      <section class="card" data-section="goals">
+        <p class="card-num">04</p>
+        <h2>What do you want to do with AI?</h2>
+
+        <fieldset class="field chips-field">
+          <legend class="field-label">Pick the ones that fit.</legend>
+          <div class="chips">
+            <label class="chip"><input type="checkbox" name="goals" value="write" /><span>write &amp; communicate better</span></label>
+            <label class="chip"><input type="checkbox" name="goals" value="analyze" /><span>analyze data / make sense of information</span></label>
+            <label class="chip"><input type="checkbox" name="goals" value="automate" /><span>automate repetitive work</span></label>
+            <label class="chip"><input type="checkbox" name="goals" value="build" /><span>build something (apps, tools)</span></label>
+            <label class="chip"><input type="checkbox" name="goals" value="converse" /><span>talk about it intelligently with colleagues</span></label>
+            <label class="chip"><input type="checkbox" name="goals" value="curious" /><span>just curious / exploring</span></label>
+            <label class="chip"><input type="checkbox" name="goals" value="other" /><span>other</span></label>
+          </div>
+        </fieldset>
+
+        <label class="field">
+          <span class="field-label">Describe one specific situation where you've thought &ldquo;AI should help with this.&rdquo;</span>
+          <p class="field-help">A real moment from your work is more useful than an abstract example.</p>
+          <textarea name="specific_situation" rows="3"></textarea>
+        </label>
+      </section>
+
+      <!-- 5. Data & privacy -->
+      <section class="card" data-section="data">
+        <p class="card-num">05</p>
+        <h2>What's the data situation?</h2>
+        <p class="card-intro">This shapes which tools and approaches I'd recommend &mdash; some are fine for everyday work, others matter once regulated or sensitive data is in the mix.</p>
+
+        <fieldset class="field chips-field">
+          <legend class="field-label">Does the work you'd want AI to help with involve any of these?</legend>
+          <p class="field-help">Pick what applies. If you're not sure, leave it.</p>
+          <div class="chips">
+            <label class="chip"><input type="checkbox" name="regulated_data" value="customer_pii" /><span>client or customer personal info</span></label>
+            <label class="chip"><input type="checkbox" name="regulated_data" value="health" /><span>health or medical data</span></label>
+            <label class="chip"><input type="checkbox" name="regulated_data" value="financial" /><span>financial or banking data</span></label>
+            <label class="chip"><input type="checkbox" name="regulated_data" value="student" /><span>student or education records</span></label>
+            <label class="chip"><input type="checkbox" name="regulated_data" value="legal" /><span>legal documents</span></label>
+            <label class="chip"><input type="checkbox" name="regulated_data" value="ip" /><span>proprietary IP or trade secrets</span></label>
+            <label class="chip"><input type="checkbox" name="regulated_data" value="nda" /><span>materials under NDA</span></label>
+            <label class="chip"><input type="checkbox" name="regulated_data" value="nothing_sensitive" /><span>nothing especially sensitive</span></label>
+          </div>
+        </fieldset>
+      </section>
+
+      <!-- 6. Your toolkit -->
+      <section class="card" data-section="toolkit">
+        <p class="card-num">06</p>
+        <h2>Your toolkit today</h2>
+        <p class="card-intro">A quick look at what you already work with.</p>
+
+        <fieldset class="field scale-field" data-required>
+          <legend class="field-label">Pick the description that fits best.</legend>
+          <label class="scale-option">
+            <input type="radio" name="tech_comfort" value="1" />
+            <span class="scale-num">1</span>
+            <span class="scale-text">Spreadsheets are my limit.</span>
+          </label>
+          <label class="scale-option">
+            <input type="radio" name="tech_comfort" value="2" />
+            <span class="scale-num">2</span>
+            <span class="scale-text">Comfortable with most software; I poke at settings.</span>
+          </label>
+          <label class="scale-option">
+            <input type="radio" name="tech_comfort" value="3" />
+            <span class="scale-num">3</span>
+            <span class="scale-text">I wire tools together (Zapier, Notion, formulas).</span>
+          </label>
+          <label class="scale-option">
+            <input type="radio" name="tech_comfort" value="4" />
+            <span class="scale-num">4</span>
+            <span class="scale-text">I script a little when I need to.</span>
+          </label>
+          <label class="scale-option">
+            <input type="radio" name="tech_comfort" value="5" />
+            <span class="scale-num">5</span>
+            <span class="scale-text">I write code.</span>
+          </label>
+        </fieldset>
+
+        <fieldset class="field chips-field">
+          <legend class="field-label">What do you actually do with computers, on a regular week?</legend>
+          <div class="chips">
+            <label class="chip"><input type="checkbox" name="tech_activities" value="email_docs" /><span>email &amp; documents</span></label>
+            <label class="chip"><input type="checkbox" name="tech_activities" value="formulas" /><span>spreadsheets with formulas</span></label>
+            <label class="chip"><input type="checkbox" name="tech_activities" value="no_code" /><span>no-code tools (Zapier, Notion, Airtable)</span></label>
+            <label class="chip"><input type="checkbox" name="tech_activities" value="scripting" /><span>light scripting</span></label>
+            <label class="chip"><input type="checkbox" name="tech_activities" value="coding" /><span>real coding</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="field chips-field">
+          <legend class="field-label">Specialized software you've worked with at the office.</legend>
+          <p class="field-help">Even briefly, even years ago. Pick what fits.</p>
+          <div class="chips">
+            <label class="chip"><input type="checkbox" name="specialized_software" value="excel_power" /><span>Excel power tools <em class="chip-note">(PivotTables, Power Query)</em></span></label>
+            <label class="chip"><input type="checkbox" name="specialized_software" value="bi" /><span>Tableau / Power BI / Looker</span></label>
+            <label class="chip"><input type="checkbox" name="specialized_software" value="sql" /><span>SQL or database queries</span></label>
+            <label class="chip"><input type="checkbox" name="specialized_software" value="stats" /><span>statistical software <em class="chip-note">(SPSS, SAS, Stata, R)</em></span></label>
+            <label class="chip"><input type="checkbox" name="specialized_software" value="python_r" /><span>Python or R for analytics</span></label>
+            <label class="chip"><input type="checkbox" name="specialized_software" value="crm" /><span>CRM <em class="chip-note">(Salesforce, HubSpot)</em></span></label>
+            <label class="chip"><input type="checkbox" name="specialized_software" value="erp" /><span>ERP <em class="chip-note">(NetSuite, SAP, Oracle)</em></span></label>
+            <label class="chip"><input type="checkbox" name="specialized_software" value="pm" /><span>project management <em class="chip-note">(Jira, Asana, Monday)</em></span></label>
+            <label class="chip"><input type="checkbox" name="specialized_software" value="design" /><span>design tools <em class="chip-note">(Figma, Adobe)</em></span></label>
+            <label class="chip"><input type="checkbox" name="specialized_software" value="accounting" /><span>accounting <em class="chip-note">(QuickBooks, Xero)</em></span></label>
+          </div>
+        </fieldset>
+
+        <label class="field">
+          <span class="field-label">Anything industry-specific or specialized I should know you've used?</span>
+          <p class="field-help">Lab software, design suites, legal research, clinical systems, custom internal tools &mdash; whatever's specific to your world.</p>
+          <textarea name="other_software" rows="2"></textarea>
+        </label>
+      </section>
+
+      <!-- 7. What you'd want to learn -->
+      <section class="card" data-section="learn">
+        <p class="card-num">07</p>
+        <h2>What you'd want to learn</h2>
+        <p class="card-intro">If you had a guide, what would you reach for?</p>
+
+        <fieldset class="field radio-stack-field">
+          <legend class="field-label">How do you feel about the technical side of AI?</legend>
+          <label class="radio-stack"><input type="radio" name="tech_curiosity" value="not_for_me" /><span>Not for me &mdash; just give me what works.</span></label>
+          <label class="radio-stack"><input type="radio" name="tech_curiosity" value="reluctant" /><span>I'll learn what I have to, no more.</span></label>
+          <label class="radio-stack"><input type="radio" name="tech_curiosity" value="conditional" /><span>Open to learning, when it's clearly useful.</span></label>
+          <label class="radio-stack"><input type="radio" name="tech_curiosity" value="curious" /><span>Curious &mdash; I want to dig in.</span></label>
+          <label class="radio-stack"><input type="radio" name="tech_curiosity" value="build" /><span>I want to build things myself.</span></label>
+        </fieldset>
+
+        <fieldset class="field chips-field">
+          <legend class="field-label">Which of these would you be open to learning?</legend>
+          <p class="field-help">Pick the ones you're curious about, even tentatively.</p>
+          <div class="chips">
+            <label class="chip"><input type="checkbox" name="learning_openness" value="prompting" /><span>writing better prompts to get better results</span></label>
+            <label class="chip"><input type="checkbox" name="learning_openness" value="workflows" /><span>building reusable workflows or templates</span></label>
+            <label class="chip"><input type="checkbox" name="learning_openness" value="own_data" /><span>using AI to clean up and analyze your own data</span></label>
+            <label class="chip"><input type="checkbox" name="learning_openness" value="scripts" /><span>having AI write small scripts or programs for you</span></label>
+            <label class="chip"><input type="checkbox" name="learning_openness" value="little_tools" /><span>building little internal tools &mdash; dashboards, forms, calculators</span></label>
+            <label class="chip"><input type="checkbox" name="learning_openness" value="apis" /><span>connecting tools together via APIs</span></label>
+            <label class="chip"><input type="checkbox" name="learning_openness" value="own_knowledge" /><span>training AI on your own documents or knowledge</span></label>
+            <label class="chip"><input type="checkbox" name="learning_openness" value="none" /><span>none of the above, honestly</span></label>
+          </div>
+        </fieldset>
+      </section>
+
+      <!-- 8. Where could things be better -->
+      <section class="card" data-section="pain">
+        <p class="card-num">08</p>
+        <h2>Where could things be better?</h2>
+        <p class="card-intro">The honest stuff. These two answers shape the whole conversation.</p>
+
+        <label class="field">
+          <span class="field-label">Where do you waste time, or feel stuck, in your work?</span>
+          <textarea name="pain_points" rows="5"></textarea>
+        </label>
+
+        <label class="field">
+          <span class="field-label">If we do good work together, what's different in your week six months from now?</span>
+          <p class="field-help">Concrete is better than visionary. A morning meeting that's faster, an hour back on Fridays, a report you stop dreading.</p>
+          <textarea name="success_six_months" rows="4"></textarea>
+        </label>
+      </section>
+
+      <!-- 9. Anything else -->
+      <section class="card" data-section="else">
+        <p class="card-num">09</p>
+        <h2>Anything else I should know?</h2>
+        <p class="card-intro">Optional. Anything you want to flag before we talk.</p>
+
+        <label class="field">
+          <span class="sr-only">Anything else</span>
+          <textarea name="anything_else" rows="3" placeholder="Could be a question, a worry, a wild idea&hellip;"></textarea>
+        </label>
+      </section>
+
+      <!-- Submit -->
+      <div class="submit-row">
+        <button type="submit" class="submit-btn">
+          <span class="submit-label">Send my answers</span>
+          <span class="submit-sub">it goes only to me</span>
+        </button>
+        <p class="submit-error" role="alert" hidden></p>
+      </div>
+
+    </form>
+
+    <!-- Thank-you state -->
+    <section id="thanks" class="thanks" hidden>
+      <p class="kicker">Got it.</p>
+      <h2>Thanks, <span id="thanks-name">friend</span>.</h2>
+      <p class="lede">I'll read through your answers and be in touch shortly. If anything else comes to mind in the meantime, just message me directly.</p>
+    </section>
+
+  </main>
+
+  <footer class="page-footer">
+    <span>Jonathan Sims</span>
+    <span class="dot">&middot;</span>
+    <span>AI &amp; technology consulting</span>
+  </footer>
+
+  <script src="form.js" defer></script>
+</body>
+</html>
