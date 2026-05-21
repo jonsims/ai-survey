@@ -133,7 +133,6 @@ Every label, every option, every help line. Top to bottom of the form.
 ### 1. Hello
 - Card intro: *Let's start easy.*
 - Your name (required)
-- What you do / your role — placeholder: *e.g. founder, teacher, ops lead…*
 
 ### 2. How familiar are you with AI today?
 - Card intro: *Two quick takes — a scale and a checklist.*
