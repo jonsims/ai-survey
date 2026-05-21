@@ -9,6 +9,10 @@
   --accent-tint: #E8F1ED;
   --accent-tint-strong: #D2E2DA;
 
+  /* Secondary palette — used to cycle section accents (card numbers + left stripe) */
+  --accent-2: #B07A2A;     /* warm amber / editorial gold */
+  --accent-3: #3F4F75;     /* slate navy */
+
   --charcoal: #2C3540;
   --charcoal-soft: #4A5560;
   --rule: #1F2A33;
@@ -168,6 +172,7 @@ a:hover { border-bottom-color: var(--accent); }
 .card {
   background: var(--bg);
   border: 1px solid var(--rule-faint);
+  border-left: 3px solid var(--accent);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-card);
   padding: 1.5rem 1.25rem 1.75rem;
@@ -176,10 +181,27 @@ a:hover { border-bottom-color: var(--accent); }
 
 .card-num {
   font-family: var(--mono);
-  font-size: 0.7rem;
+  font-size: 0.78rem;
+  font-weight: 600;
   letter-spacing: 0.18em;
-  color: var(--text-muted);
+  color: var(--accent);
   margin: 0 0 0.4rem;
+}
+
+/* Section accent cycle — three colors rotate through the nine sections so
+   the form reads as a tour through chapters rather than a uniform list.
+   Selection states (chips, scale options) stay primary green for consistency. */
+.card:nth-of-type(3n+2) {
+  border-left-color: var(--accent-2);
+}
+.card:nth-of-type(3n+2) .card-num {
+  color: var(--accent-2);
+}
+.card:nth-of-type(3n) {
+  border-left-color: var(--accent-3);
+}
+.card:nth-of-type(3n) .card-num {
+  color: var(--accent-3);
 }
 
 .card h2 {
