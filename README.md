@@ -8,7 +8,7 @@ ai_update_allowed: true
 vault_project:
 canonical: true
 github_remote: https://github.com/jonsims/ai-survey
-parent_area: "[[Consulting]]"
+parent_area: "[[Ventures]]"
 # === AUTO-MAINTAINED (folder-context indexer rewrites; do not hand-edit) ===
 last_indexed:
 content_hash:
