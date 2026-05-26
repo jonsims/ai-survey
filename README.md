@@ -1,3 +1,48 @@
+---
+# === AUTHORITATIVE (human-edited; folder-context indexer never crosses the fence) ===
+folder_name: frank-and-brittney-ai
+mode: how-to
+status: active
+sensitivity: normal
+ai_update_allowed: true
+vault_project:
+canonical: true
+github_remote: https://github.com/jonsims/ai-survey
+parent_area: "[[Consulting]]"
+# === AUTO-MAINTAINED (folder-context indexer rewrites; do not hand-edit) ===
+last_indexed:
+content_hash:
+file_count:
+related_folders_auto: []
+---
+
+# Why this folder exists
+
+## Context
+
+Jon's AI consulting work needed a low-friction client intake mechanism — something short, editorial in tone (matching the [For Steve](https://github.com/babsongenerator/babson-frontier-ai-case) design register), and shareable as a URL without authentication friction. The fix: a static HTML/CSS/JS intake form hosted on GitHub Pages, posting submissions to a Google Sheet via Apps Script. The "Frank and Brittney AI" project name reflects the *first* customized variant (their version of the form, with burgundy accent), but the canonical pattern is a generic reusable form (`index.html` at repo root) with per-client variants in subfolders (`for-<client-slug>/`) that share `style.css` + `form.js` from the parent.
+
+## Decision
+
+This folder holds the static-site source for the AI Intake Survey: generic + Frank & Brittney variant + the Google Apps Script backend code + the documentation (PRD-analytics-demo, AUDIT, PLAN, RESEARCH-public-databases) + analytics + datasets subfolders. **It does NOT hold** the deployed site (that lives at `https://jonsims.github.io/ai-survey/` via GitHub Pages from the `jonsims/ai-survey` public repo), the response data (lives in a Google Sheet named `AI Intake — Responses`, not in this folder), the Apps Script deployment URL (constant `APPS_SCRIPT_URL` at the top of `form.js` — also visible in the Apps Script console), or sensitive client data (each variant just changes the `data-client="..."` attribute + the `--accent` CSS variable; no per-client data lives here). Adding a new client variant means copying `for-frank-and-brittney/` → `for-<slug>/` and customizing 4 things; see "Adding a new client variant" below.
+
+## Consequences
+
+A single bug fix or design improvement to the generic form propagates to every variant automatically (variants reference shared `style.css` + `form.js` via `../`). The Google Sheet backend gives a simple queryable destination — filter by the `client` column to isolate one variant's submissions; export to CSV when needed. The cost is two-step Apps Script deployment ritual (every `Code.gs` change requires Deploy → Manage deployments → New version → Deploy; the URL stays the same), and a max-~5-clients folder pattern before it should migrate to query-param + JSON config (Phase B roadmap). The mobile-first design (16px+ inputs to prevent iOS Safari zoom-jump, 44px+ touch targets) means the form works well as a phone link — which is the most common share path. **Action item: this folder doesn't yet have a vault `Projects/*.md` entry; should be added so [[projects-dashboard]] picks it up.**
+
+<!-- AI:BEGIN -->
+## What's in here (auto)
+*Auto-populated by the folder-context indexer on next reconcile.*
+
+## Recent activity (auto, last 14 days)
+*Auto-populated.*
+
+## Cross-references (auto)
+*Auto-populated.*
+<!-- AI:END -->
+
+---
+
 # AI Intake Survey
 
 A short, editorial intake survey for AI consulting conversations. Static HTML/CSS/JS — no framework, no build step. Posts responses to a Google Sheet via a Google Apps Script Web App.
