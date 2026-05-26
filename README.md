@@ -16,7 +16,33 @@ file_count:
 related_folders_auto: []
 ---
 
-# Why this folder exists
+# AI Intake Survey
+
+A short, editorial intake survey for AI consulting conversations — static HTML/CSS/JS (no framework, no build), hosted on GitHub Pages, posting to a Google Sheet via Apps Script. The folder is currently the home of the first variant ("Frank and Brittney"), but the repo + pattern are designed to be generic — `for-<client-slug>/` subfolders share the parent's `style.css` + `form.js`. *(Whether to rename this folder to match the broader pattern: see questions-for-jon-2026-05-26 #1.)*
+
+## What's in here
+
+- `index.html` — the **generic canonical form** (the reusable variant, tagged `v1.0`)
+- `style.css` + `form.js` — shared design system + validation/submit (variants link to these via `../`)
+- `for-frank-and-brittney/` — the first customized variant (`index.html` + `variant.css` burgundy accent)
+- `apps-script/Code.gs` — backend code to paste into Apps Script editor (writes to Google Sheet)
+- `PRD-analytics-demo.md`, `AUDIT.md`, `PLAN.md`, `RESEARCH-public-databases.md` — design + research docs
+- `analytics/` + `datasets/` — analytics demo + public-database research artifacts
+- `README.md` (this file)
+
+## What's NOT here (lives elsewhere)
+
+- **Deployed site** — `https://jonsims.github.io/ai-survey/` (GitHub Pages from the `jonsims/ai-survey` public repo)
+- **Frank & Brittney deployed variant** — `https://jonsims.github.io/ai-survey/for-frank-and-brittney/`
+- **Response data** — Google Sheet `AI Intake — Responses` (one row per submission, with a `client` column to filter by variant)
+- **Apps Script deployment URL** — constant `APPS_SCRIPT_URL` at the top of `form.js` (and visible in the Apps Script console)
+- **Client-specific anything** — per-variant changes are limited to `data-client="..."` + the `--accent*` CSS variables; no per-client data lives in this repo
+
+## Related folders
+
+- [[for-steve]] (sibling, not on disk under `~/Projects/` here) — `~/Projects/For Steve/`; this project inherits the editorial-academic design register from For Steve
+- [[projects-dashboard]] — should pick this folder up once the corresponding vault `Projects/*.md` entry is created
+- Future client variants — each is a `for-<slug>/` subfolder; max ~5 before migrating to query-param + JSON config (Phase B roadmap)
 
 ## Context
 
@@ -43,14 +69,12 @@ A single bug fix or design improvement to the generic form propagates to every v
 
 ---
 
-# AI Intake Survey
-
-A short, editorial intake survey for AI consulting conversations. Static HTML/CSS/JS — no framework, no build step. Posts responses to a Google Sheet via a Google Apps Script Web App.
+## Quick reference
 
 **Generic (canonical):** https://jonsims.github.io/ai-survey/
 **Frank & Brittney variant:** https://jonsims.github.io/ai-survey/for-frank-and-brittney/
 
-## What's in here
+### Repo layout
 
 ```
 ai-survey/
@@ -67,7 +91,7 @@ ai-survey/
 
 The generic form is the canonical version (tagged `v1.0`). Variants live in subfolders, each with their own customized `index.html`, and reference the shared `style.css` and `form.js` via `../`. A bug fix to the generic propagates to every variant automatically.
 
-## Adding a new client variant
+### Adding a new client variant
 
 1. Copy `for-frank-and-brittney/` to `for-<new-client-slug>/`.
 2. Edit `index.html` in the new folder — change the masthead intro copy, the thank-you message, and the `data-client="..."` attribute on `<form>`.
@@ -77,15 +101,15 @@ The generic form is the canonical version (tagged `v1.0`). Variants live in subf
 
 The shared `form.js` reads `data-client` from the `<form>` element and includes it in the submit payload, so all clients write to the same Sheet with a `client` column identifying which variant produced each row.
 
-## One-time setup (already done; documented for future Jons)
+### One-time setup (already done; documented for future Jons)
 
-### 1. Create the response Sheet
+#### 1. Create the response Sheet
 
 1. Go to [sheets.new](https://sheets.new) and create a Google Sheet.
 2. Name it `AI Intake — Responses`.
 3. Copy the **Sheet ID** from the URL — the long string between `/d/` and `/edit`.
 
-### 2. Wire up the Apps Script backend
+#### 2. Wire up the Apps Script backend
 
 1. In the Sheet: **Extensions → Apps Script**.
 2. Delete the boilerplate and paste the contents of [`apps-script/Code.gs`](apps-script/Code.gs).
@@ -98,7 +122,7 @@ The shared `form.js` reads `data-client` from the `<form>` element and includes 
 6. Click **Deploy**, accept the Google permissions prompt.
 7. Copy the **Web app URL** that ends in `/exec`.
 
-### 3. Point the form at the backend
+#### 3. Point the form at the backend
 
 Open [`form.js`](form.js) and paste the Web app URL into the constant at the top:
 
@@ -106,7 +130,7 @@ Open [`form.js`](form.js) and paste the Web app URL into the constant at the top
 const APPS_SCRIPT_URL = "https://script.google.com/macros/s/.../exec";
 ```
 
-### 4. Deploy to GitHub Pages
+#### 4. Deploy to GitHub Pages
 
 ```bash
 gh repo create jonsims/ai-survey --public --source=. --push
@@ -114,14 +138,14 @@ gh repo create jonsims/ai-survey --public --source=. --push
 
 Then on GitHub: **Settings → Pages → Source: Deploy from a branch → `main` / `(root)` → Save.**
 
-## Iterating
+### Iterating
 
 - **Test without spamming the Sheet:** clear `APPS_SCRIPT_URL` in `form.js` and submit — payload prints to the browser console.
 - **Add or rename a field:** edit `index.html` (the `name` attribute is what matters), then add the new key to `HEADERS` in [`apps-script/Code.gs`](apps-script/Code.gs) and (if it's a multi-select) to `MULTI_SELECTS` in [`form.js`](form.js).
 - **Apps Script changes don't auto-update.** After every edit to `Code.gs` you have to **Deploy → Manage deployments → ✏️ → New version → Deploy** for the live form to see the change. The URL stays the same.
 - **Multi-select values** arrive in the Sheet as `value1; value2; value3` — joined by the backend.
 
-## Design
+### Design
 
 Editorial / "McKinsey-BCG-federal-report" register, lifted from the [For Steve](https://github.com/babsongenerator/babson-frontier-ai-case) project. IBM Plex Serif body, IBM Plex Sans headings, IBM Plex Mono accents. Off-white background, white cards with a thin colored left stripe cycling through three editorial accents (forest teal `#0F5F4D` primary, gold `#B07A2A`, slate navy `#3F4F75`).
 
@@ -129,7 +153,7 @@ Mobile-first — base styles target phone, media queries scale up. All inputs ar
 
 To re-theme a variant: override the four `--accent*` CSS custom properties in `variant.css`. The section-cycle secondary accents stay constant; only the primary changes.
 
-## Roadmap (Phase B — additive, optional)
+### Roadmap (Phase B — additive, optional)
 
 - One-section-per-card with smooth scroll between cards
 - Thin progress bar that fills as sections complete
