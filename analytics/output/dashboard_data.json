@@ -1,0 +1,1642 @@
+{
+  "portfolio": {
+    "total_properties": 272,
+    "total_units": 40718,
+    "avg_rent": 1062.0,
+    "states": [
+      "AZ",
+      "FL",
+      "NC",
+      "NV",
+      "SC",
+      "TX"
+    ],
+    "by_type": {
+      "lihtc_apartment": 14998,
+      "market_apartment": 9572,
+      "mhp_lot": 16148
+    },
+    "total_value": 5045.0
+  },
+  "listings": [
+    {
+      "property_id": "P-0245",
+      "name": "The Preserve Place",
+      "state": "NV",
+      "county_fips": 32019,
+      "county_name": "Lyon County",
+      "property_type": "lihtc_apartment",
+      "total_units": 295,
+      "occupied_units": 286,
+      "avg_monthly_rent": 747.0,
+      "rent_restricted": true,
+      "ami_ceiling_pct": 50.0,
+      "monthly_opex_per_unit": 364.68,
+      "annual_debt_service": 947541.0,
+      "year_acquired": 2018,
+      "acquisition_price": 17563376.0,
+      "local_fmr_2br": 1272,
+      "local_vli_4person": 52000
+    },
+    {
+      "property_id": "P-0052",
+      "name": "Maple Court Village",
+      "state": "TX",
+      "county_fips": 48091,
+      "county_name": "Comal County",
+      "property_type": "lihtc_apartment",
+      "total_units": 277,
+      "occupied_units": 254,
+      "avg_monthly_rent": 894.0,
+      "rent_restricted": true,
+      "ami_ceiling_pct": 60.0,
+      "monthly_opex_per_unit": 421.41,
+      "annual_debt_service": 1408718.0,
+      "year_acquired": 2016,
+      "acquisition_price": 24723655.0,
+      "local_fmr_2br": 1426,
+      "local_vli_4person": 50300
+    },
+    {
+      "property_id": "P-0168",
+      "name": "Stonewood Village",
+      "state": "NC",
+      "county_fips": 37085,
+      "county_name": "Harnett County",
+      "property_type": "lihtc_apartment",
+      "total_units": 277,
+      "occupied_units": 256,
+      "avg_monthly_rent": 566.0,
+      "rent_restricted": true,
+      "ami_ceiling_pct": 60.0,
+      "monthly_opex_per_unit": 458.76,
+      "annual_debt_service": 327841.0,
+      "year_acquired": 2018,
+      "acquisition_price": 5893719.0,
+      "local_fmr_2br": 980,
+      "local_vli_4person": 44150
+    },
+    {
+      "property_id": "P-0228",
+      "name": "Westgate Apartments",
+      "state": "NV",
+      "county_fips": 32003,
+      "county_name": "Clark County",
+      "property_type": "lihtc_apartment",
+      "total_units": 277,
+      "occupied_units": 262,
+      "avg_monthly_rent": 980.0,
+      "rent_restricted": true,
+      "ami_ceiling_pct": 60.0,
+      "monthly_opex_per_unit": 525.32,
+      "annual_debt_service": 923036.0,
+      "year_acquired": 2021,
+      "acquisition_price": 17789179.0,
+      "local_fmr_2br": 1735,
+      "local_vli_4person": 52750
+    },
+    {
+      "property_id": "P-0180",
+      "name": "The Residences Village",
+      "state": "SC",
+      "county_fips": 45051,
+      "county_name": "Horry County",
+      "property_type": "lihtc_apartment",
+      "total_units": 276,
+      "occupied_units": 261,
+      "avg_monthly_rent": 974.0,
+      "rent_restricted": true,
+      "ami_ceiling_pct": 80.0,
+      "monthly_opex_per_unit": 379.63,
+      "annual_debt_service": 1287511.0,
+      "year_acquired": 2016,
+      "acquisition_price": 22015131.0,
+      "local_fmr_2br": 1465,
+      "local_vli_4person": 43000
+    },
+    {
+      "property_id": "P-0016",
+      "name": "The Enclave Village",
+      "state": "TX",
+      "county_fips": 48491,
+      "county_name": "Williamson County",
+      "property_type": "lihtc_apartment",
+      "total_units": 271,
+      "occupied_units": 258,
+      "avg_monthly_rent": 1644.0,
+      "rent_restricted": true,
+      "ami_ceiling_pct": 80.0,
+      "monthly_opex_per_unit": 488.82,
+      "annual_debt_service": 3230952.0,
+      "year_acquired": 2021,
+      "acquisition_price": 67603169.0,
+      "local_fmr_2br": 1852,
+      "local_vli_4person": 67200
+    },
+    {
+      "property_id": "P-0196",
+      "name": "Harbor View Village",
+      "state": "SC",
+      "county_fips": 45045,
+      "county_name": "Greenville County",
+      "property_type": "lihtc_apartment",
+      "total_units": 267,
+      "occupied_units": 255,
+      "avg_monthly_rent": 926.0,
+      "rent_restricted": true,
+      "ami_ceiling_pct": 60.0,
+      "monthly_opex_per_unit": 428.82,
+      "annual_debt_service": 1059204.0,
+      "year_acquired": 2011,
+      "acquisition_price": 24990277.0,
+      "local_fmr_2br": 1339,
+      "local_vli_4person": 53150
+    },
+    {
+      "property_id": "P-0090",
+      "name": "Vista Pointe Place",
+      "state": "FL",
+      "county_fips": 12081,
+      "county_name": "Manatee County",
+      "property_type": "lihtc_apartment",
+      "total_units": 266,
+      "occupied_units": 255,
+      "avg_monthly_rent": 1443.0,
+      "rent_restricted": true,
+      "ami_ceiling_pct": 60.0,
+      "monthly_opex_per_unit": 456.7,
+      "annual_debt_service": 2480153.0,
+      "year_acquired": 2024,
+      "acquisition_price": 40125712.0,
+      "local_fmr_2br": 1958,
+      "local_vli_4person": 57050
+    },
+    {
+      "property_id": "P-0261",
+      "name": "Brookstone Apartments",
+      "state": "NV",
+      "county_fips": 32029,
+      "county_name": "Storey County",
+      "property_type": "lihtc_apartment",
+      "total_units": 254,
+      "occupied_units": 229,
+      "avg_monthly_rent": 1258.0,
+      "rent_restricted": true,
+      "ami_ceiling_pct": 60.0,
+      "monthly_opex_per_unit": 449.21,
+      "annual_debt_service": 2218550.0,
+      "year_acquired": 2012,
+      "acquisition_price": 38515592.0,
+      "local_fmr_2br": 1870,
+      "local_vli_4person": 58400
+    },
+    {
+      "property_id": "P-0165",
+      "name": "Stonewood Place",
+      "state": "NC",
+      "county_fips": 37097,
+      "county_name": "Iredell County",
+      "property_type": "lihtc_apartment",
+      "total_units": 253,
+      "occupied_units": 250,
+      "avg_monthly_rent": 798.0,
+      "rent_restricted": true,
+      "ami_ceiling_pct": 50.0,
+      "monthly_opex_per_unit": 316.44,
+      "annual_debt_service": 985823.0,
+      "year_acquired": 2016,
+      "acquisition_price": 17005236.0,
+      "local_fmr_2br": 1340,
+      "local_vli_4person": 53650
+    },
+    {
+      "property_id": "P-0211",
+      "name": "Westgate Village",
+      "state": "SC",
+      "county_fips": 45019,
+      "county_name": "Charleston County",
+      "property_type": "lihtc_apartment",
+      "total_units": 245,
+      "occupied_units": 235,
+      "avg_monthly_rent": 1183.0,
+      "rent_restricted": true,
+      "ami_ceiling_pct": 60.0,
+      "monthly_opex_per_unit": 519.06,
+      "annual_debt_service": 1433282.0,
+      "year_acquired": 2020,
+      "acquisition_price": 28472597.0,
+      "local_fmr_2br": 1787,
+      "local_vli_4person": 58750
+    },
+    {
+      "property_id": "P-0233",
+      "name": "The Preserve Apartments",
+      "state": "NV",
+      "county_fips": 32031,
+      "county_name": "Washoe County",
+      "property_type": "lihtc_apartment",
+      "total_units": 245,
+      "occupied_units": 234,
+      "avg_monthly_rent": 1551.0,
+      "rent_restricted": true,
+      "ami_ceiling_pct": 50.0,
+      "monthly_opex_per_unit": 320.51,
+      "annual_debt_service": 3422676.0,
+      "year_acquired": 2012,
+      "acquisition_price": 57430094.0,
+      "local_fmr_2br": 1870,
+      "local_vli_4person": 58400
+    }
+  ],
+  "pipeline": [
+    {
+      "state": "AZ",
+      "property_type": "LIHTC Apartment",
+      "count": 14,
+      "units": 2289,
+      "value": 247.7
+    },
+    {
+      "state": "AZ",
+      "property_type": "Market Rate",
+      "count": 10,
+      "units": 1751,
+      "value": 305.0
+    },
+    {
+      "state": "AZ",
+      "property_type": "MHP Lot Rent",
+      "count": 17,
+      "units": 2068,
+      "value": 139.4
+    },
+    {
+      "state": "FL",
+      "property_type": "LIHTC Apartment",
+      "count": 12,
+      "units": 1994,
+      "value": 308.9
+    },
+    {
+      "state": "FL",
+      "property_type": "Market Rate",
+      "count": 11,
+      "units": 1901,
+      "value": 444.8
+    },
+    {
+      "state": "FL",
+      "property_type": "MHP Lot Rent",
+      "count": 21,
+      "units": 2784,
+      "value": 216.2
+    },
+    {
+      "state": "NC",
+      "property_type": "LIHTC Apartment",
+      "count": 11,
+      "units": 1724,
+      "value": 166.7
+    },
+    {
+      "state": "NC",
+      "property_type": "Market Rate",
+      "count": 12,
+      "units": 1555,
+      "value": 320.5
+    },
+    {
+      "state": "NC",
+      "property_type": "MHP Lot Rent",
+      "count": 14,
+      "units": 2237,
+      "value": 160.0
+    },
+    {
+      "state": "NV",
+      "property_type": "LIHTC Apartment",
+      "count": 17,
+      "units": 3351,
+      "value": 346.1
+    },
+    {
+      "state": "NV",
+      "property_type": "Market Rate",
+      "count": 3,
+      "units": 448,
+      "value": 69.6
+    },
+    {
+      "state": "NV",
+      "property_type": "MHP Lot Rent",
+      "count": 27,
+      "units": 3449,
+      "value": 251.9
+    },
+    {
+      "state": "SC",
+      "property_type": "LIHTC Apartment",
+      "count": 20,
+      "units": 3273,
+      "value": 373.1
+    },
+    {
+      "state": "SC",
+      "property_type": "Market Rate",
+      "count": 14,
+      "units": 2060,
+      "value": 407.9
+    },
+    {
+      "state": "SC",
+      "property_type": "MHP Lot Rent",
+      "count": 14,
+      "units": 1852,
+      "value": 129.7
+    },
+    {
+      "state": "TX",
+      "property_type": "LIHTC Apartment",
+      "count": 14,
+      "units": 2367,
+      "value": 384.8
+    },
+    {
+      "state": "TX",
+      "property_type": "Market Rate",
+      "count": 12,
+      "units": 1857,
+      "value": 453.3
+    },
+    {
+      "state": "TX",
+      "property_type": "MHP Lot Rent",
+      "count": 29,
+      "units": 3758,
+      "value": 319.3
+    }
+  ],
+  "migration": [
+    {
+      "label": "Polk County, FL",
+      "net_migration_returns": 9193,
+      "lihtc_total_units": 3377.0
+    },
+    {
+      "label": "Pasco County, FL",
+      "net_migration_returns": 9058,
+      "lihtc_total_units": 2718.0
+    },
+    {
+      "label": "Montgomery County, TX",
+      "net_migration_returns": 8419,
+      "lihtc_total_units": 4957.0
+    },
+    {
+      "label": "Williamson County, TX",
+      "net_migration_returns": 7619,
+      "lihtc_total_units": 6222.0
+    },
+    {
+      "label": "Clark County, NV",
+      "net_migration_returns": 7000,
+      "lihtc_total_units": 20090.0
+    },
+    {
+      "label": "Collin County, TX",
+      "net_migration_returns": 6995,
+      "lihtc_total_units": 5088.0
+    },
+    {
+      "label": "Pinal County, AZ",
+      "net_migration_returns": 6769,
+      "lihtc_total_units": 1535.0
+    },
+    {
+      "label": "Denton County, TX",
+      "net_migration_returns": 6596,
+      "lihtc_total_units": 5559.0
+    },
+    {
+      "label": "Lake County, FL",
+      "net_migration_returns": 6299,
+      "lihtc_total_units": 3345.0
+    },
+    {
+      "label": "Marion County, FL",
+      "net_migration_returns": 5980,
+      "lihtc_total_units": 1751.0
+    },
+    {
+      "label": "Horry County, SC",
+      "net_migration_returns": 5892,
+      "lihtc_total_units": 1577.0
+    },
+    {
+      "label": "Maricopa County, AZ",
+      "net_migration_returns": 5606,
+      "lihtc_total_units": 23950.0
+    },
+    {
+      "label": "St. Lucie County, FL",
+      "net_migration_returns": 5050,
+      "lihtc_total_units": 2229.0
+    },
+    {
+      "label": "Brevard County, FL",
+      "net_migration_returns": 4983,
+      "lihtc_total_units": 3576.0
+    },
+    {
+      "label": "Manatee County, FL",
+      "net_migration_returns": 4551,
+      "lihtc_total_units": 2723.0
+    },
+    {
+      "label": "New York County, NY",
+      "net_migration_returns": 4305,
+      "lihtc_total_units": 74570.0
+    },
+    {
+      "label": "St. Johns County, FL",
+      "net_migration_returns": 4150,
+      "lihtc_total_units": 1012.0
+    },
+    {
+      "label": "Volusia County, FL",
+      "net_migration_returns": 4075,
+      "lihtc_total_units": 4793.0
+    },
+    {
+      "label": "Wake County, NC",
+      "net_migration_returns": 3984,
+      "lihtc_total_units": 12233.0
+    },
+    {
+      "label": "Mecklenburg County, NC",
+      "net_migration_returns": 3706,
+      "lihtc_total_units": 14139.0
+    }
+  ],
+  "burden": [
+    {
+      "label": "Victoria County",
+      "fmr26_2": 1442,
+      "vli_4person": 42000,
+      "burden_ratio": 1.37
+    },
+    {
+      "label": "Goliad County",
+      "fmr26_2": 1442,
+      "vli_4person": 42000,
+      "burden_ratio": 1.37
+    },
+    {
+      "label": "Martin County",
+      "fmr26_2": 1772,
+      "vli_4person": 51650,
+      "burden_ratio": 1.37
+    },
+    {
+      "label": "Ector County",
+      "fmr26_2": 1595,
+      "vli_4person": 46500,
+      "burden_ratio": 1.37
+    },
+    {
+      "label": "Midland County",
+      "fmr26_2": 1780,
+      "vli_4person": 54450,
+      "burden_ratio": 1.31
+    },
+    {
+      "label": "Nueces County",
+      "fmr26_2": 1366,
+      "vli_4person": 41850,
+      "burden_ratio": 1.31
+    },
+    {
+      "label": "San Patricio County",
+      "fmr26_2": 1366,
+      "vli_4person": 41850,
+      "burden_ratio": 1.31
+    },
+    {
+      "label": "Aransas County",
+      "fmr26_2": 1407,
+      "vli_4person": 43400,
+      "burden_ratio": 1.3
+    },
+    {
+      "label": "Dallas County",
+      "fmr26_2": 1931,
+      "vli_4person": 60550,
+      "burden_ratio": 1.28
+    },
+    {
+      "label": "Hunt County",
+      "fmr26_2": 1931,
+      "vli_4person": 60550,
+      "burden_ratio": 1.28
+    },
+    {
+      "label": "Rockwall County",
+      "fmr26_2": 1931,
+      "vli_4person": 60550,
+      "burden_ratio": 1.28
+    },
+    {
+      "label": "Collin County",
+      "fmr26_2": 1931,
+      "vli_4person": 60550,
+      "burden_ratio": 1.28
+    },
+    {
+      "label": "Kaufman County",
+      "fmr26_2": 1931,
+      "vli_4person": 60550,
+      "burden_ratio": 1.28
+    },
+    {
+      "label": "Denton County",
+      "fmr26_2": 1931,
+      "vli_4person": 60550,
+      "burden_ratio": 1.28
+    },
+    {
+      "label": "Ellis County",
+      "fmr26_2": 1931,
+      "vli_4person": 60550,
+      "burden_ratio": 1.28
+    },
+    {
+      "label": "Johnson County",
+      "fmr26_2": 1723,
+      "vli_4person": 55150,
+      "burden_ratio": 1.25
+    },
+    {
+      "label": "Tarrant County",
+      "fmr26_2": 1723,
+      "vli_4person": 55150,
+      "burden_ratio": 1.25
+    },
+    {
+      "label": "Parker County",
+      "fmr26_2": 1723,
+      "vli_4person": 55150,
+      "burden_ratio": 1.25
+    },
+    {
+      "label": "Harris County",
+      "fmr26_2": 1573,
+      "vli_4person": 52000,
+      "burden_ratio": 1.21
+    },
+    {
+      "label": "Liberty County",
+      "fmr26_2": 1573,
+      "vli_4person": 52000,
+      "burden_ratio": 1.21
+    },
+    {
+      "label": "Chambers County",
+      "fmr26_2": 1573,
+      "vli_4person": 52000,
+      "burden_ratio": 1.21
+    },
+    {
+      "label": "Galveston County",
+      "fmr26_2": 1573,
+      "vli_4person": 52000,
+      "burden_ratio": 1.21
+    },
+    {
+      "label": "Fort Bend County",
+      "fmr26_2": 1573,
+      "vli_4person": 52000,
+      "burden_ratio": 1.21
+    },
+    {
+      "label": "Montgomery County",
+      "fmr26_2": 1573,
+      "vli_4person": 52000,
+      "burden_ratio": 1.21
+    },
+    {
+      "label": "Waller County",
+      "fmr26_2": 1573,
+      "vli_4person": 52000,
+      "burden_ratio": 1.21
+    }
+  ],
+  "preservation": {
+    "Already expired": 18622,
+    "2026\u20132029": 21895,
+    "2030\u20132031": 9288,
+    "2032\u20132036": 58590,
+    "After 2036": 157612
+  },
+  "trajectory": [
+    {
+      "label": "Collin County",
+      "fips_county": "48085",
+      "year": 1990,
+      "fmr_2br": 527.0,
+      "projected": false
+    },
+    {
+      "label": "Collin County",
+      "fips_county": "48085",
+      "year": 1995,
+      "fmr_2br": 565.0,
+      "projected": false
+    },
+    {
+      "label": "Collin County",
+      "fips_county": "48085",
+      "year": 2000,
+      "fmr_2br": 749.0,
+      "projected": false
+    },
+    {
+      "label": "Collin County",
+      "fips_county": "48085",
+      "year": 2005,
+      "fmr_2br": 868.0,
+      "projected": false
+    },
+    {
+      "label": "Collin County",
+      "fips_county": "48085",
+      "year": 2010,
+      "fmr_2br": 894.0,
+      "projected": false
+    },
+    {
+      "label": "Collin County",
+      "fips_county": "48085",
+      "year": 2015,
+      "fmr_2br": 921.0,
+      "projected": false
+    },
+    {
+      "label": "Collin County",
+      "fips_county": "48085",
+      "year": 2020,
+      "fmr_2br": 1314.0,
+      "projected": false
+    },
+    {
+      "label": "Collin County",
+      "fips_county": "48085",
+      "year": 2026,
+      "fmr_2br": 1931.0,
+      "projected": false
+    },
+    {
+      "label": "Comal County",
+      "fips_county": "48091",
+      "year": 1990,
+      "fmr_2br": 470.0,
+      "projected": false
+    },
+    {
+      "label": "Comal County",
+      "fips_county": "48091",
+      "year": 1995,
+      "fmr_2br": 507.0,
+      "projected": false
+    },
+    {
+      "label": "Comal County",
+      "fips_county": "48091",
+      "year": 2000,
+      "fmr_2br": 555.0,
+      "projected": false
+    },
+    {
+      "label": "Comal County",
+      "fips_county": "48091",
+      "year": 2005,
+      "fmr_2br": 716.0,
+      "projected": false
+    },
+    {
+      "label": "Comal County",
+      "fips_county": "48091",
+      "year": 2010,
+      "fmr_2br": 796.0,
+      "projected": false
+    },
+    {
+      "label": "Comal County",
+      "fips_county": "48091",
+      "year": 2015,
+      "fmr_2br": 872.0,
+      "projected": false
+    },
+    {
+      "label": "Comal County",
+      "fips_county": "48091",
+      "year": 2020,
+      "fmr_2br": 1051.0,
+      "projected": false
+    },
+    {
+      "label": "Comal County",
+      "fips_county": "48091",
+      "year": 2026,
+      "fmr_2br": 1426.0,
+      "projected": false
+    },
+    {
+      "label": "Denton County",
+      "fips_county": "48121",
+      "year": 1990,
+      "fmr_2br": 527.0,
+      "projected": false
+    },
+    {
+      "label": "Denton County",
+      "fips_county": "48121",
+      "year": 1995,
+      "fmr_2br": 565.0,
+      "projected": false
+    },
+    {
+      "label": "Denton County",
+      "fips_county": "48121",
+      "year": 2000,
+      "fmr_2br": 749.0,
+      "projected": false
+    },
+    {
+      "label": "Denton County",
+      "fips_county": "48121",
+      "year": 2005,
+      "fmr_2br": 868.0,
+      "projected": false
+    },
+    {
+      "label": "Denton County",
+      "fips_county": "48121",
+      "year": 2010,
+      "fmr_2br": 894.0,
+      "projected": false
+    },
+    {
+      "label": "Denton County",
+      "fips_county": "48121",
+      "year": 2015,
+      "fmr_2br": 921.0,
+      "projected": false
+    },
+    {
+      "label": "Denton County",
+      "fips_county": "48121",
+      "year": 2020,
+      "fmr_2br": 1314.0,
+      "projected": false
+    },
+    {
+      "label": "Denton County",
+      "fips_county": "48121",
+      "year": 2026,
+      "fmr_2br": 1931.0,
+      "projected": false
+    },
+    {
+      "label": "Fort Bend County",
+      "fips_county": "48157",
+      "year": 1990,
+      "fmr_2br": 400.0,
+      "projected": false
+    },
+    {
+      "label": "Fort Bend County",
+      "fips_county": "48157",
+      "year": 1995,
+      "fmr_2br": 553.0,
+      "projected": false
+    },
+    {
+      "label": "Fort Bend County",
+      "fips_county": "48157",
+      "year": 2000,
+      "fmr_2br": 620.0,
+      "projected": false
+    },
+    {
+      "label": "Fort Bend County",
+      "fips_county": "48157",
+      "year": 2005,
+      "fmr_2br": 733.0,
+      "projected": false
+    },
+    {
+      "label": "Fort Bend County",
+      "fips_county": "48157",
+      "year": 2010,
+      "fmr_2br": 892.0,
+      "projected": false
+    },
+    {
+      "label": "Fort Bend County",
+      "fips_county": "48157",
+      "year": 2015,
+      "fmr_2br": 890.0,
+      "projected": false
+    },
+    {
+      "label": "Fort Bend County",
+      "fips_county": "48157",
+      "year": 2020,
+      "fmr_2br": 1096.0,
+      "projected": false
+    },
+    {
+      "label": "Fort Bend County",
+      "fips_county": "48157",
+      "year": 2026,
+      "fmr_2br": 1573.0,
+      "projected": false
+    },
+    {
+      "label": "Hays County",
+      "fips_county": "48209",
+      "year": 1990,
+      "fmr_2br": 493.0,
+      "projected": false
+    },
+    {
+      "label": "Hays County",
+      "fips_county": "48209",
+      "year": 1995,
+      "fmr_2br": 623.0,
+      "projected": false
+    },
+    {
+      "label": "Hays County",
+      "fips_county": "48209",
+      "year": 2000,
+      "fmr_2br": 700.0,
+      "projected": false
+    },
+    {
+      "label": "Hays County",
+      "fips_county": "48209",
+      "year": 2005,
+      "fmr_2br": 912.0,
+      "projected": false
+    },
+    {
+      "label": "Hays County",
+      "fips_county": "48209",
+      "year": 2010,
+      "fmr_2br": 954.0,
+      "projected": false
+    },
+    {
+      "label": "Hays County",
+      "fips_county": "48209",
+      "year": 2015,
+      "fmr_2br": 1050.0,
+      "projected": false
+    },
+    {
+      "label": "Hays County",
+      "fips_county": "48209",
+      "year": 2020,
+      "fmr_2br": 1356.0,
+      "projected": false
+    },
+    {
+      "label": "Hays County",
+      "fips_county": "48209",
+      "year": 2026,
+      "fmr_2br": 1852.0,
+      "projected": false
+    },
+    {
+      "label": "Kaufman County",
+      "fips_county": "48257",
+      "year": 1990,
+      "fmr_2br": 527.0,
+      "projected": false
+    },
+    {
+      "label": "Kaufman County",
+      "fips_county": "48257",
+      "year": 1995,
+      "fmr_2br": 565.0,
+      "projected": false
+    },
+    {
+      "label": "Kaufman County",
+      "fips_county": "48257",
+      "year": 2000,
+      "fmr_2br": 749.0,
+      "projected": false
+    },
+    {
+      "label": "Kaufman County",
+      "fips_county": "48257",
+      "year": 2005,
+      "fmr_2br": 868.0,
+      "projected": false
+    },
+    {
+      "label": "Kaufman County",
+      "fips_county": "48257",
+      "year": 2010,
+      "fmr_2br": 894.0,
+      "projected": false
+    },
+    {
+      "label": "Kaufman County",
+      "fips_county": "48257",
+      "year": 2015,
+      "fmr_2br": 921.0,
+      "projected": false
+    },
+    {
+      "label": "Kaufman County",
+      "fips_county": "48257",
+      "year": 2020,
+      "fmr_2br": 1314.0,
+      "projected": false
+    },
+    {
+      "label": "Kaufman County",
+      "fips_county": "48257",
+      "year": 2026,
+      "fmr_2br": 1931.0,
+      "projected": false
+    },
+    {
+      "label": "Montgomery County",
+      "fips_county": "48339",
+      "year": 1990,
+      "fmr_2br": 400.0,
+      "projected": false
+    },
+    {
+      "label": "Montgomery County",
+      "fips_county": "48339",
+      "year": 1995,
+      "fmr_2br": 553.0,
+      "projected": false
+    },
+    {
+      "label": "Montgomery County",
+      "fips_county": "48339",
+      "year": 2000,
+      "fmr_2br": 620.0,
+      "projected": false
+    },
+    {
+      "label": "Montgomery County",
+      "fips_county": "48339",
+      "year": 2005,
+      "fmr_2br": 733.0,
+      "projected": false
+    },
+    {
+      "label": "Montgomery County",
+      "fips_county": "48339",
+      "year": 2010,
+      "fmr_2br": 892.0,
+      "projected": false
+    },
+    {
+      "label": "Montgomery County",
+      "fips_county": "48339",
+      "year": 2015,
+      "fmr_2br": 890.0,
+      "projected": false
+    },
+    {
+      "label": "Montgomery County",
+      "fips_county": "48339",
+      "year": 2020,
+      "fmr_2br": 1096.0,
+      "projected": false
+    },
+    {
+      "label": "Montgomery County",
+      "fips_county": "48339",
+      "year": 2026,
+      "fmr_2br": 1573.0,
+      "projected": false
+    },
+    {
+      "label": "Williamson County",
+      "fips_county": "48491",
+      "year": 1990,
+      "fmr_2br": 493.0,
+      "projected": false
+    },
+    {
+      "label": "Williamson County",
+      "fips_county": "48491",
+      "year": 1995,
+      "fmr_2br": 623.0,
+      "projected": false
+    },
+    {
+      "label": "Williamson County",
+      "fips_county": "48491",
+      "year": 2000,
+      "fmr_2br": 700.0,
+      "projected": false
+    },
+    {
+      "label": "Williamson County",
+      "fips_county": "48491",
+      "year": 2005,
+      "fmr_2br": 912.0,
+      "projected": false
+    },
+    {
+      "label": "Williamson County",
+      "fips_county": "48491",
+      "year": 2010,
+      "fmr_2br": 954.0,
+      "projected": false
+    },
+    {
+      "label": "Williamson County",
+      "fips_county": "48491",
+      "year": 2015,
+      "fmr_2br": 1050.0,
+      "projected": false
+    },
+    {
+      "label": "Williamson County",
+      "fips_county": "48491",
+      "year": 2020,
+      "fmr_2br": 1356.0,
+      "projected": false
+    },
+    {
+      "label": "Williamson County",
+      "fips_county": "48491",
+      "year": 2026,
+      "fmr_2br": 1852.0,
+      "projected": false
+    }
+  ],
+  "sim_properties": [
+    {
+      "property_id": "P-0001",
+      "name": "Sunset Ridge Park",
+      "state": "TX",
+      "county_name": "Montgomery County",
+      "property_type": "mhp_lot",
+      "total_units": 102,
+      "current_rent": 762.0,
+      "current_noi": 393517.0,
+      "dscr": 1.46
+    },
+    {
+      "property_id": "P-0002",
+      "name": "Meadowbrook MHP",
+      "state": "TX",
+      "county_name": "Montgomery County",
+      "property_type": "mhp_lot",
+      "total_units": 183,
+      "current_rent": 727.0,
+      "current_noi": 925998.0,
+      "dscr": 0.84
+    },
+    {
+      "property_id": "P-0003",
+      "name": "Harbor View Village",
+      "state": "TX",
+      "county_name": "Montgomery County",
+      "property_type": "lihtc_apartment",
+      "total_units": 156,
+      "current_rent": 951.0,
+      "current_noi": 1045310.0,
+      "dscr": 0.77
+    },
+    {
+      "property_id": "P-0004",
+      "name": "Arbor Walk Village",
+      "state": "TX",
+      "county_name": "Montgomery County",
+      "property_type": "lihtc_apartment",
+      "total_units": 165,
+      "current_rent": 1401.0,
+      "current_noi": 1989666.0,
+      "dscr": 1.38
+    },
+    {
+      "property_id": "P-0005",
+      "name": "Westgate Lofts",
+      "state": "TX",
+      "county_name": "Montgomery County",
+      "property_type": "market_apartment",
+      "total_units": 240,
+      "current_rent": 1805.0,
+      "current_noi": 3027302.0,
+      "dscr": 1.21
+    },
+    {
+      "property_id": "P-0006",
+      "name": "Rolling Hills Park",
+      "state": "TX",
+      "county_name": "Montgomery County",
+      "property_type": "mhp_lot",
+      "total_units": 81,
+      "current_rent": 554.0,
+      "current_noi": 144123.0,
+      "dscr": 0.67
+    },
+    {
+      "property_id": "P-0007",
+      "name": "Creekside Apartments",
+      "state": "TX",
+      "county_name": "Montgomery County",
+      "property_type": "lihtc_apartment",
+      "total_units": 166,
+      "current_rent": 1410.0,
+      "current_noi": 1915639.0,
+      "dscr": 1.29
+    },
+    {
+      "property_id": "P-0008",
+      "name": "Lakeview Park",
+      "state": "TX",
+      "county_name": "Montgomery County",
+      "property_type": "mhp_lot",
+      "total_units": 142,
+      "current_rent": 555.0,
+      "current_noi": 258260.0,
+      "dscr": 0.78
+    },
+    {
+      "property_id": "P-0009",
+      "name": "The Enclave Apartments",
+      "state": "TX",
+      "county_name": "Williamson County",
+      "property_type": "lihtc_apartment",
+      "total_units": 111,
+      "current_rent": 1368.0,
+      "current_noi": 1214241.0,
+      "dscr": 1.32
+    },
+    {
+      "property_id": "P-0010",
+      "name": "The Landings Crossing",
+      "state": "TX",
+      "county_name": "Williamson County",
+      "property_type": "market_apartment",
+      "total_units": 83,
+      "current_rent": 2292.0,
+      "current_noi": 1758655.0,
+      "dscr": 1.48
+    },
+    {
+      "property_id": "P-0011",
+      "name": "Eagle Landing Community",
+      "state": "TX",
+      "county_name": "Williamson County",
+      "property_type": "mhp_lot",
+      "total_units": 175,
+      "current_rent": 812.0,
+      "current_noi": 860874.0,
+      "dscr": 1.23
+    },
+    {
+      "property_id": "P-0012",
+      "name": "Willow Bend Park",
+      "state": "TX",
+      "county_name": "Williamson County",
+      "property_type": "mhp_lot",
+      "total_units": 68,
+      "current_rent": 629.0,
+      "current_noi": 172445.0,
+      "dscr": 1.14
+    },
+    {
+      "property_id": "P-0013",
+      "name": "Parkside Village",
+      "state": "TX",
+      "county_name": "Williamson County",
+      "property_type": "lihtc_apartment",
+      "total_units": 124,
+      "current_rent": 1348.0,
+      "current_noi": 1437864.0,
+      "dscr": 0.79
+    },
+    {
+      "property_id": "P-0014",
+      "name": "The Commons Heights",
+      "state": "TX",
+      "county_name": "Williamson County",
+      "property_type": "market_apartment",
+      "total_units": 142,
+      "current_rent": 1667.0,
+      "current_noi": 1869486.0,
+      "dscr": 1.63
+    },
+    {
+      "property_id": "P-0015",
+      "name": "Heritage Park MHP",
+      "state": "TX",
+      "county_name": "Williamson County",
+      "property_type": "mhp_lot",
+      "total_units": 61,
+      "current_rent": 933.0,
+      "current_noi": 450385.0,
+      "dscr": 0.94
+    },
+    {
+      "property_id": "P-0016",
+      "name": "The Enclave Village",
+      "state": "TX",
+      "county_name": "Williamson County",
+      "property_type": "lihtc_apartment",
+      "total_units": 271,
+      "current_rent": 1644.0,
+      "current_noi": 3500181.0,
+      "dscr": 1.08
+    },
+    {
+      "property_id": "P-0017",
+      "name": "Bayshore Village",
+      "state": "TX",
+      "county_name": "Collin County",
+      "property_type": "lihtc_apartment",
+      "total_units": 163,
+      "current_rent": 1214.0,
+      "current_noi": 1558975.0,
+      "dscr": 1.15
+    },
+    {
+      "property_id": "P-0018",
+      "name": "Willow Bend MHP",
+      "state": "TX",
+      "county_name": "Collin County",
+      "property_type": "mhp_lot",
+      "total_units": 98,
+      "current_rent": 594.0,
+      "current_noi": 280040.0,
+      "dscr": 1.33
+    },
+    {
+      "property_id": "P-0019",
+      "name": "Wildflower Community",
+      "state": "TX",
+      "county_name": "Collin County",
+      "property_type": "mhp_lot",
+      "total_units": 102,
+      "current_rent": 969.0,
+      "current_noi": 908955.0,
+      "dscr": 1.16
+    },
+    {
+      "property_id": "P-0020",
+      "name": "Arbor Walk Heights",
+      "state": "TX",
+      "county_name": "Collin County",
+      "property_type": "market_apartment",
+      "total_units": 227,
+      "current_rent": 1727.0,
+      "current_noi": 3310958.0,
+      "dscr": 1.77
+    },
+    {
+      "property_id": "P-0021",
+      "name": "Bluebonnet Community",
+      "state": "TX",
+      "county_name": "Collin County",
+      "property_type": "mhp_lot",
+      "total_units": 75,
+      "current_rent": 714.0,
+      "current_noi": 264303.0,
+      "dscr": 1.1
+    },
+    {
+      "property_id": "P-0022",
+      "name": "Willow Bend MHP",
+      "state": "TX",
+      "county_name": "Collin County",
+      "property_type": "mhp_lot",
+      "total_units": 63,
+      "current_rent": 989.0,
+      "current_noi": 525250.0,
+      "dscr": 1.23
+    },
+    {
+      "property_id": "P-0023",
+      "name": "Sunridge Community",
+      "state": "TX",
+      "county_name": "Collin County",
+      "property_type": "mhp_lot",
+      "total_units": 107,
+      "current_rent": 958.0,
+      "current_noi": 812601.0,
+      "dscr": 1.54
+    },
+    {
+      "property_id": "P-0024",
+      "name": "The Residences Apartments",
+      "state": "TX",
+      "county_name": "Collin County",
+      "property_type": "lihtc_apartment",
+      "total_units": 123,
+      "current_rent": 1102.0,
+      "current_noi": 1029018.0,
+      "dscr": 0.83
+    },
+    {
+      "property_id": "P-0025",
+      "name": "The Landings Lofts",
+      "state": "TX",
+      "county_name": "Denton County",
+      "property_type": "market_apartment",
+      "total_units": 74,
+      "current_rent": 1711.0,
+      "current_noi": 1105716.0,
+      "dscr": 0.76
+    },
+    {
+      "property_id": "P-0026",
+      "name": "Stonegate Estates",
+      "state": "TX",
+      "county_name": "Denton County",
+      "property_type": "mhp_lot",
+      "total_units": 188,
+      "current_rent": 878.0,
+      "current_noi": 1210449.0,
+      "dscr": 1.19
+    },
+    {
+      "property_id": "P-0027",
+      "name": "Clearwater Apartments",
+      "state": "TX",
+      "county_name": "Denton County",
+      "property_type": "lihtc_apartment",
+      "total_units": 115,
+      "current_rent": 1516.0,
+      "current_noi": 1374796.0,
+      "dscr": 1.74
+    },
+    {
+      "property_id": "P-0028",
+      "name": "Westgate Apartments",
+      "state": "TX",
+      "county_name": "Denton County",
+      "property_type": "lihtc_apartment",
+      "total_units": 66,
+      "current_rent": 1404.0,
+      "current_noi": 622194.0,
+      "dscr": 0.99
+    },
+    {
+      "property_id": "P-0029",
+      "name": "Rolling Hills Park",
+      "state": "TX",
+      "county_name": "Denton County",
+      "property_type": "mhp_lot",
+      "total_units": 196,
+      "current_rent": 969.0,
+      "current_noi": 1553991.0,
+      "dscr": 0.99
+    },
+    {
+      "property_id": "P-0030",
+      "name": "The Residences Crossing",
+      "state": "TX",
+      "county_name": "Denton County",
+      "property_type": "market_apartment",
+      "total_units": 89,
+      "current_rent": 2286.0,
+      "current_noi": 1916418.0,
+      "dscr": 1.18
+    },
+    {
+      "property_id": "P-0031",
+      "name": "Willow Bend Park",
+      "state": "TX",
+      "county_name": "Denton County",
+      "property_type": "mhp_lot",
+      "total_units": 169,
+      "current_rent": 1016.0,
+      "current_noi": 1499355.0,
+      "dscr": 1.85
+    },
+    {
+      "property_id": "P-0032",
+      "name": "The Enclave Apartments",
+      "state": "TX",
+      "county_name": "Fort Bend County",
+      "property_type": "lihtc_apartment",
+      "total_units": 237,
+      "current_rent": 1254.0,
+      "current_noi": 2480574.0,
+      "dscr": 1.41
+    },
+    {
+      "property_id": "P-0033",
+      "name": "Lakeview Park",
+      "state": "TX",
+      "county_name": "Fort Bend County",
+      "property_type": "mhp_lot",
+      "total_units": 189,
+      "current_rent": 641.0,
+      "current_noi": 567346.0,
+      "dscr": 1.81
+    },
+    {
+      "property_id": "P-0034",
+      "name": "Cypress Point Estates",
+      "state": "TX",
+      "county_name": "Fort Bend County",
+      "property_type": "mhp_lot",
+      "total_units": 210,
+      "current_rent": 779.0,
+      "current_noi": 1053074.0,
+      "dscr": 1.08
+    },
+    {
+      "property_id": "P-0035",
+      "name": "Riverside Estates",
+      "state": "TX",
+      "county_name": "Fort Bend County",
+      "property_type": "mhp_lot",
+      "total_units": 145,
+      "current_rent": 762.0,
+      "current_noi": 503218.0,
+      "dscr": 1.01
+    },
+    {
+      "property_id": "P-0036",
+      "name": "Riverside MHP",
+      "state": "TX",
+      "county_name": "Fort Bend County",
+      "property_type": "mhp_lot",
+      "total_units": 137,
+      "current_rent": 810.0,
+      "current_noi": 758222.0,
+      "dscr": 0.94
+    },
+    {
+      "property_id": "P-0037",
+      "name": "Cypress Point Estates",
+      "state": "TX",
+      "county_name": "Kaufman County",
+      "property_type": "mhp_lot",
+      "total_units": 142,
+      "current_rent": 997.0,
+      "current_noi": 1120855.0,
+      "dscr": 1.09
+    },
+    {
+      "property_id": "P-0038",
+      "name": "Clearwater Lofts",
+      "state": "TX",
+      "county_name": "Kaufman County",
+      "property_type": "market_apartment",
+      "total_units": 89,
+      "current_rent": 1868.0,
+      "current_noi": 1376540.0,
+      "dscr": 0.83
+    },
+    {
+      "property_id": "P-0039",
+      "name": "Quail Creek Park",
+      "state": "TX",
+      "county_name": "Kaufman County",
+      "property_type": "mhp_lot",
+      "total_units": 151,
+      "current_rent": 826.0,
+      "current_noi": 887096.0,
+      "dscr": 0.88
+    },
+    {
+      "property_id": "P-0040",
+      "name": "Maple Court Village",
+      "state": "TX",
+      "county_name": "Kaufman County",
+      "property_type": "lihtc_apartment",
+      "total_units": 232,
+      "current_rent": 1560.0,
+      "current_noi": 3179449.0,
+      "dscr": 1.31
+    },
+    {
+      "property_id": "P-0041",
+      "name": "Twin Oaks MHP",
+      "state": "TX",
+      "county_name": "Hays County",
+      "property_type": "mhp_lot",
+      "total_units": 116,
+      "current_rent": 864.0,
+      "current_noi": 675372.0,
+      "dscr": 0.93
+    },
+    {
+      "property_id": "P-0042",
+      "name": "Harbor View Heights",
+      "state": "TX",
+      "county_name": "Hays County",
+      "property_type": "market_apartment",
+      "total_units": 205,
+      "current_rent": 2031.0,
+      "current_noi": 3647574.0,
+      "dscr": 0.87
+    },
+    {
+      "property_id": "P-0043",
+      "name": "Clearwater Place",
+      "state": "TX",
+      "county_name": "Hays County",
+      "property_type": "lihtc_apartment",
+      "total_units": 161,
+      "current_rent": 1157.0,
+      "current_noi": 1133517.0,
+      "dscr": 1.25
+    },
+    {
+      "property_id": "P-0044",
+      "name": "Cypress Point Park",
+      "state": "TX",
+      "county_name": "Hays County",
+      "property_type": "mhp_lot",
+      "total_units": 63,
+      "current_rent": 903.0,
+      "current_noi": 491957.0,
+      "dscr": 1.2
+    },
+    {
+      "property_id": "P-0045",
+      "name": "Southwind Lofts",
+      "state": "TX",
+      "county_name": "Hays County",
+      "property_type": "market_apartment",
+      "total_units": 176,
+      "current_rent": 2099.0,
+      "current_noi": 3213404.0,
+      "dscr": 1.18
+    },
+    {
+      "property_id": "P-0046",
+      "name": "Green Acres MHP",
+      "state": "TX",
+      "county_name": "Hays County",
+      "property_type": "mhp_lot",
+      "total_units": 67,
+      "current_rent": 657.0,
+      "current_noi": 264191.0,
+      "dscr": 0.96
+    },
+    {
+      "property_id": "P-0047",
+      "name": "Bayshore Lofts",
+      "state": "TX",
+      "county_name": "Hays County",
+      "property_type": "market_apartment",
+      "total_units": 178,
+      "current_rent": 2398.0,
+      "current_noi": 3740027.0,
+      "dscr": 1.43
+    },
+    {
+      "property_id": "P-0048",
+      "name": "Highland Terrace Heights",
+      "state": "TX",
+      "county_name": "Comal County",
+      "property_type": "market_apartment",
+      "total_units": 174,
+      "current_rent": 1689.0,
+      "current_noi": 2406173.0,
+      "dscr": 1.21
+    },
+    {
+      "property_id": "P-0049",
+      "name": "Fox Run Community",
+      "state": "TX",
+      "county_name": "Comal County",
+      "property_type": "mhp_lot",
+      "total_units": 200,
+      "current_rent": 585.0,
+      "current_noi": 727860.0,
+      "dscr": 0.98
+    },
+    {
+      "property_id": "P-0050",
+      "name": "Meadowbrook Community",
+      "state": "TX",
+      "county_name": "Comal County",
+      "property_type": "mhp_lot",
+      "total_units": 217,
+      "current_rent": 504.0,
+      "current_noi": 543851.0,
+      "dscr": 1.17
+    }
+  ]
+}

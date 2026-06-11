@@ -1,0 +1,2077 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Portfolio Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+<style>
+/* ==========================================================================
+   Emma's Estates — design tokens
+   Editorial register lifted from Frank & Brittney (For Steve DNA):
+   IBM Plex Serif body, IBM Plex Sans UI, IBM Plex Mono accents.
+   Warmed to estate-brokerage palette: heritage forest + brass + ink on cream.
+   ========================================================================== */
+
+:root {
+  /* Accent (heritage forest primary) */
+  --accent:        #1F4A3D;
+  --accent-dark:   #143A2E;
+  --accent-tint:   #E6EDE9;
+  --accent-strong: #C9D9D2;
+
+  /* Secondary palette */
+  --brass:    #B07A2A;
+  --brass-tint: #F1E6D0;
+  --slate:    #3F4F75;
+  --burgundy: #7A4A4A;
+
+  /* Neutrals */
+  --ink:        #14181D;
+  --ink-soft:   #2C3540;
+  --charcoal:   #4A5560;
+  --muted:      #6B7680;
+  --rule:       #D8D2C4;
+  --rule-soft:  #E5DFD0;
+  --rule-faint: #EEE9DB;
+
+  /* Surfaces */
+  --bg:        #FAF7F0;   /* cream page */
+  --bg-soft:   #F3EEDF;   /* slightly warmer wash */
+  --card:      #FFFFFF;
+  --card-tint: #FBF8EF;
+
+  --serif: "IBM Plex Serif", "Charter", Georgia, serif;
+  --sans:  "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --mono:  "IBM Plex Mono", "SF Mono", Menlo, monospace;
+
+  --radius: 6px;
+  --radius-lg: 10px;
+  --shadow-card: 0 1px 0 rgba(31,42,51,.04), 0 1px 2px rgba(31,42,51,.05);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 14.5px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+h1, h2, h3 {
+  font-family: var(--serif);
+  font-weight: 500;
+  letter-spacing: -0.012em;
+  color: var(--ink);
+  margin: 0;
+}
+
+p { margin: 0; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+
+button { font-family: inherit; }
+
+/* ------------------------------------------------------------ accent rule */
+
+.accent-rule {
+  flex: 0 0 3px;
+  background: var(--accent);
+}
+
+/* ------------------------------------------------------------ topbar */
+
+.topbar {
+  flex: 0 0 auto;
+  display: grid;
+  grid-template-columns: 280px 1fr auto;
+  align-items: center;
+  gap: 24px;
+  padding: 14px 28px;
+  background: var(--card);
+  border-bottom: 1px solid var(--rule-soft);
+  position: relative;
+  z-index: 5;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--accent);
+}
+.brand-mark {
+  width: 32px; height: 32px;
+}
+.brand-name {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 1.15rem;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  line-height: 1.1;
+}
+.brand-tag {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 3px;
+}
+
+.tabs {
+  display: flex;
+  gap: 4px;
+  justify-self: center;
+}
+.tab {
+  position: relative;
+  appearance: none;
+  border: 0;
+  background: transparent;
+  font-family: var(--sans);
+  font-size: 0.92rem;
+  font-weight: 500;
+  letter-spacing: -0.003em;
+  color: var(--charcoal);
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background .12s ease, color .12s ease;
+}
+.tab:hover { background: var(--bg-soft); color: var(--ink); }
+.tab.is-active {
+  color: var(--ink);
+}
+.tab.is-active::after {
+  content: "";
+  position: absolute;
+  left: 16px; right: 16px; bottom: -15px;
+  height: 2px;
+  background: var(--accent);
+}
+.tab-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  margin-left: 6px;
+  border-radius: 9px;
+  background: var(--brass-tint);
+  color: var(--brass);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.search {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px 7px 12px;
+  background: var(--bg);
+  border: 1px solid var(--rule-soft);
+  border-radius: 6px;
+  width: 260px;
+  color: var(--muted);
+  font-family: var(--sans);
+  transition: border-color .12s ease, background .12s ease;
+}
+.search:focus-within { border-color: var(--accent); background: var(--card); }
+.search svg { width: 14px; height: 14px; flex: 0 0 14px; }
+.search input {
+  flex: 1;
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  outline: 0;
+}
+.search input::placeholder { color: var(--muted); font-style: italic; }
+.kbd {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  padding: 2px 6px;
+  border: 1px solid var(--rule-soft);
+  border-radius: 4px;
+  color: var(--muted);
+  background: var(--card);
+}
+
+.icon-btn {
+  position: relative;
+  appearance: none;
+  width: 36px; height: 36px;
+  border-radius: 6px;
+  border: 1px solid var(--rule-soft);
+  background: var(--card);
+  color: var(--charcoal);
+  cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.icon-btn svg { width: 16px; height: 16px; }
+.icon-btn .dot {
+  position: absolute; top: 7px; right: 7px;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--brass);
+  border: 1.5px solid var(--card);
+}
+.icon-btn:hover { border-color: var(--charcoal); color: var(--ink); }
+
+.avatar {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--card-tint);
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  display: inline-flex;
+  align-items: center; justify-content: center;
+}
+
+/* ------------------------------------------------------------ page shell */
+
+.page {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.view {
+  display: none;
+  flex: 1;
+  min-height: 0;
+  padding: 22px 28px 24px;
+  flex-direction: column;
+  gap: 16px;
+}
+.view.is-active { display: flex; }
+
+/* ------------------------------------------------------------ page head */
+
+.page-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  flex: 0 0 auto;
+}
+.kicker {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 4px;
+}
+.page-head h1 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 2rem;
+  line-height: 1.15;
+  margin: 0 0 4px;
+}
+.subhead {
+  font-family: var(--serif);
+  font-size: 0.98rem;
+  color: var(--charcoal);
+  max-width: 60ch;
+}
+
+.page-head-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.btn-primary, .btn-ghost {
+  appearance: none;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: var(--card-tint);
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 0.88rem;
+  letter-spacing: -0.003em;
+  padding: 9px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background .12s ease;
+  display: inline-flex; align-items: center;
+}
+.btn-primary:hover { background: var(--accent-dark); border-color: var(--accent-dark); }
+.btn-primary .plus { font-weight: 400; font-size: 1rem; line-height: 0.6; }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--rule);
+}
+.btn-ghost:hover { border-color: var(--ink); }
+
+.seg {
+  display: inline-flex;
+  background: var(--bg-soft);
+  border: 1px solid var(--rule-soft);
+  border-radius: 6px;
+  padding: 3px;
+}
+.seg-btn {
+  appearance: none; border: 0; background: transparent;
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--charcoal);
+  padding: 5px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.seg-btn.is-active {
+  background: var(--card);
+  color: var(--ink);
+  box-shadow: 0 1px 2px rgba(0,0,0,.06);
+}
+
+/* ------------------------------------------------------------ KPI row */
+
+.kpi-row {
+  flex: 0 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.kpi {
+  background: var(--card);
+  border: 1px solid var(--rule-soft);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-lg);
+  padding: 16px 18px 14px;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  overflow: hidden;
+}
+.kpi:nth-child(2) { border-left-color: var(--brass); }
+.kpi:nth-child(3) { border-left-color: var(--slate); }
+.kpi:nth-child(4) { border-left-color: var(--burgundy); }
+
+.kpi-label {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: -0.003em;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.kpi-period {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.kpi-value {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 2.2rem;
+  line-height: 1.05;
+  letter-spacing: -0.022em;
+  color: var(--ink);
+  margin: 6px 0 4px;
+  font-variant-numeric: tabular-nums;
+}
+.kpi-value .kpi-unit {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--charcoal);
+  margin-left: 2px;
+  letter-spacing: -0.01em;
+}
+.kpi-delta {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  color: var(--charcoal);
+  margin-top: 2px;
+}
+.kpi-delta.up { color: var(--accent); }
+.kpi-delta.down { color: var(--accent); }
+
+.spark {
+  position: absolute;
+  right: 14px;
+  bottom: 12px;
+  width: 80px;
+  height: 22px;
+  color: var(--accent);
+  opacity: 0.55;
+}
+.kpi:nth-child(2) .spark { color: var(--brass); }
+.kpi:nth-child(3) .spark { color: var(--slate); }
+.kpi:nth-child(4) .spark { color: var(--burgundy); }
+
+.kpi-bar {
+  margin-top: 6px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--rule-faint);
+  overflow: hidden;
+}
+.kpi-bar span {
+  display: block;
+  height: 100%;
+  background: var(--brass);
+}
+
+.kpi-pips {
+  display: flex;
+  gap: 4px;
+  margin-top: 8px;
+}
+.kpi-pips .pip {
+  width: 14px; height: 5px;
+  background: var(--rule-faint);
+  border-radius: 1px;
+}
+.kpi-pips .pip.on { background: var(--slate); }
+
+/* ------------------------------------------------------------ dash grid */
+
+.dash-grid {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+  gap: 14px;
+}
+
+.panel {
+  background: var(--card);
+  border: 1px solid var(--rule-soft);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 18px 20px 16px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.panel-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  margin-bottom: 14px;
+  flex: 0 0 auto;
+}
+.panel-head.tight { margin-bottom: 10px; }
+
+.panel-kicker {
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+.panel-head h2 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 1.2rem;
+  letter-spacing: -0.012em;
+  color: var(--ink);
+}
+.panel-meta {
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.04em;
+  color: var(--charcoal);
+}
+
+.panel-foot {
+  flex: 0 0 auto;
+  padding-top: 10px;
+  border-top: 1px solid var(--rule-faint);
+  margin-top: 6px;
+}
+.panel-foot a {
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--accent);
+  text-decoration: none;
+}
+.panel-foot a:hover { color: var(--accent-dark); }
+
+.link-mini {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--accent);
+  text-decoration: none;
+}
+.link-mini:hover { text-decoration: underline; }
+
+/* ------------------------------------------------------------ listings list */
+
+.listings-panel { overflow: hidden; }
+
+.listing-list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.listing {
+  display: grid;
+  grid-template-columns: 132px 1fr auto;
+  gap: 16px;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid var(--rule-faint);
+  border-radius: var(--radius);
+  background: var(--card-tint);
+  transition: border-color .12s ease, transform .12s ease;
+  flex: 1;
+  min-height: 0;
+}
+.listing:hover {
+  border-color: var(--rule);
+}
+
+.listing-img {
+  position: relative;
+  height: 100%;
+  min-height: 88px;
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--bg-soft);
+}
+.listing-img[data-tone="forest"] { color: var(--accent); }
+.listing-img[data-tone="brass"]  { color: var(--brass); }
+.listing-img[data-tone="slate"]  { color: var(--slate); }
+.listing-img svg {
+  width: 100%; height: 100%;
+  display: block;
+}
+.listing-tag {
+  position: absolute;
+  top: 6px; left: 6px;
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: var(--ink);
+  color: var(--card-tint);
+  padding: 3px 6px;
+  border-radius: 3px;
+}
+.listing-tag.muted {
+  background: rgba(20,24,29,.78);
+}
+
+.listing-addr {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 1.08rem;
+  letter-spacing: -0.008em;
+  color: var(--ink);
+}
+.listing-sub {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-top: 1px;
+}
+.listing-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  margin-top: 6px;
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  color: var(--charcoal);
+}
+.listing-meta li {
+  position: relative;
+}
+.listing-meta li + li::before {
+  content: "·";
+  margin-right: 10px;
+  color: var(--rule);
+}
+
+.listing-price { text-align: right; }
+.listing-price .price {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 1.5rem;
+  letter-spacing: -0.018em;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.listing-price .price span {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--charcoal);
+  margin-left: 1px;
+}
+.listing-price .price-sub {
+  font-family: var(--sans);
+  font-size: 0.74rem;
+  color: var(--brass);
+  letter-spacing: 0.01em;
+  margin-top: 2px;
+  font-weight: 500;
+}
+
+/* ------------------------------------------------------------ side rail */
+
+.side-rail {
+  display: grid;
+  grid-template-rows: minmax(0, 0.85fr) minmax(0, 1fr);
+  gap: 14px;
+  min-height: 0;
+}
+
+/* pipeline */
+
+.pipeline {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 0;
+}
+.pipeline li {
+  display: grid;
+  grid-template-columns: 78px 28px 1fr 70px;
+  align-items: center;
+  gap: 10px;
+}
+.pipe-stage {
+  font-family: var(--sans);
+  font-size: 0.86rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+.pipe-count {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--muted);
+  text-align: right;
+}
+.pipe-bar {
+  display: block;
+  height: 8px;
+  background: var(--rule-faint);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.pipe-bar b {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+}
+.pipeline li:nth-child(1) .pipe-bar b { background: var(--accent); opacity: 0.55; }
+.pipeline li:nth-child(2) .pipe-bar b { background: var(--accent); opacity: 0.7; }
+.pipeline li:nth-child(3) .pipe-bar b { background: var(--brass); }
+.pipeline li:nth-child(4) .pipe-bar b { background: var(--slate); }
+.pipeline li:nth-child(5) .pipe-bar b { background: var(--accent-dark); }
+
+.pipe-val {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  text-align: right;
+  color: var(--charcoal);
+  font-variant-numeric: tabular-nums;
+}
+
+/* activity feed */
+
+.activity {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 0;
+  overflow: hidden;
+}
+.activity li {
+  display: grid;
+  grid-template-columns: 42px 14px 1fr;
+  gap: 8px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--rule-faint);
+}
+.activity li:last-child { border-bottom: 0; padding-bottom: 0; }
+
+.act-time {
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  padding-top: 2px;
+}
+.act-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--rule);
+  margin-top: 7px;
+  justify-self: center;
+}
+.act-dot.priority { background: var(--brass); box-shadow: 0 0 0 3px var(--brass-tint); }
+.act-dot.warm { background: var(--burgundy); }
+
+.activity p {
+  font-family: var(--serif);
+  font-size: 0.92rem;
+  color: var(--ink);
+}
+.activity p b {
+  font-weight: 500;
+}
+.activity p.act-sub {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-top: 1px;
+}
+
+/* ============================================================
+   LISTINGS view — grid of property cards
+   ============================================================ */
+
+.listings-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 14px;
+  min-height: 0;
+}
+
+.lcard {
+  background: var(--card);
+  border: 1px solid var(--rule-soft);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.lcard .listing-img {
+  flex: 1;
+  min-height: 0;
+  border-radius: 0;
+}
+.lcard-body {
+  flex: 0 0 auto;
+  padding: 12px 14px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+}
+.lcard-body p.listing-addr { font-size: 0.98rem; }
+.lcard-body .price { font-size: 1.15rem; }
+.lcard-body .price span { font-size: 0.78rem; }
+
+/* ============================================================
+   CLIENTS view
+   ============================================================ */
+
+.clients-wrap {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--card);
+  border: 1px solid var(--rule-soft);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  display: flex;
+}
+.clients-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--serif);
+  font-size: 0.92rem;
+}
+.clients-table thead th {
+  text-align: left;
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--rule-soft);
+  background: var(--card-tint);
+}
+.clients-table tbody td {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--rule-faint);
+  color: var(--ink);
+  vertical-align: middle;
+}
+.clients-table tbody tr:last-child td { border-bottom: 0; }
+.clients-table tbody tr:hover { background: var(--card-tint); }
+
+.who {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.who-av {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--accent-tint);
+  color: var(--accent-dark);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+}
+.who b { display: block; font-weight: 500; }
+.who span {
+  display: block;
+  font-family: var(--sans);
+  font-size: 0.76rem;
+  color: var(--muted);
+  margin-top: 1px;
+}
+
+.stage-pill {
+  display: inline-block;
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 0.74rem;
+  padding: 4px 10px;
+  border-radius: 999px;
+  letter-spacing: 0.01em;
+}
+.stage-pill.st-prosp  { background: var(--rule-faint); color: var(--charcoal); }
+.stage-pill.st-show   { background: var(--accent-tint); color: var(--accent-dark); }
+.stage-pill.st-offer  { background: var(--brass-tint); color: var(--brass); }
+.stage-pill.st-esc    { background: #E1E5EF; color: var(--slate); }
+.stage-pill.st-prep   { background: #F2E5D9; color: #8A5A2C; }
+.stage-pill.st-clos   { background: #1F4A3D; color: var(--card-tint); }
+
+/* ============================================================
+   PIPELINE — kanban
+   ============================================================ */
+
+.kanban {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+}
+
+.kcol {
+  background: var(--card-tint);
+  border: 1px solid var(--rule-soft);
+  border-radius: var(--radius-lg);
+  padding: 14px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 0;
+  overflow: hidden;
+}
+.kcol header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0 4px 8px;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.kcol header span:first-child {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--ink);
+}
+.kcount {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.kcard {
+  background: var(--card);
+  border: 1px solid var(--rule-faint);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+  box-shadow: var(--shadow-card);
+}
+.kcol:nth-child(1) .kcard { border-left-color: var(--rule); }
+.kcol:nth-child(2) .kcard { border-left-color: var(--slate); }
+.kcol:nth-child(3) .kcard { border-left-color: var(--brass); }
+.kcol:nth-child(4) .kcard { border-left-color: var(--accent); }
+.kcol:nth-child(5) .kcard { border-left-color: var(--accent-dark); background: var(--accent); color: var(--card-tint); }
+.kcol:nth-child(5) .kcard .kc-addr,
+.kcol:nth-child(5) .kcard .kc-val { color: var(--card-tint); }
+.kcol:nth-child(5) .kcard .kc-sub { color: rgba(250,247,240,.78); }
+
+.kcard.hot { background: var(--brass-tint); border-color: var(--brass); }
+
+.kc-addr {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 0.96rem;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+}
+.kc-sub {
+  font-family: var(--sans);
+  font-size: 0.76rem;
+  color: var(--muted);
+  margin-top: 2px;
+}
+.kcol:nth-child(5) .kc-sub { color: rgba(250,247,240,.75); }
+.kc-val {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--charcoal);
+  margin-top: 6px;
+  font-variant-numeric: tabular-nums;
+}
+
+.kc-ghost {
+  background: transparent;
+  border: 1px dashed var(--rule);
+  border-left: 1px dashed var(--rule);
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  text-align: center;
+  padding: 8px;
+  box-shadow: none;
+}
+
+/* ============================================================
+   MARKET
+   ============================================================ */
+
+.market-grid {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 14px;
+}
+
+.chart-panel { grid-row: span 2; }
+
+.chart {
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+  display: block;
+}
+.chart .grid line {
+  stroke: var(--rule-faint);
+  stroke-width: 1;
+}
+.chart .area {
+  fill: var(--accent);
+  opacity: 0.12;
+}
+.chart .line {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2;
+}
+.chart .dots circle {
+  fill: var(--card);
+  stroke: var(--accent);
+  stroke-width: 2;
+}
+
+.x-axis {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  margin-top: 6px;
+}
+
+.trend {
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: 500;
+  margin-left: 6px;
+  letter-spacing: 0.01em;
+}
+.trend.up   { color: var(--accent); }
+.trend.down { color: var(--burgundy); }
+
+.zip-list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 6px;
+}
+.zip-list li {
+  display: grid;
+  grid-template-columns: 56px 1fr 1fr 60px;
+  align-items: center;
+  gap: 10px;
+}
+.zip-code {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+.zip-name {
+  font-family: var(--serif);
+  font-size: 0.94rem;
+  color: var(--ink);
+}
+.zip-bar {
+  display: block;
+  height: 6px;
+  background: var(--rule-faint);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.zip-bar b {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+}
+.zip-bar b[data-neg] { background: var(--burgundy); }
+.zip-val {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.zip-val.up { color: var(--accent); }
+.zip-val.down { color: var(--burgundy); }
+
+.big-stat {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding: 6px 0 4px;
+}
+.big-num {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 2.4rem;
+  letter-spacing: -0.022em;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.big-num span {
+  font-size: 1rem;
+  color: var(--charcoal);
+  margin-left: 2px;
+  font-weight: 400;
+}
+.big-sub {
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  color: var(--brass);
+  font-weight: 500;
+}
+
+.ladder {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 6px;
+}
+.ladder li {
+  display: grid;
+  grid-template-columns: 64px 1fr 90px;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  color: var(--charcoal);
+}
+.ladder li b {
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  color: var(--ink);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+.ld-bar {
+  display: block;
+  height: 8px;
+  background: var(--rule-faint);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.ld-bar i {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+}
+.ld-bar.ld-hot i { background: var(--brass); }
+.ld-bar.ld-cool i { background: var(--slate); }
+
+.note-body {
+  font-family: var(--serif);
+  font-size: 0.96rem;
+  line-height: 1.5;
+  color: var(--ink);
+  max-width: 50ch;
+  flex: 1;
+}
+.note-sign {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--muted);
+  margin-top: 8px;
+}
+
+/* ============================================================
+   Tweaks — accent style variations
+   ============================================================ */
+
+body[data-accent="flush"] .kpi,
+body[data-accent="flush"] .panel,
+body[data-accent="flush"] .kcard,
+body[data-accent="flush"] .listing {
+  border-left-width: 0;
+}
+
+body[data-accent="minimal"] .kpi,
+body[data-accent="minimal"] .panel,
+body[data-accent="minimal"] .kcard,
+body[data-accent="minimal"] .listing {
+  border-left-width: 1px;
+  border-left-color: var(--rule-soft);
+}
+
+
+/* Override: allow scroll on data-heavy tabs */
+.view[data-view="market"] { overflow-y: auto; }
+.view[data-view="simulate"] { overflow-y: auto; }
+
+/* Simulation controls */
+.sim-controls {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 16px;
+}
+.sim-control {
+  background: var(--card);
+  border: 1px solid var(--rule-soft);
+  border-radius: var(--radius-lg);
+  padding: 14px 16px;
+  box-shadow: var(--shadow-card);
+}
+.sim-control label {
+  display: block;
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.sim-control input[type="range"] {
+  width: 100%;
+  accent-color: var(--accent);
+}
+.sim-control .sim-val {
+  font-family: var(--mono);
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--ink);
+  margin-top: 4px;
+}
+
+/* KPI summary row for simulation */
+.sim-kpis {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 16px;
+}
+.sim-kpi {
+  background: var(--card);
+  border: 1px solid var(--rule-soft);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-lg);
+  padding: 14px 16px;
+  box-shadow: var(--shadow-card);
+}
+.sim-kpi:nth-child(2) { border-left-color: var(--brass); }
+.sim-kpi:nth-child(3) { border-left-color: var(--slate); }
+.sim-kpi:nth-child(4) { border-left-color: var(--burgundy); }
+.sim-kpi .kpi-label { font-family: var(--sans); font-size: 0.78rem; color: var(--muted); font-weight: 500; }
+.sim-kpi .kpi-value { font-family: var(--serif); font-size: 1.8rem; font-weight: 500; color: var(--ink); margin: 4px 0 2px; font-variant-numeric: tabular-nums; }
+.sim-kpi .kpi-delta { font-family: var(--sans); font-size: 0.78rem; }
+.sim-kpi .kpi-delta.up { color: var(--accent); }
+.sim-kpi .kpi-delta.down { color: var(--burgundy); }
+
+.chart-container { min-height: 350px; }
+.plotly-chart { width: 100%; }
+</style>
+</head>
+<body>
+<div class="accent-rule"></div>
+
+<header class="topbar">
+  <div class="brand">
+    <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+      <path d="M4 28 L4 14 L16 5 L28 14 L28 28 L20 28 L20 19 L12 19 L12 28 Z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+      <path d="M4 14 L28 14" stroke="currentColor" stroke-width="1.4"/>
+    </svg>
+    <div class="brand-lockup">
+      <div class="brand-name">Portfolio Analytics</div>
+      <div class="brand-tag">Market intelligence · demo</div>
+    </div>
+  </div>
+  <nav class="tabs" role="tablist">
+    <button class="tab is-active" data-tab="dashboard" role="tab">Dashboard</button>
+    <button class="tab" data-tab="listings" role="tab">Properties <span class="tab-badge">272</span></button>
+    <button class="tab" data-tab="pipeline" role="tab">Portfolio</button>
+    <button class="tab" data-tab="market" role="tab">Market</button>
+    <button class="tab" data-tab="simulate" role="tab">Simulate</button>
+  </nav>
+  <div class="topbar-right">
+    <div class="search">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="m11 11 3.5 3.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+      <input type="text" placeholder="Search properties…" aria-label="Search" />
+      <span class="kbd">⌘K</span>
+    </div>
+    <div class="avatar" title="Demo">AI</div>
+  </div>
+</header>
+
+<main class="page">
+
+  <!-- ==================== DASHBOARD ==================== -->
+  <section class="view is-active" data-view="dashboard">
+    <header class="page-head">
+      <div>
+        <p class="kicker">Wednesday · May 27, 2026</p>
+        <h1>Portfolio overview</h1>
+        <p class="subhead">272 properties · 40,718 units · 6 states</p>
+      </div>
+    </header>
+
+    <div class="kpi-row">
+      <article class="kpi">
+        <p class="kpi-label">Portfolio value</p>
+        <p class="kpi-value">$5045.0<span class="kpi-unit">M</span></p>
+        <p class="kpi-delta">272 properties across 6 states</p>
+      </article>
+      <article class="kpi">
+        <p class="kpi-label">Total units</p>
+        <p class="kpi-value">40,718</p>
+        <div class="kpi-bar"><span style="width:40%"></span></div>
+        <p class="kpi-delta">16,148 MHP · 14,998 LIHTC · 9,572 Market</p>
+      </article>
+      <article class="kpi">
+        <p class="kpi-label">Avg. monthly rent</p>
+        <p class="kpi-value">$1,062</p>
+        <p class="kpi-delta">Across all property types</p>
+      </article>
+      <article class="kpi">
+        <p class="kpi-label">States</p>
+        <p class="kpi-value">6</p>
+        <p class="kpi-delta">AZ, FL, NC, NV, SC, TX</p>
+      </article>
+    </div>
+
+    <div class="dash-grid">
+      <section class="panel">
+        <header class="panel-head"><div><p class="panel-kicker">Migration pressure</p><h2>Top destinations vs. LIHTC supply</h2></div></header>
+        <div id="chart-migration" class="plotly-chart"></div>
+      </section>
+      <aside class="side-rail">
+        <section class="panel">
+          <header class="panel-head tight"><div><p class="panel-kicker">Preservation</p><h2>Units expiring</h2></div></header>
+          <div id="chart-preservation" class="plotly-chart"></div>
+        </section>
+        <section class="panel activity-panel">
+          <header class="panel-head tight"><div><p class="panel-kicker">Rent burden</p><h2>Top strained counties</h2></div></header>
+          <ul class="activity" style="overflow:auto">
+            <li><span class="act-time" style="width:auto;min-width:40px">1.37x</span><span class="act-dot priority"></span><div><p><b>Victoria County</b></p><p class="act-sub">FMR $1,442 · VLI $42,000</p></div></li><li><span class="act-time" style="width:auto;min-width:40px">1.37x</span><span class="act-dot priority"></span><div><p><b>Goliad County</b></p><p class="act-sub">FMR $1,442 · VLI $42,000</p></div></li><li><span class="act-time" style="width:auto;min-width:40px">1.37x</span><span class="act-dot priority"></span><div><p><b>Martin County</b></p><p class="act-sub">FMR $1,772 · VLI $51,650</p></div></li><li><span class="act-time" style="width:auto;min-width:40px">1.37x</span><span class="act-dot priority"></span><div><p><b>Ector County</b></p><p class="act-sub">FMR $1,595 · VLI $46,500</p></div></li><li><span class="act-time" style="width:auto;min-width:40px">1.31x</span><span class="act-dot priority"></span><div><p><b>Midland County</b></p><p class="act-sub">FMR $1,780 · VLI $54,450</p></div></li><li><span class="act-time" style="width:auto;min-width:40px">1.31x</span><span class="act-dot priority"></span><div><p><b>Nueces County</b></p><p class="act-sub">FMR $1,366 · VLI $41,850</p></div></li><li><span class="act-time" style="width:auto;min-width:40px">1.31x</span><span class="act-dot priority"></span><div><p><b>San Patricio County</b></p><p class="act-sub">FMR $1,366 · VLI $41,850</p></div></li><li><span class="act-time" style="width:auto;min-width:40px">1.30x</span><span class="act-dot priority"></span><div><p><b>Aransas County</b></p><p class="act-sub">FMR $1,407 · VLI $43,400</p></div></li>
+          </ul>
+        </section>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ==================== LISTINGS ==================== -->
+  <section class="view" data-view="listings">
+    <header class="page-head">
+      <div>
+        <p class="kicker">Inventory</p>
+        <h1>Portfolio properties</h1>
+        <p class="subhead">272 properties · 40,718 total units · $5045M portfolio value</p>
+      </div>
+    </header>
+    <div class="listings-grid">
+      
+        <article class="lcard">
+          <div class="listing-img" data-tone="forest">
+            <svg viewBox="0 0 160 110" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <rect width="160" height="110" fill="currentColor" opacity=".14"/>
+              <path d="M20 80 L20 50 L55 28 L90 50 L90 80 Z" fill="currentColor" opacity=".55"/><path d="M90 80 L90 58 L120 42 L150 58 L150 80 Z" fill="currentColor" opacity=".78"/><rect x="46" y="58" width="10" height="22" fill="#FAF7F0"/><rect x="32" y="56" width="8" height="8" fill="#FAF7F0" opacity=".9"/><rect x="110" y="62" width="6" height="18" fill="#FAF7F0"/>
+              <path d="M0 80 L160 80 L160 110 L0 110 Z" fill="#000" opacity=".06"/>
+            </svg>
+            <span class="listing-tag ">LIHTC</span>
+          </div>
+          <div class="lcard-body">
+            <div>
+              <p class="listing-addr">The Preserve Place</p>
+              <p class="listing-sub">Lyon County, NV · 295 units</p>
+              <ul class="listing-meta"><li>$747/mo</li><li>Occ 286/295</li></ul>
+            </div>
+            <div class="listing-price">
+              <p class="price">$17.6<span>M</span></p>
+              <p class="price-sub">Restricted</p>
+            </div>
+          </div>
+        </article>
+        <article class="lcard">
+          <div class="listing-img" data-tone="brass">
+            <svg viewBox="0 0 160 110" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <rect width="160" height="110" fill="currentColor" opacity=".14"/>
+              <rect x="30" y="40" width="100" height="40" fill="currentColor" opacity=".72"/><path d="M30 40 L80 22 L130 40 Z" fill="currentColor" opacity=".55"/><rect x="44" y="52" width="10" height="14" fill="#FAF7F0"/><rect x="64" y="52" width="10" height="14" fill="#FAF7F0"/><rect x="84" y="52" width="10" height="14" fill="#FAF7F0"/><rect x="74" y="66" width="12" height="14" fill="#FAF7F0" opacity=".75"/>
+              <path d="M0 80 L160 80 L160 110 L0 110 Z" fill="#000" opacity=".06"/>
+            </svg>
+            <span class="listing-tag ">LIHTC</span>
+          </div>
+          <div class="lcard-body">
+            <div>
+              <p class="listing-addr">Maple Court Village</p>
+              <p class="listing-sub">Comal County, TX · 277 units</p>
+              <ul class="listing-meta"><li>$894/mo</li><li>Occ 254/277</li></ul>
+            </div>
+            <div class="listing-price">
+              <p class="price">$24.7<span>M</span></p>
+              <p class="price-sub">Restricted</p>
+            </div>
+          </div>
+        </article>
+        <article class="lcard">
+          <div class="listing-img" data-tone="slate">
+            <svg viewBox="0 0 160 110" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <rect width="160" height="110" fill="currentColor" opacity=".14"/>
+              <path d="M14 80 L14 46 L34 46 L34 30 L100 30 L100 46 L146 46 L146 80 Z" fill="currentColor" opacity=".68"/><rect x="44" y="42" width="14" height="14" fill="#FAF7F0"/><rect x="64" y="42" width="14" height="14" fill="#FAF7F0"/><rect x="84" y="42" width="14" height="14" fill="#FAF7F0"/><rect x="108" y="58" width="10" height="22" fill="#FAF7F0"/>
+              <path d="M0 80 L160 80 L160 110 L0 110 Z" fill="#000" opacity=".06"/>
+            </svg>
+            <span class="listing-tag ">LIHTC</span>
+          </div>
+          <div class="lcard-body">
+            <div>
+              <p class="listing-addr">Stonewood Village</p>
+              <p class="listing-sub">Harnett County, NC · 277 units</p>
+              <ul class="listing-meta"><li>$566/mo</li><li>Occ 256/277</li></ul>
+            </div>
+            <div class="listing-price">
+              <p class="price">$5.9<span>M</span></p>
+              <p class="price-sub">Restricted</p>
+            </div>
+          </div>
+        </article>
+        <article class="lcard">
+          <div class="listing-img" data-tone="forest">
+            <svg viewBox="0 0 160 110" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <rect width="160" height="110" fill="currentColor" opacity=".14"/>
+              <rect x="14" y="38" width="32" height="42" fill="currentColor" opacity=".7"/><rect x="48" y="34" width="32" height="46" fill="currentColor" opacity=".58"/><rect x="82" y="40" width="32" height="40" fill="currentColor" opacity=".75"/><rect x="116" y="36" width="32" height="44" fill="currentColor" opacity=".62"/><rect x="22" y="50" width="6" height="10" fill="#FAF7F0"/><rect x="56" y="46" width="6" height="10" fill="#FAF7F0"/><rect x="90" y="52" width="6" height="10" fill="#FAF7F0"/><rect x="124" y="48" width="6" height="10" fill="#FAF7F0"/>
+              <path d="M0 80 L160 80 L160 110 L0 110 Z" fill="#000" opacity=".06"/>
+            </svg>
+            <span class="listing-tag ">LIHTC</span>
+          </div>
+          <div class="lcard-body">
+            <div>
+              <p class="listing-addr">Westgate Apartments</p>
+              <p class="listing-sub">Clark County, NV · 277 units</p>
+              <ul class="listing-meta"><li>$980/mo</li><li>Occ 262/277</li></ul>
+            </div>
+            <div class="listing-price">
+              <p class="price">$17.8<span>M</span></p>
+              <p class="price-sub">Restricted</p>
+            </div>
+          </div>
+        </article>
+        <article class="lcard">
+          <div class="listing-img" data-tone="brass">
+            <svg viewBox="0 0 160 110" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <rect width="160" height="110" fill="currentColor" opacity=".14"/>
+              <path d="M20 80 L20 50 L55 28 L90 50 L90 80 Z" fill="currentColor" opacity=".55"/><path d="M90 80 L90 58 L120 42 L150 58 L150 80 Z" fill="currentColor" opacity=".78"/><rect x="46" y="58" width="10" height="22" fill="#FAF7F0"/><rect x="32" y="56" width="8" height="8" fill="#FAF7F0" opacity=".9"/><rect x="110" y="62" width="6" height="18" fill="#FAF7F0"/>
+              <path d="M0 80 L160 80 L160 110 L0 110 Z" fill="#000" opacity=".06"/>
+            </svg>
+            <span class="listing-tag ">LIHTC</span>
+          </div>
+          <div class="lcard-body">
+            <div>
+              <p class="listing-addr">The Residences Village</p>
+              <p class="listing-sub">Horry County, SC · 276 units</p>
+              <ul class="listing-meta"><li>$974/mo</li><li>Occ 261/276</li></ul>
+            </div>
+            <div class="listing-price">
+              <p class="price">$22.0<span>M</span></p>
+              <p class="price-sub">Restricted</p>
+            </div>
+          </div>
+        </article>
+        <article class="lcard">
+          <div class="listing-img" data-tone="slate">
+            <svg viewBox="0 0 160 110" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <rect width="160" height="110" fill="currentColor" opacity=".14"/>
+              <rect x="30" y="40" width="100" height="40" fill="currentColor" opacity=".72"/><path d="M30 40 L80 22 L130 40 Z" fill="currentColor" opacity=".55"/><rect x="44" y="52" width="10" height="14" fill="#FAF7F0"/><rect x="64" y="52" width="10" height="14" fill="#FAF7F0"/><rect x="84" y="52" width="10" height="14" fill="#FAF7F0"/><rect x="74" y="66" width="12" height="14" fill="#FAF7F0" opacity=".75"/>
+              <path d="M0 80 L160 80 L160 110 L0 110 Z" fill="#000" opacity=".06"/>
+            </svg>
+            <span class="listing-tag ">LIHTC</span>
+          </div>
+          <div class="lcard-body">
+            <div>
+              <p class="listing-addr">The Enclave Village</p>
+              <p class="listing-sub">Williamson County, TX · 271 units</p>
+              <ul class="listing-meta"><li>$1,644/mo</li><li>Occ 258/271</li></ul>
+            </div>
+            <div class="listing-price">
+              <p class="price">$67.6<span>M</span></p>
+              <p class="price-sub">Restricted</p>
+            </div>
+          </div>
+        </article>
+        <article class="lcard">
+          <div class="listing-img" data-tone="forest">
+            <svg viewBox="0 0 160 110" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <rect width="160" height="110" fill="currentColor" opacity=".14"/>
+              <path d="M14 80 L14 46 L34 46 L34 30 L100 30 L100 46 L146 46 L146 80 Z" fill="currentColor" opacity=".68"/><rect x="44" y="42" width="14" height="14" fill="#FAF7F0"/><rect x="64" y="42" width="14" height="14" fill="#FAF7F0"/><rect x="84" y="42" width="14" height="14" fill="#FAF7F0"/><rect x="108" y="58" width="10" height="22" fill="#FAF7F0"/>
+              <path d="M0 80 L160 80 L160 110 L0 110 Z" fill="#000" opacity=".06"/>
+            </svg>
+            <span class="listing-tag ">LIHTC</span>
+          </div>
+          <div class="lcard-body">
+            <div>
+              <p class="listing-addr">Harbor View Village</p>
+              <p class="listing-sub">Greenville County, SC · 267 units</p>
+              <ul class="listing-meta"><li>$926/mo</li><li>Occ 255/267</li></ul>
+            </div>
+            <div class="listing-price">
+              <p class="price">$25.0<span>M</span></p>
+              <p class="price-sub">Restricted</p>
+            </div>
+          </div>
+        </article>
+        <article class="lcard">
+          <div class="listing-img" data-tone="brass">
+            <svg viewBox="0 0 160 110" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <rect width="160" height="110" fill="currentColor" opacity=".14"/>
+              <rect x="14" y="38" width="32" height="42" fill="currentColor" opacity=".7"/><rect x="48" y="34" width="32" height="46" fill="currentColor" opacity=".58"/><rect x="82" y="40" width="32" height="40" fill="currentColor" opacity=".75"/><rect x="116" y="36" width="32" height="44" fill="currentColor" opacity=".62"/><rect x="22" y="50" width="6" height="10" fill="#FAF7F0"/><rect x="56" y="46" width="6" height="10" fill="#FAF7F0"/><rect x="90" y="52" width="6" height="10" fill="#FAF7F0"/><rect x="124" y="48" width="6" height="10" fill="#FAF7F0"/>
+              <path d="M0 80 L160 80 L160 110 L0 110 Z" fill="#000" opacity=".06"/>
+            </svg>
+            <span class="listing-tag ">LIHTC</span>
+          </div>
+          <div class="lcard-body">
+            <div>
+              <p class="listing-addr">Vista Pointe Place</p>
+              <p class="listing-sub">Manatee County, FL · 266 units</p>
+              <ul class="listing-meta"><li>$1,443/mo</li><li>Occ 255/266</li></ul>
+            </div>
+            <div class="listing-price">
+              <p class="price">$40.1<span>M</span></p>
+              <p class="price-sub">Restricted</p>
+            </div>
+          </div>
+        </article>
+        <article class="lcard">
+          <div class="listing-img" data-tone="slate">
+            <svg viewBox="0 0 160 110" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <rect width="160" height="110" fill="currentColor" opacity=".14"/>
+              <path d="M20 80 L20 50 L55 28 L90 50 L90 80 Z" fill="currentColor" opacity=".55"/><path d="M90 80 L90 58 L120 42 L150 58 L150 80 Z" fill="currentColor" opacity=".78"/><rect x="46" y="58" width="10" height="22" fill="#FAF7F0"/><rect x="32" y="56" width="8" height="8" fill="#FAF7F0" opacity=".9"/><rect x="110" y="62" width="6" height="18" fill="#FAF7F0"/>
+              <path d="M0 80 L160 80 L160 110 L0 110 Z" fill="#000" opacity=".06"/>
+            </svg>
+            <span class="listing-tag ">LIHTC</span>
+          </div>
+          <div class="lcard-body">
+            <div>
+              <p class="listing-addr">Brookstone Apartments</p>
+              <p class="listing-sub">Storey County, NV · 254 units</p>
+              <ul class="listing-meta"><li>$1,258/mo</li><li>Occ 229/254</li></ul>
+            </div>
+            <div class="listing-price">
+              <p class="price">$38.5<span>M</span></p>
+              <p class="price-sub">Restricted</p>
+            </div>
+          </div>
+        </article>
+        <article class="lcard">
+          <div class="listing-img" data-tone="forest">
+            <svg viewBox="0 0 160 110" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <rect width="160" height="110" fill="currentColor" opacity=".14"/>
+              <rect x="30" y="40" width="100" height="40" fill="currentColor" opacity=".72"/><path d="M30 40 L80 22 L130 40 Z" fill="currentColor" opacity=".55"/><rect x="44" y="52" width="10" height="14" fill="#FAF7F0"/><rect x="64" y="52" width="10" height="14" fill="#FAF7F0"/><rect x="84" y="52" width="10" height="14" fill="#FAF7F0"/><rect x="74" y="66" width="12" height="14" fill="#FAF7F0" opacity=".75"/>
+              <path d="M0 80 L160 80 L160 110 L0 110 Z" fill="#000" opacity=".06"/>
+            </svg>
+            <span class="listing-tag ">LIHTC</span>
+          </div>
+          <div class="lcard-body">
+            <div>
+              <p class="listing-addr">Stonewood Place</p>
+              <p class="listing-sub">Iredell County, NC · 253 units</p>
+              <ul class="listing-meta"><li>$798/mo</li><li>Occ 250/253</li></ul>
+            </div>
+            <div class="listing-price">
+              <p class="price">$17.0<span>M</span></p>
+              <p class="price-sub">Restricted</p>
+            </div>
+          </div>
+        </article>
+        <article class="lcard">
+          <div class="listing-img" data-tone="brass">
+            <svg viewBox="0 0 160 110" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <rect width="160" height="110" fill="currentColor" opacity=".14"/>
+              <path d="M14 80 L14 46 L34 46 L34 30 L100 30 L100 46 L146 46 L146 80 Z" fill="currentColor" opacity=".68"/><rect x="44" y="42" width="14" height="14" fill="#FAF7F0"/><rect x="64" y="42" width="14" height="14" fill="#FAF7F0"/><rect x="84" y="42" width="14" height="14" fill="#FAF7F0"/><rect x="108" y="58" width="10" height="22" fill="#FAF7F0"/>
+              <path d="M0 80 L160 80 L160 110 L0 110 Z" fill="#000" opacity=".06"/>
+            </svg>
+            <span class="listing-tag ">LIHTC</span>
+          </div>
+          <div class="lcard-body">
+            <div>
+              <p class="listing-addr">Westgate Village</p>
+              <p class="listing-sub">Charleston County, SC · 245 units</p>
+              <ul class="listing-meta"><li>$1,183/mo</li><li>Occ 235/245</li></ul>
+            </div>
+            <div class="listing-price">
+              <p class="price">$28.5<span>M</span></p>
+              <p class="price-sub">Restricted</p>
+            </div>
+          </div>
+        </article>
+        <article class="lcard">
+          <div class="listing-img" data-tone="slate">
+            <svg viewBox="0 0 160 110" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <rect width="160" height="110" fill="currentColor" opacity=".14"/>
+              <rect x="14" y="38" width="32" height="42" fill="currentColor" opacity=".7"/><rect x="48" y="34" width="32" height="46" fill="currentColor" opacity=".58"/><rect x="82" y="40" width="32" height="40" fill="currentColor" opacity=".75"/><rect x="116" y="36" width="32" height="44" fill="currentColor" opacity=".62"/><rect x="22" y="50" width="6" height="10" fill="#FAF7F0"/><rect x="56" y="46" width="6" height="10" fill="#FAF7F0"/><rect x="90" y="52" width="6" height="10" fill="#FAF7F0"/><rect x="124" y="48" width="6" height="10" fill="#FAF7F0"/>
+              <path d="M0 80 L160 80 L160 110 L0 110 Z" fill="#000" opacity=".06"/>
+            </svg>
+            <span class="listing-tag ">LIHTC</span>
+          </div>
+          <div class="lcard-body">
+            <div>
+              <p class="listing-addr">The Preserve Apartments</p>
+              <p class="listing-sub">Washoe County, NV · 245 units</p>
+              <ul class="listing-meta"><li>$1,551/mo</li><li>Occ 234/245</li></ul>
+            </div>
+            <div class="listing-price">
+              <p class="price">$57.4<span>M</span></p>
+              <p class="price-sub">Restricted</p>
+            </div>
+          </div>
+        </article>
+    </div>
+  </section>
+
+  <!-- ==================== PORTFOLIO ==================== -->
+  <section class="view" data-view="pipeline">
+    <header class="page-head">
+      <div>
+        <p class="kicker">Composition</p>
+        <h1>Portfolio breakdown</h1>
+        <p class="subhead">By state and property type</p>
+      </div>
+    </header>
+    <div class="clients-wrap">
+      <table class="clients-table">
+        <thead><tr><th>State</th><th>Type</th><th>Properties</th><th>Units</th><th>Value</th></tr></thead>
+        <tbody><tr>
+          <td>AZ</td>
+          <td>LIHTC Apartment</td>
+          <td>14</td>
+          <td>2,289</td>
+          <td>$247.7M</td>
+        </tr><tr>
+          <td>AZ</td>
+          <td>Market Rate</td>
+          <td>10</td>
+          <td>1,751</td>
+          <td>$305.0M</td>
+        </tr><tr>
+          <td>AZ</td>
+          <td>MHP Lot Rent</td>
+          <td>17</td>
+          <td>2,068</td>
+          <td>$139.4M</td>
+        </tr><tr>
+          <td>FL</td>
+          <td>LIHTC Apartment</td>
+          <td>12</td>
+          <td>1,994</td>
+          <td>$308.9M</td>
+        </tr><tr>
+          <td>FL</td>
+          <td>Market Rate</td>
+          <td>11</td>
+          <td>1,901</td>
+          <td>$444.8M</td>
+        </tr><tr>
+          <td>FL</td>
+          <td>MHP Lot Rent</td>
+          <td>21</td>
+          <td>2,784</td>
+          <td>$216.2M</td>
+        </tr><tr>
+          <td>NC</td>
+          <td>LIHTC Apartment</td>
+          <td>11</td>
+          <td>1,724</td>
+          <td>$166.7M</td>
+        </tr><tr>
+          <td>NC</td>
+          <td>Market Rate</td>
+          <td>12</td>
+          <td>1,555</td>
+          <td>$320.5M</td>
+        </tr><tr>
+          <td>NC</td>
+          <td>MHP Lot Rent</td>
+          <td>14</td>
+          <td>2,237</td>
+          <td>$160.0M</td>
+        </tr><tr>
+          <td>NV</td>
+          <td>LIHTC Apartment</td>
+          <td>17</td>
+          <td>3,351</td>
+          <td>$346.1M</td>
+        </tr><tr>
+          <td>NV</td>
+          <td>Market Rate</td>
+          <td>3</td>
+          <td>448</td>
+          <td>$69.6M</td>
+        </tr><tr>
+          <td>NV</td>
+          <td>MHP Lot Rent</td>
+          <td>27</td>
+          <td>3,449</td>
+          <td>$251.9M</td>
+        </tr><tr>
+          <td>SC</td>
+          <td>LIHTC Apartment</td>
+          <td>20</td>
+          <td>3,273</td>
+          <td>$373.1M</td>
+        </tr><tr>
+          <td>SC</td>
+          <td>Market Rate</td>
+          <td>14</td>
+          <td>2,060</td>
+          <td>$407.9M</td>
+        </tr><tr>
+          <td>SC</td>
+          <td>MHP Lot Rent</td>
+          <td>14</td>
+          <td>1,852</td>
+          <td>$129.7M</td>
+        </tr><tr>
+          <td>TX</td>
+          <td>LIHTC Apartment</td>
+          <td>14</td>
+          <td>2,367</td>
+          <td>$384.8M</td>
+        </tr><tr>
+          <td>TX</td>
+          <td>Market Rate</td>
+          <td>12</td>
+          <td>1,857</td>
+          <td>$453.3M</td>
+        </tr><tr>
+          <td>TX</td>
+          <td>MHP Lot Rent</td>
+          <td>29</td>
+          <td>3,758</td>
+          <td>$319.3M</td>
+        </tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ==================== MARKET ==================== -->
+  <section class="view" data-view="market">
+    <header class="page-head">
+      <div>
+        <p class="kicker">Federal data · FY 2026</p>
+        <h1>Market intelligence</h1>
+        <p class="subhead">HUD Fair Market Rents · Income Limits · IRS Migration · LIHTC inventory</p>
+      </div>
+    </header>
+    <div class="market-grid" style="grid-template-rows: auto auto;">
+      <section class="panel chart-panel" style="grid-row: span 1;">
+        <header class="panel-head tight"><div><p class="panel-kicker">FMR trajectory</p><h2>2BR Fair Market Rent — top migration counties</h2></div></header>
+        <div id="chart-trajectory" class="plotly-chart"></div>
+      </section>
+      <section class="panel">
+        <header class="panel-head tight"><div><p class="panel-kicker">Rent burden index</p><h2>FMR ÷ 30% of VLI</h2></div></header>
+        <div id="chart-burden" class="plotly-chart"></div>
+      </section>
+    </div>
+  </section>
+
+  <!-- ==================== SIMULATE ==================== -->
+  <section class="view" data-view="simulate">
+    <header class="page-head">
+      <div>
+        <p class="kicker">What-if analysis</p>
+        <h1>Rent simulation</h1>
+        <p class="subhead">Adjust assumptions and see portfolio-wide impact in real time</p>
+      </div>
+    </header>
+
+    <div class="sim-controls">
+      <div class="sim-control">
+        <label>Annual rent increase</label>
+        <input type="range" id="sim-rent" min="0" max="10" step="0.5" value="3" />
+        <div class="sim-val" id="sim-rent-val">3.0%</div>
+      </div>
+      <div class="sim-control">
+        <label>Expense growth</label>
+        <input type="range" id="sim-exp" min="0" max="8" step="0.5" value="2" />
+        <div class="sim-val" id="sim-exp-val">2.0%</div>
+      </div>
+      <div class="sim-control">
+        <label>Occupancy change</label>
+        <input type="range" id="sim-occ" min="-10" max="5" step="1" value="0" />
+        <div class="sim-val" id="sim-occ-val">0 pp</div>
+      </div>
+      <div class="sim-control">
+        <label>Years forward</label>
+        <input type="range" id="sim-yrs" min="1" max="10" step="1" value="5" />
+        <div class="sim-val" id="sim-yrs-val">5</div>
+      </div>
+    </div>
+
+    <div class="sim-kpis">
+      <div class="sim-kpi"><p class="kpi-label">Projected NOI change</p><p class="kpi-value" id="sim-noi-delta">—</p><p class="kpi-delta" id="sim-noi-pct"></p></div>
+      <div class="sim-kpi"><p class="kpi-label">Avg projected rent</p><p class="kpi-value" id="sim-avg-rent">—</p><p class="kpi-delta" id="sim-rent-note"></p></div>
+      <div class="sim-kpi"><p class="kpi-label">Properties at ceiling</p><p class="kpi-value" id="sim-capped">—</p><p class="kpi-delta" id="sim-capped-note"></p></div>
+      <div class="sim-kpi"><p class="kpi-label">Avg DSCR</p><p class="kpi-value" id="sim-dscr">—</p><p class="kpi-delta" id="sim-dscr-note"></p></div>
+    </div>
+
+    <div class="clients-wrap" style="max-height: 400px; overflow-y: auto;">
+      <table class="clients-table" id="sim-table">
+        <thead><tr><th>Property</th><th>Type</th><th>Units</th><th>Current rent</th><th>Projected NOI</th><th>DSCR</th></tr></thead>
+        <tbody><tr data-rent="762.0" data-noi="393517.0" data-units="102">
+          <td><div class="who"><span class="who-av">SU</span><div><b>Sunset Ridge Park</b><span>Montgomery County, TX</span></div></div></td>
+          <td><span class="stage-pill st-show">MHP</span></td>
+          <td>102</td>
+          <td class="rent-cell">$762</td>
+          <td class="noi-cell">$393,517</td>
+          <td class="dscr-cell">1.46x</td>
+        </tr><tr data-rent="727.0" data-noi="925998.0" data-units="183">
+          <td><div class="who"><span class="who-av">ME</span><div><b>Meadowbrook MHP</b><span>Montgomery County, TX</span></div></div></td>
+          <td><span class="stage-pill st-show">MHP</span></td>
+          <td>183</td>
+          <td class="rent-cell">$727</td>
+          <td class="noi-cell">$925,998</td>
+          <td class="dscr-cell">0.84x</td>
+        </tr><tr data-rent="951.0" data-noi="1045310.0" data-units="156">
+          <td><div class="who"><span class="who-av">HA</span><div><b>Harbor View Village</b><span>Montgomery County, TX</span></div></div></td>
+          <td><span class="stage-pill st-offer">LIHTC</span></td>
+          <td>156</td>
+          <td class="rent-cell">$951</td>
+          <td class="noi-cell">$1,045,310</td>
+          <td class="dscr-cell">0.77x</td>
+        </tr><tr data-rent="1401.0" data-noi="1989666.0" data-units="165">
+          <td><div class="who"><span class="who-av">AR</span><div><b>Arbor Walk Village</b><span>Montgomery County, TX</span></div></div></td>
+          <td><span class="stage-pill st-offer">LIHTC</span></td>
+          <td>165</td>
+          <td class="rent-cell">$1,401</td>
+          <td class="noi-cell">$1,989,666</td>
+          <td class="dscr-cell">1.38x</td>
+        </tr><tr data-rent="1805.0" data-noi="3027302.0" data-units="240">
+          <td><div class="who"><span class="who-av">WE</span><div><b>Westgate Lofts</b><span>Montgomery County, TX</span></div></div></td>
+          <td><span class="stage-pill st-esc">Market</span></td>
+          <td>240</td>
+          <td class="rent-cell">$1,805</td>
+          <td class="noi-cell">$3,027,302</td>
+          <td class="dscr-cell">1.21x</td>
+        </tr><tr data-rent="554.0" data-noi="144123.0" data-units="81">
+          <td><div class="who"><span class="who-av">RO</span><div><b>Rolling Hills Park</b><span>Montgomery County, TX</span></div></div></td>
+          <td><span class="stage-pill st-show">MHP</span></td>
+          <td>81</td>
+          <td class="rent-cell">$554</td>
+          <td class="noi-cell">$144,123</td>
+          <td class="dscr-cell">0.67x</td>
+        </tr><tr data-rent="1410.0" data-noi="1915639.0" data-units="166">
+          <td><div class="who"><span class="who-av">CR</span><div><b>Creekside Apartments</b><span>Montgomery County, TX</span></div></div></td>
+          <td><span class="stage-pill st-offer">LIHTC</span></td>
+          <td>166</td>
+          <td class="rent-cell">$1,410</td>
+          <td class="noi-cell">$1,915,639</td>
+          <td class="dscr-cell">1.29x</td>
+        </tr><tr data-rent="555.0" data-noi="258260.0" data-units="142">
+          <td><div class="who"><span class="who-av">LA</span><div><b>Lakeview Park</b><span>Montgomery County, TX</span></div></div></td>
+          <td><span class="stage-pill st-show">MHP</span></td>
+          <td>142</td>
+          <td class="rent-cell">$555</td>
+          <td class="noi-cell">$258,260</td>
+          <td class="dscr-cell">0.78x</td>
+        </tr><tr data-rent="1368.0" data-noi="1214241.0" data-units="111">
+          <td><div class="who"><span class="who-av">TH</span><div><b>The Enclave Apartments</b><span>Williamson County, TX</span></div></div></td>
+          <td><span class="stage-pill st-offer">LIHTC</span></td>
+          <td>111</td>
+          <td class="rent-cell">$1,368</td>
+          <td class="noi-cell">$1,214,241</td>
+          <td class="dscr-cell">1.32x</td>
+        </tr><tr data-rent="2292.0" data-noi="1758655.0" data-units="83">
+          <td><div class="who"><span class="who-av">TH</span><div><b>The Landings Crossing</b><span>Williamson County, TX</span></div></div></td>
+          <td><span class="stage-pill st-esc">Market</span></td>
+          <td>83</td>
+          <td class="rent-cell">$2,292</td>
+          <td class="noi-cell">$1,758,655</td>
+          <td class="dscr-cell">1.48x</td>
+        </tr><tr data-rent="812.0" data-noi="860874.0" data-units="175">
+          <td><div class="who"><span class="who-av">EA</span><div><b>Eagle Landing Community</b><span>Williamson County, TX</span></div></div></td>
+          <td><span class="stage-pill st-show">MHP</span></td>
+          <td>175</td>
+          <td class="rent-cell">$812</td>
+          <td class="noi-cell">$860,874</td>
+          <td class="dscr-cell">1.23x</td>
+        </tr><tr data-rent="629.0" data-noi="172445.0" data-units="68">
+          <td><div class="who"><span class="who-av">WI</span><div><b>Willow Bend Park</b><span>Williamson County, TX</span></div></div></td>
+          <td><span class="stage-pill st-show">MHP</span></td>
+          <td>68</td>
+          <td class="rent-cell">$629</td>
+          <td class="noi-cell">$172,445</td>
+          <td class="dscr-cell">1.14x</td>
+        </tr><tr data-rent="1348.0" data-noi="1437864.0" data-units="124">
+          <td><div class="who"><span class="who-av">PA</span><div><b>Parkside Village</b><span>Williamson County, TX</span></div></div></td>
+          <td><span class="stage-pill st-offer">LIHTC</span></td>
+          <td>124</td>
+          <td class="rent-cell">$1,348</td>
+          <td class="noi-cell">$1,437,864</td>
+          <td class="dscr-cell">0.79x</td>
+        </tr><tr data-rent="1667.0" data-noi="1869486.0" data-units="142">
+          <td><div class="who"><span class="who-av">TH</span><div><b>The Commons Heights</b><span>Williamson County, TX</span></div></div></td>
+          <td><span class="stage-pill st-esc">Market</span></td>
+          <td>142</td>
+          <td class="rent-cell">$1,667</td>
+          <td class="noi-cell">$1,869,486</td>
+          <td class="dscr-cell">1.63x</td>
+        </tr><tr data-rent="933.0" data-noi="450385.0" data-units="61">
+          <td><div class="who"><span class="who-av">HE</span><div><b>Heritage Park MHP</b><span>Williamson County, TX</span></div></div></td>
+          <td><span class="stage-pill st-show">MHP</span></td>
+          <td>61</td>
+          <td class="rent-cell">$933</td>
+          <td class="noi-cell">$450,385</td>
+          <td class="dscr-cell">0.94x</td>
+        </tr><tr data-rent="1644.0" data-noi="3500181.0" data-units="271">
+          <td><div class="who"><span class="who-av">TH</span><div><b>The Enclave Village</b><span>Williamson County, TX</span></div></div></td>
+          <td><span class="stage-pill st-offer">LIHTC</span></td>
+          <td>271</td>
+          <td class="rent-cell">$1,644</td>
+          <td class="noi-cell">$3,500,181</td>
+          <td class="dscr-cell">1.08x</td>
+        </tr><tr data-rent="1214.0" data-noi="1558975.0" data-units="163">
+          <td><div class="who"><span class="who-av">BA</span><div><b>Bayshore Village</b><span>Collin County, TX</span></div></div></td>
+          <td><span class="stage-pill st-offer">LIHTC</span></td>
+          <td>163</td>
+          <td class="rent-cell">$1,214</td>
+          <td class="noi-cell">$1,558,975</td>
+          <td class="dscr-cell">1.15x</td>
+        </tr><tr data-rent="594.0" data-noi="280040.0" data-units="98">
+          <td><div class="who"><span class="who-av">WI</span><div><b>Willow Bend MHP</b><span>Collin County, TX</span></div></div></td>
+          <td><span class="stage-pill st-show">MHP</span></td>
+          <td>98</td>
+          <td class="rent-cell">$594</td>
+          <td class="noi-cell">$280,040</td>
+          <td class="dscr-cell">1.33x</td>
+        </tr><tr data-rent="969.0" data-noi="908955.0" data-units="102">
+          <td><div class="who"><span class="who-av">WI</span><div><b>Wildflower Community</b><span>Collin County, TX</span></div></div></td>
+          <td><span class="stage-pill st-show">MHP</span></td>
+          <td>102</td>
+          <td class="rent-cell">$969</td>
+          <td class="noi-cell">$908,955</td>
+          <td class="dscr-cell">1.16x</td>
+        </tr><tr data-rent="1727.0" data-noi="3310958.0" data-units="227">
+          <td><div class="who"><span class="who-av">AR</span><div><b>Arbor Walk Heights</b><span>Collin County, TX</span></div></div></td>
+          <td><span class="stage-pill st-esc">Market</span></td>
+          <td>227</td>
+          <td class="rent-cell">$1,727</td>
+          <td class="noi-cell">$3,310,958</td>
+          <td class="dscr-cell">1.77x</td>
+        </tr></tbody>
+      </table>
+    </div>
+  </section>
+
+</main>
+
+<script>
+const DATA = {"portfolio": {"total_properties": 272, "total_units": 40718, "avg_rent": 1062.0, "states": ["AZ", "FL", "NC", "NV", "SC", "TX"], "by_type": {"lihtc_apartment": 14998, "market_apartment": 9572, "mhp_lot": 16148}, "total_value": 5045.0}, "listings": [{"property_id": "P-0245", "name": "The Preserve Place", "state": "NV", "county_fips": 32019, "county_name": "Lyon County", "property_type": "lihtc_apartment", "total_units": 295, "occupied_units": 286, "avg_monthly_rent": 747.0, "rent_restricted": true, "ami_ceiling_pct": 50.0, "monthly_opex_per_unit": 364.68, "annual_debt_service": 947541.0, "year_acquired": 2018, "acquisition_price": 17563376.0, "local_fmr_2br": 1272, "local_vli_4person": 52000}, {"property_id": "P-0052", "name": "Maple Court Village", "state": "TX", "county_fips": 48091, "county_name": "Comal County", "property_type": "lihtc_apartment", "total_units": 277, "occupied_units": 254, "avg_monthly_rent": 894.0, "rent_restricted": true, "ami_ceiling_pct": 60.0, "monthly_opex_per_unit": 421.41, "annual_debt_service": 1408718.0, "year_acquired": 2016, "acquisition_price": 24723655.0, "local_fmr_2br": 1426, "local_vli_4person": 50300}, {"property_id": "P-0168", "name": "Stonewood Village", "state": "NC", "county_fips": 37085, "county_name": "Harnett County", "property_type": "lihtc_apartment", "total_units": 277, "occupied_units": 256, "avg_monthly_rent": 566.0, "rent_restricted": true, "ami_ceiling_pct": 60.0, "monthly_opex_per_unit": 458.76, "annual_debt_service": 327841.0, "year_acquired": 2018, "acquisition_price": 5893719.0, "local_fmr_2br": 980, "local_vli_4person": 44150}, {"property_id": "P-0228", "name": "Westgate Apartments", "state": "NV", "county_fips": 32003, "county_name": "Clark County", "property_type": "lihtc_apartment", "total_units": 277, "occupied_units": 262, "avg_monthly_rent": 980.0, "rent_restricted": true, "ami_ceiling_pct": 60.0, "monthly_opex_per_unit": 525.32, "annual_debt_service": 923036.0, "year_acquired": 2021, "acquisition_price": 17789179.0, "local_fmr_2br": 1735, "local_vli_4person": 52750}, {"property_id": "P-0180", "name": "The Residences Village", "state": "SC", "county_fips": 45051, "county_name": "Horry County", "property_type": "lihtc_apartment", "total_units": 276, "occupied_units": 261, "avg_monthly_rent": 974.0, "rent_restricted": true, "ami_ceiling_pct": 80.0, "monthly_opex_per_unit": 379.63, "annual_debt_service": 1287511.0, "year_acquired": 2016, "acquisition_price": 22015131.0, "local_fmr_2br": 1465, "local_vli_4person": 43000}, {"property_id": "P-0016", "name": "The Enclave Village", "state": "TX", "county_fips": 48491, "county_name": "Williamson County", "property_type": "lihtc_apartment", "total_units": 271, "occupied_units": 258, "avg_monthly_rent": 1644.0, "rent_restricted": true, "ami_ceiling_pct": 80.0, "monthly_opex_per_unit": 488.82, "annual_debt_service": 3230952.0, "year_acquired": 2021, "acquisition_price": 67603169.0, "local_fmr_2br": 1852, "local_vli_4person": 67200}, {"property_id": "P-0196", "name": "Harbor View Village", "state": "SC", "county_fips": 45045, "county_name": "Greenville County", "property_type": "lihtc_apartment", "total_units": 267, "occupied_units": 255, "avg_monthly_rent": 926.0, "rent_restricted": true, "ami_ceiling_pct": 60.0, "monthly_opex_per_unit": 428.82, "annual_debt_service": 1059204.0, "year_acquired": 2011, "acquisition_price": 24990277.0, "local_fmr_2br": 1339, "local_vli_4person": 53150}, {"property_id": "P-0090", "name": "Vista Pointe Place", "state": "FL", "county_fips": 12081, "county_name": "Manatee County", "property_type": "lihtc_apartment", "total_units": 266, "occupied_units": 255, "avg_monthly_rent": 1443.0, "rent_restricted": true, "ami_ceiling_pct": 60.0, "monthly_opex_per_unit": 456.7, "annual_debt_service": 2480153.0, "year_acquired": 2024, "acquisition_price": 40125712.0, "local_fmr_2br": 1958, "local_vli_4person": 57050}, {"property_id": "P-0261", "name": "Brookstone Apartments", "state": "NV", "county_fips": 32029, "county_name": "Storey County", "property_type": "lihtc_apartment", "total_units": 254, "occupied_units": 229, "avg_monthly_rent": 1258.0, "rent_restricted": true, "ami_ceiling_pct": 60.0, "monthly_opex_per_unit": 449.21, "annual_debt_service": 2218550.0, "year_acquired": 2012, "acquisition_price": 38515592.0, "local_fmr_2br": 1870, "local_vli_4person": 58400}, {"property_id": "P-0165", "name": "Stonewood Place", "state": "NC", "county_fips": 37097, "county_name": "Iredell County", "property_type": "lihtc_apartment", "total_units": 253, "occupied_units": 250, "avg_monthly_rent": 798.0, "rent_restricted": true, "ami_ceiling_pct": 50.0, "monthly_opex_per_unit": 316.44, "annual_debt_service": 985823.0, "year_acquired": 2016, "acquisition_price": 17005236.0, "local_fmr_2br": 1340, "local_vli_4person": 53650}, {"property_id": "P-0211", "name": "Westgate Village", "state": "SC", "county_fips": 45019, "county_name": "Charleston County", "property_type": "lihtc_apartment", "total_units": 245, "occupied_units": 235, "avg_monthly_rent": 1183.0, "rent_restricted": true, "ami_ceiling_pct": 60.0, "monthly_opex_per_unit": 519.06, "annual_debt_service": 1433282.0, "year_acquired": 2020, "acquisition_price": 28472597.0, "local_fmr_2br": 1787, "local_vli_4person": 58750}, {"property_id": "P-0233", "name": "The Preserve Apartments", "state": "NV", "county_fips": 32031, "county_name": "Washoe County", "property_type": "lihtc_apartment", "total_units": 245, "occupied_units": 234, "avg_monthly_rent": 1551.0, "rent_restricted": true, "ami_ceiling_pct": 50.0, "monthly_opex_per_unit": 320.51, "annual_debt_service": 3422676.0, "year_acquired": 2012, "acquisition_price": 57430094.0, "local_fmr_2br": 1870, "local_vli_4person": 58400}], "pipeline": [{"state": "AZ", "property_type": "LIHTC Apartment", "count": 14, "units": 2289, "value": 247.7}, {"state": "AZ", "property_type": "Market Rate", "count": 10, "units": 1751, "value": 305.0}, {"state": "AZ", "property_type": "MHP Lot Rent", "count": 17, "units": 2068, "value": 139.4}, {"state": "FL", "property_type": "LIHTC Apartment", "count": 12, "units": 1994, "value": 308.9}, {"state": "FL", "property_type": "Market Rate", "count": 11, "units": 1901, "value": 444.8}, {"state": "FL", "property_type": "MHP Lot Rent", "count": 21, "units": 2784, "value": 216.2}, {"state": "NC", "property_type": "LIHTC Apartment", "count": 11, "units": 1724, "value": 166.7}, {"state": "NC", "property_type": "Market Rate", "count": 12, "units": 1555, "value": 320.5}, {"state": "NC", "property_type": "MHP Lot Rent", "count": 14, "units": 2237, "value": 160.0}, {"state": "NV", "property_type": "LIHTC Apartment", "count": 17, "units": 3351, "value": 346.1}, {"state": "NV", "property_type": "Market Rate", "count": 3, "units": 448, "value": 69.6}, {"state": "NV", "property_type": "MHP Lot Rent", "count": 27, "units": 3449, "value": 251.9}, {"state": "SC", "property_type": "LIHTC Apartment", "count": 20, "units": 3273, "value": 373.1}, {"state": "SC", "property_type": "Market Rate", "count": 14, "units": 2060, "value": 407.9}, {"state": "SC", "property_type": "MHP Lot Rent", "count": 14, "units": 1852, "value": 129.7}, {"state": "TX", "property_type": "LIHTC Apartment", "count": 14, "units": 2367, "value": 384.8}, {"state": "TX", "property_type": "Market Rate", "count": 12, "units": 1857, "value": 453.3}, {"state": "TX", "property_type": "MHP Lot Rent", "count": 29, "units": 3758, "value": 319.3}], "migration": [{"label": "Polk County, FL", "net_migration_returns": 9193, "lihtc_total_units": 3377.0}, {"label": "Pasco County, FL", "net_migration_returns": 9058, "lihtc_total_units": 2718.0}, {"label": "Montgomery County, TX", "net_migration_returns": 8419, "lihtc_total_units": 4957.0}, {"label": "Williamson County, TX", "net_migration_returns": 7619, "lihtc_total_units": 6222.0}, {"label": "Clark County, NV", "net_migration_returns": 7000, "lihtc_total_units": 20090.0}, {"label": "Collin County, TX", "net_migration_returns": 6995, "lihtc_total_units": 5088.0}, {"label": "Pinal County, AZ", "net_migration_returns": 6769, "lihtc_total_units": 1535.0}, {"label": "Denton County, TX", "net_migration_returns": 6596, "lihtc_total_units": 5559.0}, {"label": "Lake County, FL", "net_migration_returns": 6299, "lihtc_total_units": 3345.0}, {"label": "Marion County, FL", "net_migration_returns": 5980, "lihtc_total_units": 1751.0}, {"label": "Horry County, SC", "net_migration_returns": 5892, "lihtc_total_units": 1577.0}, {"label": "Maricopa County, AZ", "net_migration_returns": 5606, "lihtc_total_units": 23950.0}, {"label": "St. Lucie County, FL", "net_migration_returns": 5050, "lihtc_total_units": 2229.0}, {"label": "Brevard County, FL", "net_migration_returns": 4983, "lihtc_total_units": 3576.0}, {"label": "Manatee County, FL", "net_migration_returns": 4551, "lihtc_total_units": 2723.0}, {"label": "New York County, NY", "net_migration_returns": 4305, "lihtc_total_units": 74570.0}, {"label": "St. Johns County, FL", "net_migration_returns": 4150, "lihtc_total_units": 1012.0}, {"label": "Volusia County, FL", "net_migration_returns": 4075, "lihtc_total_units": 4793.0}, {"label": "Wake County, NC", "net_migration_returns": 3984, "lihtc_total_units": 12233.0}, {"label": "Mecklenburg County, NC", "net_migration_returns": 3706, "lihtc_total_units": 14139.0}], "burden": [{"label": "Victoria County", "fmr26_2": 1442, "vli_4person": 42000, "burden_ratio": 1.37}, {"label": "Goliad County", "fmr26_2": 1442, "vli_4person": 42000, "burden_ratio": 1.37}, {"label": "Martin County", "fmr26_2": 1772, "vli_4person": 51650, "burden_ratio": 1.37}, {"label": "Ector County", "fmr26_2": 1595, "vli_4person": 46500, "burden_ratio": 1.37}, {"label": "Midland County", "fmr26_2": 1780, "vli_4person": 54450, "burden_ratio": 1.31}, {"label": "Nueces County", "fmr26_2": 1366, "vli_4person": 41850, "burden_ratio": 1.31}, {"label": "San Patricio County", "fmr26_2": 1366, "vli_4person": 41850, "burden_ratio": 1.31}, {"label": "Aransas County", "fmr26_2": 1407, "vli_4person": 43400, "burden_ratio": 1.3}, {"label": "Dallas County", "fmr26_2": 1931, "vli_4person": 60550, "burden_ratio": 1.28}, {"label": "Hunt County", "fmr26_2": 1931, "vli_4person": 60550, "burden_ratio": 1.28}, {"label": "Rockwall County", "fmr26_2": 1931, "vli_4person": 60550, "burden_ratio": 1.28}, {"label": "Collin County", "fmr26_2": 1931, "vli_4person": 60550, "burden_ratio": 1.28}, {"label": "Kaufman County", "fmr26_2": 1931, "vli_4person": 60550, "burden_ratio": 1.28}, {"label": "Denton County", "fmr26_2": 1931, "vli_4person": 60550, "burden_ratio": 1.28}, {"label": "Ellis County", "fmr26_2": 1931, "vli_4person": 60550, "burden_ratio": 1.28}, {"label": "Johnson County", "fmr26_2": 1723, "vli_4person": 55150, "burden_ratio": 1.25}, {"label": "Tarrant County", "fmr26_2": 1723, "vli_4person": 55150, "burden_ratio": 1.25}, {"label": "Parker County", "fmr26_2": 1723, "vli_4person": 55150, "burden_ratio": 1.25}, {"label": "Harris County", "fmr26_2": 1573, "vli_4person": 52000, "burden_ratio": 1.21}, {"label": "Liberty County", "fmr26_2": 1573, "vli_4person": 52000, "burden_ratio": 1.21}, {"label": "Chambers County", "fmr26_2": 1573, "vli_4person": 52000, "burden_ratio": 1.21}, {"label": "Galveston County", "fmr26_2": 1573, "vli_4person": 52000, "burden_ratio": 1.21}, {"label": "Fort Bend County", "fmr26_2": 1573, "vli_4person": 52000, "burden_ratio": 1.21}, {"label": "Montgomery County", "fmr26_2": 1573, "vli_4person": 52000, "burden_ratio": 1.21}, {"label": "Waller County", "fmr26_2": 1573, "vli_4person": 52000, "burden_ratio": 1.21}], "preservation": {"Already expired": 18622, "2026\u20132029": 21895, "2030\u20132031": 9288, "2032\u20132036": 58590, "After 2036": 157612}, "trajectory": [{"label": "Collin County", "fips_county": "48085", "year": 1990, "fmr_2br": 527.0, "projected": false}, {"label": "Collin County", "fips_county": "48085", "year": 1995, "fmr_2br": 565.0, "projected": false}, {"label": "Collin County", "fips_county": "48085", "year": 2000, "fmr_2br": 749.0, "projected": false}, {"label": "Collin County", "fips_county": "48085", "year": 2005, "fmr_2br": 868.0, "projected": false}, {"label": "Collin County", "fips_county": "48085", "year": 2010, "fmr_2br": 894.0, "projected": false}, {"label": "Collin County", "fips_county": "48085", "year": 2015, "fmr_2br": 921.0, "projected": false}, {"label": "Collin County", "fips_county": "48085", "year": 2020, "fmr_2br": 1314.0, "projected": false}, {"label": "Collin County", "fips_county": "48085", "year": 2026, "fmr_2br": 1931.0, "projected": false}, {"label": "Comal County", "fips_county": "48091", "year": 1990, "fmr_2br": 470.0, "projected": false}, {"label": "Comal County", "fips_county": "48091", "year": 1995, "fmr_2br": 507.0, "projected": false}, {"label": "Comal County", "fips_county": "48091", "year": 2000, "fmr_2br": 555.0, "projected": false}, {"label": "Comal County", "fips_county": "48091", "year": 2005, "fmr_2br": 716.0, "projected": false}, {"label": "Comal County", "fips_county": "48091", "year": 2010, "fmr_2br": 796.0, "projected": false}, {"label": "Comal County", "fips_county": "48091", "year": 2015, "fmr_2br": 872.0, "projected": false}, {"label": "Comal County", "fips_county": "48091", "year": 2020, "fmr_2br": 1051.0, "projected": false}, {"label": "Comal County", "fips_county": "48091", "year": 2026, "fmr_2br": 1426.0, "projected": false}, {"label": "Denton County", "fips_county": "48121", "year": 1990, "fmr_2br": 527.0, "projected": false}, {"label": "Denton County", "fips_county": "48121", "year": 1995, "fmr_2br": 565.0, "projected": false}, {"label": "Denton County", "fips_county": "48121", "year": 2000, "fmr_2br": 749.0, "projected": false}, {"label": "Denton County", "fips_county": "48121", "year": 2005, "fmr_2br": 868.0, "projected": false}, {"label": "Denton County", "fips_county": "48121", "year": 2010, "fmr_2br": 894.0, "projected": false}, {"label": "Denton County", "fips_county": "48121", "year": 2015, "fmr_2br": 921.0, "projected": false}, {"label": "Denton County", "fips_county": "48121", "year": 2020, "fmr_2br": 1314.0, "projected": false}, {"label": "Denton County", "fips_county": "48121", "year": 2026, "fmr_2br": 1931.0, "projected": false}, {"label": "Fort Bend County", "fips_county": "48157", "year": 1990, "fmr_2br": 400.0, "projected": false}, {"label": "Fort Bend County", "fips_county": "48157", "year": 1995, "fmr_2br": 553.0, "projected": false}, {"label": "Fort Bend County", "fips_county": "48157", "year": 2000, "fmr_2br": 620.0, "projected": false}, {"label": "Fort Bend County", "fips_county": "48157", "year": 2005, "fmr_2br": 733.0, "projected": false}, {"label": "Fort Bend County", "fips_county": "48157", "year": 2010, "fmr_2br": 892.0, "projected": false}, {"label": "Fort Bend County", "fips_county": "48157", "year": 2015, "fmr_2br": 890.0, "projected": false}, {"label": "Fort Bend County", "fips_county": "48157", "year": 2020, "fmr_2br": 1096.0, "projected": false}, {"label": "Fort Bend County", "fips_county": "48157", "year": 2026, "fmr_2br": 1573.0, "projected": false}, {"label": "Hays County", "fips_county": "48209", "year": 1990, "fmr_2br": 493.0, "projected": false}, {"label": "Hays County", "fips_county": "48209", "year": 1995, "fmr_2br": 623.0, "projected": false}, {"label": "Hays County", "fips_county": "48209", "year": 2000, "fmr_2br": 700.0, "projected": false}, {"label": "Hays County", "fips_county": "48209", "year": 2005, "fmr_2br": 912.0, "projected": false}, {"label": "Hays County", "fips_county": "48209", "year": 2010, "fmr_2br": 954.0, "projected": false}, {"label": "Hays County", "fips_county": "48209", "year": 2015, "fmr_2br": 1050.0, "projected": false}, {"label": "Hays County", "fips_county": "48209", "year": 2020, "fmr_2br": 1356.0, "projected": false}, {"label": "Hays County", "fips_county": "48209", "year": 2026, "fmr_2br": 1852.0, "projected": false}, {"label": "Kaufman County", "fips_county": "48257", "year": 1990, "fmr_2br": 527.0, "projected": false}, {"label": "Kaufman County", "fips_county": "48257", "year": 1995, "fmr_2br": 565.0, "projected": false}, {"label": "Kaufman County", "fips_county": "48257", "year": 2000, "fmr_2br": 749.0, "projected": false}, {"label": "Kaufman County", "fips_county": "48257", "year": 2005, "fmr_2br": 868.0, "projected": false}, {"label": "Kaufman County", "fips_county": "48257", "year": 2010, "fmr_2br": 894.0, "projected": false}, {"label": "Kaufman County", "fips_county": "48257", "year": 2015, "fmr_2br": 921.0, "projected": false}, {"label": "Kaufman County", "fips_county": "48257", "year": 2020, "fmr_2br": 1314.0, "projected": false}, {"label": "Kaufman County", "fips_county": "48257", "year": 2026, "fmr_2br": 1931.0, "projected": false}, {"label": "Montgomery County", "fips_county": "48339", "year": 1990, "fmr_2br": 400.0, "projected": false}, {"label": "Montgomery County", "fips_county": "48339", "year": 1995, "fmr_2br": 553.0, "projected": false}, {"label": "Montgomery County", "fips_county": "48339", "year": 2000, "fmr_2br": 620.0, "projected": false}, {"label": "Montgomery County", "fips_county": "48339", "year": 2005, "fmr_2br": 733.0, "projected": false}, {"label": "Montgomery County", "fips_county": "48339", "year": 2010, "fmr_2br": 892.0, "projected": false}, {"label": "Montgomery County", "fips_county": "48339", "year": 2015, "fmr_2br": 890.0, "projected": false}, {"label": "Montgomery County", "fips_county": "48339", "year": 2020, "fmr_2br": 1096.0, "projected": false}, {"label": "Montgomery County", "fips_county": "48339", "year": 2026, "fmr_2br": 1573.0, "projected": false}, {"label": "Williamson County", "fips_county": "48491", "year": 1990, "fmr_2br": 493.0, "projected": false}, {"label": "Williamson County", "fips_county": "48491", "year": 1995, "fmr_2br": 623.0, "projected": false}, {"label": "Williamson County", "fips_county": "48491", "year": 2000, "fmr_2br": 700.0, "projected": false}, {"label": "Williamson County", "fips_county": "48491", "year": 2005, "fmr_2br": 912.0, "projected": false}, {"label": "Williamson County", "fips_county": "48491", "year": 2010, "fmr_2br": 954.0, "projected": false}, {"label": "Williamson County", "fips_county": "48491", "year": 2015, "fmr_2br": 1050.0, "projected": false}, {"label": "Williamson County", "fips_county": "48491", "year": 2020, "fmr_2br": 1356.0, "projected": false}, {"label": "Williamson County", "fips_county": "48491", "year": 2026, "fmr_2br": 1852.0, "projected": false}], "sim_properties": [{"property_id": "P-0001", "name": "Sunset Ridge Park", "state": "TX", "county_name": "Montgomery County", "property_type": "mhp_lot", "total_units": 102, "current_rent": 762.0, "current_noi": 393517.0, "dscr": 1.46}, {"property_id": "P-0002", "name": "Meadowbrook MHP", "state": "TX", "county_name": "Montgomery County", "property_type": "mhp_lot", "total_units": 183, "current_rent": 727.0, "current_noi": 925998.0, "dscr": 0.84}, {"property_id": "P-0003", "name": "Harbor View Village", "state": "TX", "county_name": "Montgomery County", "property_type": "lihtc_apartment", "total_units": 156, "current_rent": 951.0, "current_noi": 1045310.0, "dscr": 0.77}, {"property_id": "P-0004", "name": "Arbor Walk Village", "state": "TX", "county_name": "Montgomery County", "property_type": "lihtc_apartment", "total_units": 165, "current_rent": 1401.0, "current_noi": 1989666.0, "dscr": 1.38}, {"property_id": "P-0005", "name": "Westgate Lofts", "state": "TX", "county_name": "Montgomery County", "property_type": "market_apartment", "total_units": 240, "current_rent": 1805.0, "current_noi": 3027302.0, "dscr": 1.21}, {"property_id": "P-0006", "name": "Rolling Hills Park", "state": "TX", "county_name": "Montgomery County", "property_type": "mhp_lot", "total_units": 81, "current_rent": 554.0, "current_noi": 144123.0, "dscr": 0.67}, {"property_id": "P-0007", "name": "Creekside Apartments", "state": "TX", "county_name": "Montgomery County", "property_type": "lihtc_apartment", "total_units": 166, "current_rent": 1410.0, "current_noi": 1915639.0, "dscr": 1.29}, {"property_id": "P-0008", "name": "Lakeview Park", "state": "TX", "county_name": "Montgomery County", "property_type": "mhp_lot", "total_units": 142, "current_rent": 555.0, "current_noi": 258260.0, "dscr": 0.78}, {"property_id": "P-0009", "name": "The Enclave Apartments", "state": "TX", "county_name": "Williamson County", "property_type": "lihtc_apartment", "total_units": 111, "current_rent": 1368.0, "current_noi": 1214241.0, "dscr": 1.32}, {"property_id": "P-0010", "name": "The Landings Crossing", "state": "TX", "county_name": "Williamson County", "property_type": "market_apartment", "total_units": 83, "current_rent": 2292.0, "current_noi": 1758655.0, "dscr": 1.48}, {"property_id": "P-0011", "name": "Eagle Landing Community", "state": "TX", "county_name": "Williamson County", "property_type": "mhp_lot", "total_units": 175, "current_rent": 812.0, "current_noi": 860874.0, "dscr": 1.23}, {"property_id": "P-0012", "name": "Willow Bend Park", "state": "TX", "county_name": "Williamson County", "property_type": "mhp_lot", "total_units": 68, "current_rent": 629.0, "current_noi": 172445.0, "dscr": 1.14}, {"property_id": "P-0013", "name": "Parkside Village", "state": "TX", "county_name": "Williamson County", "property_type": "lihtc_apartment", "total_units": 124, "current_rent": 1348.0, "current_noi": 1437864.0, "dscr": 0.79}, {"property_id": "P-0014", "name": "The Commons Heights", "state": "TX", "county_name": "Williamson County", "property_type": "market_apartment", "total_units": 142, "current_rent": 1667.0, "current_noi": 1869486.0, "dscr": 1.63}, {"property_id": "P-0015", "name": "Heritage Park MHP", "state": "TX", "county_name": "Williamson County", "property_type": "mhp_lot", "total_units": 61, "current_rent": 933.0, "current_noi": 450385.0, "dscr": 0.94}, {"property_id": "P-0016", "name": "The Enclave Village", "state": "TX", "county_name": "Williamson County", "property_type": "lihtc_apartment", "total_units": 271, "current_rent": 1644.0, "current_noi": 3500181.0, "dscr": 1.08}, {"property_id": "P-0017", "name": "Bayshore Village", "state": "TX", "county_name": "Collin County", "property_type": "lihtc_apartment", "total_units": 163, "current_rent": 1214.0, "current_noi": 1558975.0, "dscr": 1.15}, {"property_id": "P-0018", "name": "Willow Bend MHP", "state": "TX", "county_name": "Collin County", "property_type": "mhp_lot", "total_units": 98, "current_rent": 594.0, "current_noi": 280040.0, "dscr": 1.33}, {"property_id": "P-0019", "name": "Wildflower Community", "state": "TX", "county_name": "Collin County", "property_type": "mhp_lot", "total_units": 102, "current_rent": 969.0, "current_noi": 908955.0, "dscr": 1.16}, {"property_id": "P-0020", "name": "Arbor Walk Heights", "state": "TX", "county_name": "Collin County", "property_type": "market_apartment", "total_units": 227, "current_rent": 1727.0, "current_noi": 3310958.0, "dscr": 1.77}, {"property_id": "P-0021", "name": "Bluebonnet Community", "state": "TX", "county_name": "Collin County", "property_type": "mhp_lot", "total_units": 75, "current_rent": 714.0, "current_noi": 264303.0, "dscr": 1.1}, {"property_id": "P-0022", "name": "Willow Bend MHP", "state": "TX", "county_name": "Collin County", "property_type": "mhp_lot", "total_units": 63, "current_rent": 989.0, "current_noi": 525250.0, "dscr": 1.23}, {"property_id": "P-0023", "name": "Sunridge Community", "state": "TX", "county_name": "Collin County", "property_type": "mhp_lot", "total_units": 107, "current_rent": 958.0, "current_noi": 812601.0, "dscr": 1.54}, {"property_id": "P-0024", "name": "The Residences Apartments", "state": "TX", "county_name": "Collin County", "property_type": "lihtc_apartment", "total_units": 123, "current_rent": 1102.0, "current_noi": 1029018.0, "dscr": 0.83}, {"property_id": "P-0025", "name": "The Landings Lofts", "state": "TX", "county_name": "Denton County", "property_type": "market_apartment", "total_units": 74, "current_rent": 1711.0, "current_noi": 1105716.0, "dscr": 0.76}, {"property_id": "P-0026", "name": "Stonegate Estates", "state": "TX", "county_name": "Denton County", "property_type": "mhp_lot", "total_units": 188, "current_rent": 878.0, "current_noi": 1210449.0, "dscr": 1.19}, {"property_id": "P-0027", "name": "Clearwater Apartments", "state": "TX", "county_name": "Denton County", "property_type": "lihtc_apartment", "total_units": 115, "current_rent": 1516.0, "current_noi": 1374796.0, "dscr": 1.74}, {"property_id": "P-0028", "name": "Westgate Apartments", "state": "TX", "county_name": "Denton County", "property_type": "lihtc_apartment", "total_units": 66, "current_rent": 1404.0, "current_noi": 622194.0, "dscr": 0.99}, {"property_id": "P-0029", "name": "Rolling Hills Park", "state": "TX", "county_name": "Denton County", "property_type": "mhp_lot", "total_units": 196, "current_rent": 969.0, "current_noi": 1553991.0, "dscr": 0.99}, {"property_id": "P-0030", "name": "The Residences Crossing", "state": "TX", "county_name": "Denton County", "property_type": "market_apartment", "total_units": 89, "current_rent": 2286.0, "current_noi": 1916418.0, "dscr": 1.18}, {"property_id": "P-0031", "name": "Willow Bend Park", "state": "TX", "county_name": "Denton County", "property_type": "mhp_lot", "total_units": 169, "current_rent": 1016.0, "current_noi": 1499355.0, "dscr": 1.85}, {"property_id": "P-0032", "name": "The Enclave Apartments", "state": "TX", "county_name": "Fort Bend County", "property_type": "lihtc_apartment", "total_units": 237, "current_rent": 1254.0, "current_noi": 2480574.0, "dscr": 1.41}, {"property_id": "P-0033", "name": "Lakeview Park", "state": "TX", "county_name": "Fort Bend County", "property_type": "mhp_lot", "total_units": 189, "current_rent": 641.0, "current_noi": 567346.0, "dscr": 1.81}, {"property_id": "P-0034", "name": "Cypress Point Estates", "state": "TX", "county_name": "Fort Bend County", "property_type": "mhp_lot", "total_units": 210, "current_rent": 779.0, "current_noi": 1053074.0, "dscr": 1.08}, {"property_id": "P-0035", "name": "Riverside Estates", "state": "TX", "county_name": "Fort Bend County", "property_type": "mhp_lot", "total_units": 145, "current_rent": 762.0, "current_noi": 503218.0, "dscr": 1.01}, {"property_id": "P-0036", "name": "Riverside MHP", "state": "TX", "county_name": "Fort Bend County", "property_type": "mhp_lot", "total_units": 137, "current_rent": 810.0, "current_noi": 758222.0, "dscr": 0.94}, {"property_id": "P-0037", "name": "Cypress Point Estates", "state": "TX", "county_name": "Kaufman County", "property_type": "mhp_lot", "total_units": 142, "current_rent": 997.0, "current_noi": 1120855.0, "dscr": 1.09}, {"property_id": "P-0038", "name": "Clearwater Lofts", "state": "TX", "county_name": "Kaufman County", "property_type": "market_apartment", "total_units": 89, "current_rent": 1868.0, "current_noi": 1376540.0, "dscr": 0.83}, {"property_id": "P-0039", "name": "Quail Creek Park", "state": "TX", "county_name": "Kaufman County", "property_type": "mhp_lot", "total_units": 151, "current_rent": 826.0, "current_noi": 887096.0, "dscr": 0.88}, {"property_id": "P-0040", "name": "Maple Court Village", "state": "TX", "county_name": "Kaufman County", "property_type": "lihtc_apartment", "total_units": 232, "current_rent": 1560.0, "current_noi": 3179449.0, "dscr": 1.31}, {"property_id": "P-0041", "name": "Twin Oaks MHP", "state": "TX", "county_name": "Hays County", "property_type": "mhp_lot", "total_units": 116, "current_rent": 864.0, "current_noi": 675372.0, "dscr": 0.93}, {"property_id": "P-0042", "name": "Harbor View Heights", "state": "TX", "county_name": "Hays County", "property_type": "market_apartment", "total_units": 205, "current_rent": 2031.0, "current_noi": 3647574.0, "dscr": 0.87}, {"property_id": "P-0043", "name": "Clearwater Place", "state": "TX", "county_name": "Hays County", "property_type": "lihtc_apartment", "total_units": 161, "current_rent": 1157.0, "current_noi": 1133517.0, "dscr": 1.25}, {"property_id": "P-0044", "name": "Cypress Point Park", "state": "TX", "county_name": "Hays County", "property_type": "mhp_lot", "total_units": 63, "current_rent": 903.0, "current_noi": 491957.0, "dscr": 1.2}, {"property_id": "P-0045", "name": "Southwind Lofts", "state": "TX", "county_name": "Hays County", "property_type": "market_apartment", "total_units": 176, "current_rent": 2099.0, "current_noi": 3213404.0, "dscr": 1.18}, {"property_id": "P-0046", "name": "Green Acres MHP", "state": "TX", "county_name": "Hays County", "property_type": "mhp_lot", "total_units": 67, "current_rent": 657.0, "current_noi": 264191.0, "dscr": 0.96}, {"property_id": "P-0047", "name": "Bayshore Lofts", "state": "TX", "county_name": "Hays County", "property_type": "market_apartment", "total_units": 178, "current_rent": 2398.0, "current_noi": 3740027.0, "dscr": 1.43}, {"property_id": "P-0048", "name": "Highland Terrace Heights", "state": "TX", "county_name": "Comal County", "property_type": "market_apartment", "total_units": 174, "current_rent": 1689.0, "current_noi": 2406173.0, "dscr": 1.21}, {"property_id": "P-0049", "name": "Fox Run Community", "state": "TX", "county_name": "Comal County", "property_type": "mhp_lot", "total_units": 200, "current_rent": 585.0, "current_noi": 727860.0, "dscr": 0.98}, {"property_id": "P-0050", "name": "Meadowbrook Community", "state": "TX", "county_name": "Comal County", "property_type": "mhp_lot", "total_units": 217, "current_rent": 504.0, "current_noi": 543851.0, "dscr": 1.17}]};
+
+// Tab switching
+document.querySelectorAll('.tab').forEach(t => {
+  t.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(x => x.classList.remove('is-active'));
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('is-active'));
+    t.classList.add('is-active');
+    document.querySelector('[data-view="' + t.dataset.tab + '"]').classList.add('is-active');
+    // Resize plotly charts when tab becomes visible
+    setTimeout(() => window.dispatchEvent(new Event('resize')), 50);
+  });
+});
+
+// Plotly config
+const plotlyConfig = { responsive: true, displayModeBar: false };
+const layout_base = {
+  font: { family: 'IBM Plex Sans, sans-serif', color: '#2C3540' },
+  paper_bgcolor: '#FFFFFF',
+  plot_bgcolor: '#FFFFFF',
+  margin: { l: 160, r: 20, t: 10, b: 40 },
+  xaxis: { gridcolor: '#EEE9DB' },
+  yaxis: { gridcolor: '#EEE9DB' },
+};
+
+// Migration chart
+const mig = DATA.migration.slice().reverse();
+Plotly.newPlot('chart-migration', [
+  { y: mig.map(r => r.label), x: mig.map(r => r.net_migration_returns), type: 'bar', orientation: 'h', name: 'Net in-migration', marker: { color: '#1F4A3D' } },
+  { y: mig.map(r => r.label), x: mig.map(r => r.lihtc_total_units), type: 'bar', orientation: 'h', name: 'LIHTC units', marker: { color: '#B07A2A' } },
+], { ...layout_base, barmode: 'group', height: 420, legend: { orientation: 'h', y: -0.08 } }, plotlyConfig);
+
+// Preservation chart
+const pres = DATA.preservation;
+const pKeys = Object.keys(pres);
+Plotly.newPlot('chart-preservation', [{
+  x: pKeys, y: pKeys.map(k => pres[k]), type: 'bar',
+  marker: { color: ['#6B7680','#B34747','#7A4A4A','#B07A2A','#1F4A3D'] },
+}], { ...layout_base, margin: { l: 40, r: 10, t: 10, b: 80 }, height: 220, xaxis: { tickangle: -30 }, showlegend: false }, plotlyConfig);
+
+// Trajectory chart
+const traj = DATA.trajectory;
+const counties = [...new Set(traj.map(r => r.label))];
+const trajTraces = counties.map((c, i) => {
+  const pts = traj.filter(r => r.label === c && !r.projected).sort((a,b) => a.year - b.year);
+  return { x: pts.map(r => r.year), y: pts.map(r => r.fmr_2br), mode: 'lines+markers', name: c, marker: { size: 4 } };
+});
+Plotly.newPlot('chart-trajectory', trajTraces, {
+  ...layout_base, margin: { l: 60, r: 20, t: 10, b: 40 }, height: 340,
+  xaxis: { ...layout_base.xaxis, title: 'Year' }, yaxis: { ...layout_base.yaxis, title: 'FMR 2BR ($)' },
+  legend: { font: { size: 9 }, orientation: 'h', y: -0.2 },
+}, plotlyConfig);
+
+// Burden chart
+const burden = DATA.burden.slice(0, 15).reverse();
+Plotly.newPlot('chart-burden', [{
+  y: burden.map(r => r.label), x: burden.map(r => r.burden_ratio), type: 'bar', orientation: 'h',
+  marker: { color: burden.map(r => r.burden_ratio > 1.0 ? '#B34747' : '#1F4A3D') },
+}], {
+  ...layout_base, height: 340, showlegend: false,
+  shapes: [{ type: 'line', x0: 1.0, x1: 1.0, y0: -0.5, y1: 14.5, line: { color: '#333', dash: 'dash', width: 1 } }],
+}, plotlyConfig);
+
+// Simulation logic
+function runSim() {
+  const rentInc = parseFloat(document.getElementById('sim-rent').value);
+  const expGrow = parseFloat(document.getElementById('sim-exp').value);
+  const occDelta = parseFloat(document.getElementById('sim-occ').value);
+  const years = parseInt(document.getElementById('sim-yrs').value);
+
+  document.getElementById('sim-rent-val').textContent = rentInc.toFixed(1) + '%';
+  document.getElementById('sim-exp-val').textContent = expGrow.toFixed(1) + '%';
+  document.getElementById('sim-occ-val').textContent = occDelta + ' pp';
+  document.getElementById('sim-yrs-val').textContent = years;
+
+  let totalCurrentNOI = 0, totalProjNOI = 0, capped = 0, dscrSum = 0, dscrCount = 0;
+  let totalProjRent = 0, rentCount = 0;
+
+  document.querySelectorAll('#sim-table tbody tr').forEach(row => {
+    const curRent = parseFloat(row.dataset.rent);
+    const curNOI = parseFloat(row.dataset.noi);
+    const units = parseInt(row.dataset.units);
+
+    const projRent = curRent * Math.pow(1 + rentInc/100, years);
+    const projNOI = curNOI * Math.pow(1 + (rentInc - expGrow)/100, years) * (1 + occDelta/100);
+
+    totalCurrentNOI += curNOI;
+    totalProjNOI += projNOI;
+    totalProjRent += projRent;
+    rentCount++;
+
+    const cells = row.querySelectorAll('td');
+    cells[3].textContent = '$' + Math.round(projRent).toLocaleString();
+    cells[4].textContent = '$' + Math.round(projNOI).toLocaleString();
+
+    const dscr = projNOI / (curNOI * 0.65);
+    if (!isNaN(dscr) && isFinite(dscr)) {
+      cells[5].textContent = dscr.toFixed(2) + 'x';
+      dscrSum += dscr;
+      dscrCount++;
+    }
+  });
+
+  const noiDelta = totalProjNOI - totalCurrentNOI;
+  const noiPct = totalCurrentNOI > 0 ? (noiDelta / totalCurrentNOI * 100) : 0;
+  const sign = noiDelta >= 0 ? '+' : '';
+
+  document.getElementById('sim-noi-delta').textContent = sign + '$' + (noiDelta/1e6).toFixed(1) + 'M';
+  document.getElementById('sim-noi-pct').textContent = sign + noiPct.toFixed(1) + '% over ' + years + ' years';
+  document.getElementById('sim-noi-pct').className = 'kpi-delta ' + (noiDelta >= 0 ? 'up' : 'down');
+
+  document.getElementById('sim-avg-rent').textContent = '$' + Math.round(totalProjRent / rentCount).toLocaleString();
+  document.getElementById('sim-rent-note').textContent = 'from $' + Math.round(DATA.portfolio.avg_rent).toLocaleString() + ' current';
+
+  document.getElementById('sim-dscr').textContent = dscrCount > 0 ? (dscrSum/dscrCount).toFixed(2) + 'x' : '—';
+}
+
+['sim-rent','sim-exp','sim-occ','sim-yrs'].forEach(id => {
+  document.getElementById(id).addEventListener('input', runSim);
+});
+runSim();
+</script>
+</body>
+</html>

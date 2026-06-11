@@ -1,0 +1,122 @@
+property_id,name,state,county_fips,county_name,property_type,total_units,occupied_units,avg_monthly_rent,rent_restricted,ami_ceiling_pct,monthly_opex_per_unit,annual_debt_service,year_acquired,acquisition_price,local_fmr_2br,local_vli_4person
+P-0001,Hillcrest Estates,TX,48339,Montgomery County,mhp_lot,97,81,512.0,False,,259.07,163295.0,2019,4007740.0,1573,52000
+P-0002,Magnolia Place MHP,TX,48491,Williamson County,mhp_lot,183,155,856.0,False,,194.09,1361804.0,2019,22059751.0,1852,67200
+P-0003,Harbor View Village,TX,48491,Williamson County,lihtc_apartment,156,145,1119.0,True,60.0,325.55,1730728.0,2016,28285717.0,1852,67200
+P-0004,Bayshore Heights,TX,48085,Collin County,market_apartment,91,88,1970.0,False,,488.01,1387075.0,2023,22323102.0,1931,60550
+P-0005,Valley View MHP,TX,48085,Collin County,mhp_lot,51,47,952.0,False,,321.06,342242.0,2023,7289609.0,1931,60550
+P-0006,Stonewood Apartments,TX,48085,Collin County,lihtc_apartment,142,132,1515.0,True,50.0,452.28,1172844.0,2012,25430113.0,1931,60550
+P-0007,Wildflower Estates,TX,48121,Denton County,mhp_lot,215,187,950.0,True,50.0,311.01,1168148.0,2016,25801405.0,1931,60550
+P-0008,Clearwater Lofts,TX,48121,Denton County,market_apartment,227,209,2410.0,False,,510.71,3973644.0,2012,86073528.0,1931,60550
+P-0009,The Enclave Village,TX,48121,Denton County,lihtc_apartment,197,184,1456.0,True,60.0,354.83,1579690.0,2012,37368999.0,1931,60550
+P-0010,Oakdale Estates,TX,48121,Denton County,mhp_lot,200,169,908.0,False,,226.95,867092.0,2019,16290185.0,1931,60550
+P-0011,Parkside Village,TX,48157,Fort Bend County,lihtc_apartment,274,259,1012.0,True,60.0,327.89,1665778.0,2016,41560160.0,1573,52000
+P-0012,Harbor View Heights,TX,48257,Kaufman County,market_apartment,87,83,1901.0,False,,509.74,1297124.0,2019,26285330.0,1931,60550
+P-0013,Fox Run MHP,TX,48257,Kaufman County,mhp_lot,193,168,589.0,False,,325.74,316357.0,2023,6879375.0,1931,60550
+P-0014,Heritage Park MHP,TX,48257,Kaufman County,mhp_lot,61,57,973.0,False,,256.54,508582.0,2012,9802659.0,1931,60550
+P-0015,Twin Oaks Community,TX,48209,Hays County,mhp_lot,94,91,905.0,False,,292.59,443793.0,2016,7890077.0,1852,67200
+P-0016,Silver Lake Community,TX,48209,Hays County,mhp_lot,70,60,585.0,True,80.0,196.02,357848.0,2013,6202301.0,1852,67200
+P-0017,Stonegate MHP,TX,48091,Comal County,mhp_lot,124,103,513.0,False,,192.85,332431.0,2012,5356639.0,1426,50300
+P-0018,Pecan Grove Community,FL,12105,Polk County,mhp_lot,88,73,696.0,False,,232.22,313423.0,2023,5514707.0,1497,43650
+P-0019,Parkside Lofts,FL,12105,Polk County,market_apartment,163,154,1812.0,False,,377.32,2583150.0,2013,50437034.0,1497,43650
+P-0020,Hillcrest Community,FL,12105,Polk County,mhp_lot,103,98,477.0,False,,321.19,255456.0,2011,3931182.0,1497,43650
+P-0021,Vista Pointe Lofts,FL,12105,Polk County,market_apartment,102,93,1597.0,False,,566.16,1208489.0,2024,24426584.0,1497,43650
+P-0022,Quail Creek Community,FL,12101,Pasco County,mhp_lot,113,100,1066.0,False,,261.15,672452.0,2021,15027723.0,1977,57350
+P-0023,Lakeview MHP,FL,12101,Pasco County,mhp_lot,120,99,882.0,False,,320.54,747225.0,2012,14180001.0,1977,57350
+P-0024,Vista Pointe Heights,FL,12101,Pasco County,market_apartment,77,72,1890.0,False,,379.97,1054811.0,2024,19363935.0,1977,57350
+P-0025,Pinewood Community,FL,12101,Pasco County,mhp_lot,208,189,851.0,False,,190.85,1219345.0,2021,26143566.0,1977,57350
+P-0026,Ridgeline Place,FL,12069,Lake County,lihtc_apartment,128,125,1730.0,True,50.0,414.57,979863.0,2019,23424038.0,1972,57450
+P-0027,Hillcrest Estates,FL,12069,Lake County,mhp_lot,129,123,1025.0,False,,181.55,894297.0,2023,18802402.0,1972,57450
+P-0028,Maple Court Place,FL,12083,Marion County,lihtc_apartment,286,274,1206.0,True,60.0,366.12,3021690.0,2024,56133317.0,1373,42000
+P-0029,Valley View Park,FL,12111,St. Lucie County,mhp_lot,92,85,902.0,False,,200.22,386632.0,2024,9138622.0,1757,51200
+P-0030,Hillcrest MHP,FL,12111,St. Lucie County,mhp_lot,40,34,585.0,False,,182.32,127595.0,2017,2517055.0,1757,51200
+P-0031,Pinewood Estates,FL,12111,St. Lucie County,mhp_lot,179,147,689.0,False,,235.96,875685.0,2010,14016678.0,1757,51200
+P-0032,Brookstone Heights,FL,12009,Brevard County,market_apartment,123,115,1725.0,False,,489.97,1553040.0,2023,27974368.0,1709,49800
+P-0033,Creekside Lofts,FL,12081,Manatee County,market_apartment,105,100,1686.0,False,,534.14,917792.0,2015,18248955.0,1958,57050
+P-0034,Creekside Place,FL,12081,Manatee County,lihtc_apartment,88,85,1151.0,True,50.0,514.65,775278.0,2013,12313558.0,1958,57050
+P-0035,Quail Creek Estates,FL,12109,St. Johns County,mhp_lot,97,79,577.0,False,,322.87,243126.0,2022,4338671.0,1658,54350
+P-0036,Sandy Creek Park,FL,12109,St. Johns County,mhp_lot,47,39,900.0,False,,342.51,311134.0,2014,5665816.0,1658,54350
+P-0037,Quail Creek Park,FL,12109,St. Johns County,mhp_lot,151,138,709.0,False,,265.32,802248.0,2014,15760810.0,1658,54350
+P-0038,Pinewood Park,AZ,04021,Pinal County,mhp_lot,199,173,942.0,False,,210.06,1021892.0,2014,21221077.0,1839,56200
+P-0039,Maple Court Apartments,AZ,04021,Pinal County,lihtc_apartment,97,90,1617.0,True,60.0,453.88,1261426.0,2014,20732435.0,1839,56200
+P-0040,Whispering Pines Park,AZ,04013,Maricopa County,mhp_lot,159,141,862.0,False,,308.75,713275.0,2022,12630753.0,1839,56200
+P-0041,Cypress Point Park,AZ,04013,Maricopa County,mhp_lot,63,59,897.0,False,,194.93,408149.0,2013,9917269.0,1839,56200
+P-0042,Southwind Lofts,AZ,04013,Maricopa County,market_apartment,176,161,2084.0,False,,398.61,2704316.0,2021,54095713.0,1839,56200
+P-0043,The Commons Apartments,AZ,04015,Mohave County,lihtc_apartment,247,231,835.0,True,80.0,416.14,1297108.0,2018,21191660.0,1365,39950
+P-0044,Bayshore Village,AZ,04015,Mohave County,lihtc_apartment,183,180,1035.0,True,60.0,453.16,793521.0,2021,15661028.0,1365,39950
+P-0045,Aspen Grove Crossing,AZ,04025,Yavapai County,market_apartment,126,119,2010.0,False,,419.33,1926758.0,2022,34611152.0,1637,47700
+P-0046,Pinewood Park,AZ,04025,Yavapai County,mhp_lot,100,86,622.0,False,,177.67,334452.0,2013,7632383.0,1637,47700
+P-0047,Whispering Pines Community,AZ,04025,Yavapai County,mhp_lot,124,112,661.0,False,,234.03,483847.0,2024,7601499.0,1637,47700
+P-0048,Stonegate Community,AZ,04025,Yavapai County,mhp_lot,162,132,635.0,False,,320.69,476654.0,2023,8121850.0,1637,47700
+P-0049,The Enclave Place,AZ,04019,Pima County,lihtc_apartment,172,155,936.0,True,60.0,481.05,574725.0,2023,13306675.0,1402,49900
+P-0050,The Commons Place,AZ,04019,Pima County,lihtc_apartment,199,189,784.0,True,60.0,333.92,909181.0,2017,19550633.0,1402,49900
+P-0051,Country Club Park,AZ,04003,Cochise County,mhp_lot,137,118,676.0,False,,316.98,596208.0,2017,11147100.0,1257,39150
+P-0052,Stonewood Lofts,AZ,04003,Cochise County,market_apartment,226,200,1610.0,False,,360.06,1628390.0,2010,36199308.0,1257,39150
+P-0053,Cedar Creek Estates,AZ,04003,Cochise County,mhp_lot,72,64,413.0,False,,243.01,76834.0,2014,1738537.0,1257,39150
+P-0054,Harbor View Place,AZ,04017,Navajo County,lihtc_apartment,75,71,1146.0,True,80.0,469.34,551324.0,2016,9526058.0,1309,38150
+P-0055,Creekside Apartments,AZ,04007,Gila County,lihtc_apartment,226,219,1254.0,True,80.0,501.38,1397383.0,2022,23459460.0,1479,42000
+P-0056,Stonewood Apartments,NC,37183,Wake County,lihtc_apartment,177,169,970.0,True,60.0,505.58,743810.0,2011,15162872.0,1750,66150
+P-0057,Bayshore Heights,NC,37183,Wake County,market_apartment,99,91,2065.0,False,,591.37,1455627.0,2014,23108703.0,1750,66150
+P-0058,Bayshore Place,NC,37183,Wake County,lihtc_apartment,259,250,1127.0,True,60.0,507.68,1697215.0,2011,33103434.0,1750,66150
+P-0059,The Preserve Place,NC,37119,Mecklenburg County,lihtc_apartment,55,51,1119.0,True,60.0,353.03,405488.0,2022,8628974.0,1686,58700
+P-0060,The Enclave Village,NC,37119,Mecklenburg County,lihtc_apartment,50,47,1040.0,True,60.0,480.02,217702.0,2017,4731828.0,1686,58700
+P-0061,Aspen Grove Place,NC,37119,Mecklenburg County,lihtc_apartment,250,225,1101.0,True,60.0,472.95,1168525.0,2014,23738201.0,1686,58700
+P-0062,Stonewood Place,NC,37119,Mecklenburg County,lihtc_apartment,238,225,1135.0,True,60.0,367.73,2226971.0,2014,38374805.0,1686,58700
+P-0063,Bluebonnet Estates,NC,37019,Brunswick County,mhp_lot,89,76,600.0,False,,345.32,217742.0,2018,3375182.0,1426,49600
+P-0064,Ridgeline Lofts,NC,37019,Brunswick County,market_apartment,152,136,1221.0,False,,483.53,1064937.0,2014,25746033.0,1426,49600
+P-0065,Cedar Creek Community,NC,37019,Brunswick County,mhp_lot,66,63,632.0,False,,238.09,165809.0,2012,3580260.0,1426,49600
+P-0066,Pinewood Community,NC,37101,Johnston County,mhp_lot,165,137,800.0,True,50.0,312.23,766840.0,2014,16596559.0,1750,66150
+P-0067,Highland Terrace Village,NC,37101,Johnston County,lihtc_apartment,200,194,1101.0,True,80.0,395.09,1613717.0,2024,26237521.0,1750,66150
+P-0068,Ridgeline Heights,NC,37101,Johnston County,market_apartment,218,193,2244.0,False,,374.81,3676925.0,2022,81212001.0,1750,66150
+P-0069,Harbor View Apartments,NC,37101,Johnston County,lihtc_apartment,92,87,1058.0,True,60.0,412.63,432904.0,2019,10606222.0,1750,66150
+P-0070,Bayshore Apartments,NC,37179,Union County,lihtc_apartment,223,205,1083.0,True,80.0,465.3,1233438.0,2024,28771975.0,1686,58700
+P-0071,Cedar Creek Park,NC,37179,Union County,mhp_lot,76,63,576.0,False,,299.79,130448.0,2019,2558873.0,1686,58700
+P-0072,Ridgeline Village,NC,37179,Union County,lihtc_apartment,151,148,1223.0,True,60.0,409.44,1582887.0,2019,31158746.0,1686,58700
+P-0073,The Commons Apartments,NC,37097,Iredell County,lihtc_apartment,106,104,1129.0,True,80.0,446.78,572283.0,2010,10074148.0,1340,53650
+P-0074,Lakeview Estates,NC,37097,Iredell County,mhp_lot,160,144,550.0,False,,349.39,258396.0,2016,4941291.0,1340,53650
+P-0075,Palm Harbor Community,NC,37097,Iredell County,mhp_lot,125,108,437.0,False,,232.33,301121.0,2017,4732392.0,1340,53650
+P-0076,Clearwater Place,NC,37085,Harnett County,lihtc_apartment,130,118,804.0,True,80.0,506.23,317689.0,2010,5930923.0,980,44150
+P-0077,Silver Lake Park,NC,37129,New Hanover County,mhp_lot,199,187,757.0,False,,190.71,1195557.0,2018,25329209.0,1659,54600
+P-0078,Aspen Grove Lofts,NC,37129,New Hanover County,market_apartment,67,64,1865.0,False,,409.82,795201.0,2012,19711557.0,1659,54600
+P-0079,Meadowbrook MHP,NC,37129,New Hanover County,mhp_lot,158,153,766.0,False,,336.53,566924.0,2014,12104549.0,1659,54600
+P-0080,Aspen Grove Lofts,NC,37129,New Hanover County,market_apartment,176,163,1697.0,False,,580.47,1271403.0,2018,29286426.0,1659,54600
+P-0081,Quail Creek Community,SC,45051,Horry County,mhp_lot,127,123,625.0,False,,206.57,429206.0,2014,7875615.0,1465,43000
+P-0082,Bayshore Heights,SC,45083,Spartanburg County,market_apartment,183,166,1304.0,False,,485.86,1227726.0,2017,19885414.0,1187,45150
+P-0083,Creekside Heights,SC,45083,Spartanburg County,market_apartment,158,142,1423.0,False,,360.91,1783652.0,2021,28385943.0,1187,45150
+P-0084,Cypress Point Estates,SC,45083,Spartanburg County,mhp_lot,166,161,394.0,False,,216.4,219878.0,2011,4310677.0,1187,45150
+P-0085,Bayshore Apartments,SC,45083,Spartanburg County,lihtc_apartment,232,211,1015.0,True,60.0,318.71,1023906.0,2022,21127141.0,1187,45150
+P-0086,Clearwater Village,SC,45045,Greenville County,lihtc_apartment,267,253,1184.0,True,60.0,518.1,1331139.0,2010,29020298.0,1339,53150
+P-0087,Ridgeline Apartments,SC,45045,Greenville County,lihtc_apartment,239,217,1195.0,True,50.0,410.92,1459569.0,2021,35840794.0,1339,53150
+P-0088,Lakeview Park,SC,45045,Greenville County,mhp_lot,131,115,450.0,False,,263.19,219684.0,2022,4950437.0,1339,53150
+P-0089,The Preserve Village,SC,45045,Greenville County,lihtc_apartment,222,204,1164.0,True,60.0,358.05,1664044.0,2020,35876033.0,1339,53150
+P-0090,Bayshore Crossing,SC,45015,Berkeley County,market_apartment,233,216,1578.0,False,,586.31,2896856.0,2019,45227531.0,1787,58750
+P-0091,Ridgeline Apartments,SC,45019,Charleston County,lihtc_apartment,146,142,1050.0,True,60.0,442.98,1050652.0,2019,18277942.0,1787,58750
+P-0092,Sandy Creek Community,SC,45019,Charleston County,mhp_lot,110,90,923.0,False,,344.72,474498.0,2024,9052159.0,1787,58750
+P-0093,Ridgeline Lofts,SC,45019,Charleston County,market_apartment,215,204,1695.0,False,,397.53,2564691.0,2014,44201124.0,1787,58750
+P-0094,Arbor Walk Place,SC,45035,Dorchester County,lihtc_apartment,249,233,1345.0,True,60.0,322.53,2491081.0,2014,49438400.0,1787,58750
+P-0095,Quail Creek Park,SC,45035,Dorchester County,mhp_lot,175,157,658.0,False,,332.81,348031.0,2017,7345755.0,1787,58750
+P-0096,Bayshore Lofts,SC,45057,Lancaster County,market_apartment,96,90,962.0,False,,519.08,368671.0,2020,5744168.0,1011,51250
+P-0097,Stonewood Lofts,SC,45057,Lancaster County,market_apartment,161,141,1103.0,False,,463.7,675989.0,2020,14520527.0,1011,51250
+P-0098,Willow Bend Park,SC,45057,Lancaster County,mhp_lot,67,62,422.0,False,,338.63,34704.0,2015,762144.0,1011,51250
+P-0099,Bayshore Village,SC,45063,Lexington County,lihtc_apartment,125,119,754.0,True,50.0,536.57,158082.0,2014,3684642.0,1276,46200
+P-0100,The Residences Crossing,NV,32003,Clark County,market_apartment,176,160,2216.0,False,,524.12,3094239.0,2018,52841729.0,1735,52750
+P-0101,Whispering Pines MHP,NV,32003,Clark County,mhp_lot,165,151,928.0,False,,288.06,1182908.0,2013,18551377.0,1735,52750
+P-0102,Cypress Point Park,NV,32031,Washoe County,mhp_lot,179,172,862.0,True,60.0,187.96,1019892.0,2011,16828567.0,1870,58400
+P-0103,Valley View MHP,NV,32031,Washoe County,mhp_lot,52,49,675.0,True,80.0,191.04,170691.0,2023,3778108.0,1870,58400
+P-0104,Twin Oaks Estates,NV,32031,Washoe County,mhp_lot,124,117,930.0,False,,205.45,644361.0,2012,12042912.0,1870,58400
+P-0105,Twin Oaks MHP,NV,32019,Lyon County,mhp_lot,73,60,633.0,False,,214.75,233878.0,2012,5417729.0,1272,52000
+P-0106,Oakdale MHP,NV,32019,Lyon County,mhp_lot,161,143,497.0,False,,240.4,219305.0,2013,5337955.0,1272,52000
+P-0107,The Commons Apartments,NV,32023,Nye County,lihtc_apartment,170,165,853.0,True,50.0,422.57,853671.0,2024,13662741.0,1220,51400
+P-0108,Cedar Creek MHP,NV,32023,Nye County,mhp_lot,72,62,559.0,False,,215.04,199075.0,2019,3877362.0,1220,51400
+P-0109,Parkside Village,NV,32023,Nye County,lihtc_apartment,77,75,949.0,True,80.0,480.21,423088.0,2013,6801809.0,1220,51400
+P-0110,Rolling Hills Community,NV,32005,Douglas County,mhp_lot,146,136,607.0,False,,200.98,476795.0,2012,9194467.0,1605,55750
+P-0111,Pinewood MHP,NV,32005,Douglas County,mhp_lot,150,125,778.0,False,,261.27,504340.0,2019,9332348.0,1605,55750
+P-0112,Highland Terrace Place,NV,32005,Douglas County,lihtc_apartment,271,260,1304.0,True,50.0,542.1,1761657.0,2019,41363143.0,1605,55750
+P-0113,The Residences Village,NV,32005,Douglas County,lihtc_apartment,171,157,944.0,True,80.0,391.89,847738.0,2022,18568764.0,1605,55750
+P-0114,Southwind Heights,NV,32021,Mineral County,market_apartment,232,217,1201.0,False,,582.27,904445.0,2023,22209222.0,1393,51400
+P-0115,Fox Run Park,NV,32021,Mineral County,mhp_lot,126,110,481.0,True,80.0,230.16,286255.0,2012,4452202.0,1393,51400
+P-0116,Silver Lake Estates,NV,32021,Mineral County,mhp_lot,136,120,537.0,False,,294.32,233402.0,2022,4250970.0,1393,51400
+P-0117,The Residences Lofts,NV,32021,Mineral County,market_apartment,218,192,1235.0,False,,460.78,1419487.0,2016,27805207.0,1393,51400
+P-0118,Silver Lake MHP,NV,32029,Storey County,mhp_lot,128,113,693.0,False,,247.33,482955.0,2020,10611383.0,1870,58400
+P-0119,Arbor Walk Lofts,NV,32029,Storey County,market_apartment,112,101,1767.0,False,,384.31,1281182.0,2014,29795195.0,1870,58400
+P-0120,Highland Terrace Apartments,NV,32029,Storey County,lihtc_apartment,81,75,1489.0,True,80.0,439.68,515621.0,2020,12334885.0,1870,58400
+P-0121,Rolling Hills MHP,NV,32510,Carson City,mhp_lot,120,109,685.0,False,,233.54,621592.0,2011,9688912.0,1546,51400

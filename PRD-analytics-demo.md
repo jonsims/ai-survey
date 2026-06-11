@@ -1,0 +1,1 @@
+/Users/jps-macmini/.claude/plans/i-m-consulting-with-a-shimmying-treehouse.md

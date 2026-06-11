@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Emma's Estates — Dashboard</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<div class="accent-rule"></div>
+
+<header class="topbar" data-screen-label="Header">
+  <div class="brand">
+    <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+      <path d="M4 28 L4 14 L16 5 L28 14 L28 28 L20 28 L20 19 L12 19 L12 28 Z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+      <path d="M4 14 L28 14" stroke="currentColor" stroke-width="1.4"/>
+    </svg>
+    <div class="brand-lockup">
+      <div class="brand-name">Emma's Estates</div>
+      <div class="brand-tag">Private brokerage · est. 2014</div>
+    </div>
+  </div>
+
+  <nav class="tabs" role="tablist" aria-label="Primary">
+    <button class="tab is-active" data-tab="dashboard" role="tab">Dashboard</button>
+    <button class="tab" data-tab="listings" role="tab">Listings <span class="tab-badge">24</span></button>
+    <button class="tab" data-tab="clients" role="tab">Clients</button>
+    <button class="tab" data-tab="pipeline" role="tab">Pipeline</button>
+    <button class="tab" data-tab="market" role="tab">Market</button>
+  </nav>
+
+  <div class="topbar-right">
+    <div class="search">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="m11 11 3.5 3.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+      <input type="text" placeholder="Search listings, clients…" aria-label="Search" />
+      <span class="kbd">⌘K</span>
+    </div>
+    <button class="icon-btn" title="Notifications">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1 C5.5 1 4 3 4 5.5 V8.5 L2.5 11 H13.5 L12 8.5 V5.5 C12 3 10.5 1 8 1 Z M6.5 12 C6.5 13 7.2 13.5 8 13.5 C8.8 13.5 9.5 13 9.5 12" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+      <span class="dot"></span>
+    </button>
+    <div class="avatar" title="Emma Reyes">ER</div>
+  </div>
+</header>
+
+<main class="page">
+
+  <!-- ========================  DASHBOARD  ======================== -->
+  <section class="view is-active" data-view="dashboard" data-screen-label="01 Dashboard">
+
+    <header class="page-head">
+      <div>
+        <p class="kicker">Wednesday · May 27, 2026</p>
+        <h1>Good morning, Emma.</h1>
+        <p class="subhead">Three offers came in overnight. Two need your call before noon.</p>
+      </div>
+      <div class="page-head-actions">
+        <button class="btn-ghost">Export weekly</button>
+        <button class="btn-primary"><span class="plus">+</span>&nbsp;New listing</button>
+      </div>
+    </header>
+
+    <!-- KPI row -->
+    <div class="kpi-row">
+      <article class="kpi">
+        <p class="kpi-label">Sales volume <span class="kpi-period">YTD</span></p>
+        <p class="kpi-value">$48.2<span class="kpi-unit">M</span></p>
+        <p class="kpi-delta up">▲ 14.2% vs. last year</p>
+        <svg class="spark" viewBox="0 0 120 32" preserveAspectRatio="none" aria-hidden="true">
+          <polyline points="0,24 12,22 24,25 36,18 48,20 60,14 72,16 84,10 96,12 108,6 120,4" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        </svg>
+      </article>
+
+      <article class="kpi">
+        <p class="kpi-label">Active listings</p>
+        <p class="kpi-value">24</p>
+        <p class="kpi-delta">9 exclusive · 15 co-listed</p>
+        <div class="kpi-bar">
+          <span style="width:38%"></span>
+        </div>
+      </article>
+
+      <article class="kpi">
+        <p class="kpi-label">In escrow</p>
+        <p class="kpi-value">7</p>
+        <p class="kpi-delta up">▲ 2 since Friday</p>
+        <div class="kpi-pips">
+          <span class="pip on"></span><span class="pip on"></span><span class="pip on"></span><span class="pip on"></span><span class="pip on"></span><span class="pip on"></span><span class="pip on"></span><span class="pip"></span><span class="pip"></span><span class="pip"></span>
+        </div>
+      </article>
+
+      <article class="kpi">
+        <p class="kpi-label">Avg. days on market</p>
+        <p class="kpi-value">18<span class="kpi-unit">d</span></p>
+        <p class="kpi-delta down">▼ 6 days vs. county</p>
+        <svg class="spark" viewBox="0 0 120 32" preserveAspectRatio="none" aria-hidden="true">
+          <polyline points="0,8 12,12 24,9 36,15 48,12 60,18 72,16 84,22 96,20 108,26 120,24" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        </svg>
+      </article>
+    </div>
+
+    <!-- Main grid: listings left, side rail right -->
+    <div class="dash-grid">
+
+      <!-- Featured listings -->
+      <section class="panel listings-panel">
+        <header class="panel-head">
+          <div>
+            <p class="panel-kicker">Featured listings</p>
+            <h2>Going to market this week</h2>
+          </div>
+          <div class="seg">
+            <button class="seg-btn is-active">All</button>
+            <button class="seg-btn">Exclusive</button>
+            <button class="seg-btn">Open house</button>
+          </div>
+        </header>
+
+        <ul class="listing-list">
+          <li class="listing">
+            <div class="listing-img" data-tone="forest">
+              <svg viewBox="0 0 160 110" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <rect width="160" height="110" fill="currentColor" opacity=".14"/>
+                <path d="M20 80 L20 50 L55 28 L90 50 L90 80 Z" fill="currentColor" opacity=".55"/>
+                <path d="M90 80 L90 58 L120 42 L150 58 L150 80 Z" fill="currentColor" opacity=".75"/>
+                <rect x="46" y="58" width="10" height="22" fill="#FAF7F0"/>
+                <rect x="32" y="56" width="8" height="8" fill="#FAF7F0" opacity=".9"/>
+                <rect x="68" y="56" width="8" height="8" fill="#FAF7F0" opacity=".9"/>
+                <rect x="110" y="62" width="6" height="18" fill="#FAF7F0"/>
+                <rect x="126" y="60" width="6" height="6" fill="#FAF7F0" opacity=".9"/>
+                <path d="M0 80 L160 80 L160 110 L0 110 Z" fill="#000" opacity=".06"/>
+              </svg>
+              <span class="listing-tag">Exclusive</span>
+            </div>
+            <div class="listing-body">
+              <p class="listing-addr">412 Linden Walk</p>
+              <p class="listing-sub">Brookline, MA · Single-family</p>
+              <ul class="listing-meta">
+                <li>5 bd</li><li>4.5 ba</li><li>4,820 sqft</li><li>0.34 acre</li>
+              </ul>
+            </div>
+            <div class="listing-price">
+              <p class="price">$3.85<span>M</span></p>
+              <p class="price-sub">3 offers · open Sun.</p>
+            </div>
+          </li>
+
+          <li class="listing">
+            <div class="listing-img" data-tone="brass">
+              <svg viewBox="0 0 160 110" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <rect width="160" height="110" fill="currentColor" opacity=".18"/>
+                <rect x="30" y="40" width="100" height="40" fill="currentColor" opacity=".7"/>
+                <path d="M30 40 L80 22 L130 40 Z" fill="currentColor" opacity=".55"/>
+                <rect x="44" y="52" width="10" height="14" fill="#FAF7F0"/>
+                <rect x="64" y="52" width="10" height="14" fill="#FAF7F0"/>
+                <rect x="84" y="52" width="10" height="14" fill="#FAF7F0"/>
+                <rect x="104" y="52" width="10" height="14" fill="#FAF7F0"/>
+                <rect x="74" y="66" width="12" height="14" fill="#FAF7F0" opacity=".75"/>
+                <path d="M0 80 L160 80 L160 110 L0 110 Z" fill="#000" opacity=".06"/>
+              </svg>
+              <span class="listing-tag muted">Coming soon</span>
+            </div>
+            <div class="listing-body">
+              <p class="listing-addr">88 Beacon Hill Pl, #4</p>
+              <p class="listing-sub">Boston, MA · Condominium</p>
+              <ul class="listing-meta">
+                <li>3 bd</li><li>3 ba</li><li>2,640 sqft</li><li>Roof deck</li>
+              </ul>
+            </div>
+            <div class="listing-price">
+              <p class="price">$2.40<span>M</span></p>
+              <p class="price-sub">Photos Thu.</p>
+            </div>
+          </li>
+
+          <li class="listing">
+            <div class="listing-img" data-tone="slate">
+              <svg viewBox="0 0 160 110" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <rect width="160" height="110" fill="currentColor" opacity=".14"/>
+                <path d="M14 80 L14 46 L34 46 L34 30 L100 30 L100 46 L146 46 L146 80 Z" fill="currentColor" opacity=".65"/>
+                <rect x="44" y="42" width="14" height="14" fill="#FAF7F0"/>
+                <rect x="64" y="42" width="14" height="14" fill="#FAF7F0"/>
+                <rect x="84" y="42" width="14" height="14" fill="#FAF7F0"/>
+                <rect x="108" y="58" width="10" height="22" fill="#FAF7F0"/>
+                <rect x="124" y="58" width="10" height="10" fill="#FAF7F0" opacity=".9"/>
+                <rect x="22" y="58" width="10" height="10" fill="#FAF7F0" opacity=".9"/>
+                <path d="M0 80 L160 80 L160 110 L0 110 Z" fill="#000" opacity=".06"/>
+              </svg>
+              <span class="listing-tag">Open Sun.</span>
+            </div>
+            <div class="listing-body">
+              <p class="listing-addr">7 Acorn Hollow Rd</p>
+              <p class="listing-sub">Weston, MA · Estate</p>
+              <ul class="listing-meta">
+                <li>6 bd</li><li>5 ba</li><li>6,100 sqft</li><li>1.2 acres</li>
+              </ul>
+            </div>
+            <div class="listing-price">
+              <p class="price">$5.95<span>M</span></p>
+              <p class="price-sub">Just listed</p>
+            </div>
+          </li>
+        </ul>
+
+        <footer class="panel-foot">
+          <a href="#" data-tab-link="listings">See all 24 listings →</a>
+        </footer>
+      </section>
+
+      <!-- Side rail -->
+      <aside class="side-rail">
+
+        <section class="panel pipeline-panel">
+          <header class="panel-head tight">
+            <div>
+              <p class="panel-kicker">Pipeline</p>
+              <h2>Deals in motion</h2>
+            </div>
+            <p class="panel-meta">$22.4M weighted</p>
+          </header>
+          <ol class="pipeline">
+            <li><span class="pipe-stage">Prospect</span><span class="pipe-count">14</span><span class="pipe-bar"><b style="width:90%"></b></span><span class="pipe-val">$11.2M</span></li>
+            <li><span class="pipe-stage">Showing</span><span class="pipe-count">9</span><span class="pipe-bar"><b style="width:62%"></b></span><span class="pipe-val">$8.4M</span></li>
+            <li><span class="pipe-stage">Offer</span><span class="pipe-count">5</span><span class="pipe-bar"><b style="width:38%"></b></span><span class="pipe-val">$6.1M</span></li>
+            <li><span class="pipe-stage">Escrow</span><span class="pipe-count">7</span><span class="pipe-bar"><b style="width:52%"></b></span><span class="pipe-val">$14.8M</span></li>
+            <li><span class="pipe-stage">Closing</span><span class="pipe-count">2</span><span class="pipe-bar"><b style="width:22%"></b></span><span class="pipe-val">$3.9M</span></li>
+          </ol>
+        </section>
+
+        <section class="panel activity-panel">
+          <header class="panel-head tight">
+            <div>
+              <p class="panel-kicker">Today</p>
+              <h2>Activity &amp; calls</h2>
+            </div>
+            <a href="#" class="link-mini">View all</a>
+          </header>
+          <ul class="activity">
+            <li>
+              <span class="act-time">09:42</span>
+              <span class="act-dot priority"></span>
+              <div>
+                <p><b>Offer received</b> — 412 Linden Walk</p>
+                <p class="act-sub">$3.91M · Hadley &amp; Co. buyer · 24h response</p>
+              </div>
+            </li>
+            <li>
+              <span class="act-time">08:15</span>
+              <span class="act-dot"></span>
+              <div>
+                <p><b>Walkthrough</b> — Marquez family</p>
+                <p class="act-sub">7 Acorn Hollow Rd · 2nd visit · brought parents</p>
+              </div>
+            </li>
+            <li>
+              <span class="act-time">Yest.</span>
+              <span class="act-dot warm"></span>
+              <div>
+                <p><b>Inspection clear</b> — 88 Beacon Hill #4</p>
+                <p class="act-sub">Minor flashing repair noted · seller agreed</p>
+              </div>
+            </li>
+            <li>
+              <span class="act-time">Yest.</span>
+              <span class="act-dot"></span>
+              <div>
+                <p><b>Price reduction</b> — 31 Cobblers Ln</p>
+                <p class="act-sub">$1.78M → $1.69M · per seller request</p>
+              </div>
+            </li>
+          </ul>
+        </section>
+
+      </aside>
+    </div>
+  </section>
+
+  <!-- ========================  LISTINGS  ======================== -->
+  <section class="view" data-view="listings" data-screen-label="02 Listings">
+    <header class="page-head">
+      <div>
+        <p class="kicker">Inventory</p>
+        <h1>All listings</h1>
+        <p class="subhead">24 active · 9 exclusive · combined ask $96.4M</p>
+      </div>
+      <div class="page-head-actions">
+        <div class="seg">
+          <button class="seg-btn is-active">Grid</button>
+          <button class="seg-btn">Map</button>
+          <button class="seg-btn">Table</button>
+        </div>
+        <button class="btn-primary"><span class="plus">+</span>&nbsp;New listing</button>
+      </div>
+    </header>
+
+    <div class="listings-grid">
+      <!-- 8 mini cards generated below -->
+    </div>
+  </section>
+
+  <!-- ========================  CLIENTS  ======================== -->
+  <section class="view" data-view="clients" data-screen-label="03 Clients">
+    <header class="page-head">
+      <div>
+        <p class="kicker">Roster</p>
+        <h1>Clients &amp; prospects</h1>
+        <p class="subhead">142 active relationships · 38 in motion this quarter</p>
+      </div>
+      <div class="page-head-actions">
+        <button class="btn-ghost">Filter</button>
+        <button class="btn-primary"><span class="plus">+</span>&nbsp;Add client</button>
+      </div>
+    </header>
+
+    <div class="clients-wrap">
+      <table class="clients-table">
+        <thead>
+          <tr><th>Client</th><th>Stage</th><th>Property focus</th><th>Budget</th><th>Last touch</th><th>Next step</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><div class="who"><span class="who-av">MH</span><div><b>Marquez &amp; Hill</b><span>Buyers · Weston, Wellesley</span></div></div></td><td><span class="stage-pill st-show">Showing</span></td><td>Single-family, 5+ bd</td><td>$4.5–6.2M</td><td>Yesterday</td><td>Walkthrough Sat 11am</td></tr>
+          <tr><td><div class="who"><span class="who-av">RC</span><div><b>Renate Chen</b><span>Seller · Brookline</span></div></div></td><td><span class="stage-pill st-offer">Offer</span></td><td>412 Linden Walk</td><td>$3.85M ask</td><td>2h ago</td><td>Counter draft by noon</td></tr>
+          <tr><td><div class="who"><span class="who-av">AB</span><div><b>Adeyemi-Brooks</b><span>Buyers · Boston core</span></div></div></td><td><span class="stage-pill st-esc">Escrow</span></td><td>88 Beacon Hill #4</td><td>$2.4M</td><td>Yesterday</td><td>Appraisal Tue</td></tr>
+          <tr><td><div class="who"><span class="who-av">TK</span><div><b>Tomás Kowalski</b><span>Seller · Cambridge</span></div></div></td><td><span class="stage-pill st-prep">Prep</span></td><td>Townhouse, 3 bd</td><td>$1.95M target</td><td>4 days</td><td>Stager visit Thu</td></tr>
+          <tr><td><div class="who"><span class="who-av">PS</span><div><b>Priya Sundararajan</b><span>Buyer · Weston only</span></div></div></td><td><span class="stage-pill st-prosp">Prospect</span></td><td>Estate, 1+ acre</td><td>$5–8M</td><td>Last week</td><td>Send 3 comps</td></tr>
+          <tr><td><div class="who"><span class="who-av">JV</span><div><b>Jules Vermette</b><span>Buyer · pied-à-terre</span></div></div></td><td><span class="stage-pill st-prosp">Prospect</span></td><td>Condo, Back Bay</td><td>$1.2–1.6M</td><td>3 days</td><td>Coffee Mon</td></tr>
+          <tr><td><div class="who"><span class="who-av">DM</span><div><b>Delia &amp; Marco</b><span>Sellers · Newton</span></div></div></td><td><span class="stage-pill st-clos">Closing</span></td><td>14 Hawthorn Rd</td><td>$2.65M</td><td>Today</td><td>Walkthrough Fri</td></tr>
+          <tr><td><div class="who"><span class="who-av">SO</span><div><b>Sloane Okafor</b><span>Buyer · investment</span></div></div></td><td><span class="stage-pill st-show">Showing</span></td><td>Two-family, North End</td><td>$1.1–1.4M</td><td>Yesterday</td><td>Showing Wed</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ========================  PIPELINE  ======================== -->
+  <section class="view" data-view="pipeline" data-screen-label="04 Pipeline">
+    <header class="page-head">
+      <div>
+        <p class="kicker">Q2 · 2026</p>
+        <h1>Deal pipeline</h1>
+        <p class="subhead">$44.4M total · $22.4M weighted by stage probability</p>
+      </div>
+      <div class="page-head-actions">
+        <div class="seg">
+          <button class="seg-btn is-active">Board</button>
+          <button class="seg-btn">Timeline</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="kanban">
+      <div class="kcol">
+        <header><span>Prospect</span><span class="kcount">14</span></header>
+        <div class="kcard"><p class="kc-addr">Priya S.</p><p class="kc-sub">$5–8M · Weston estate</p><p class="kc-val">$6.5M est.</p></div>
+        <div class="kcard"><p class="kc-addr">Jules V.</p><p class="kc-sub">$1.2–1.6M · Back Bay</p><p class="kc-val">$1.4M est.</p></div>
+        <div class="kcard kc-ghost">+ 12 more</div>
+      </div>
+      <div class="kcol">
+        <header><span>Showing</span><span class="kcount">9</span></header>
+        <div class="kcard"><p class="kc-addr">7 Acorn Hollow</p><p class="kc-sub">Marquez · 2nd visit Sat</p><p class="kc-val">$5.95M</p></div>
+        <div class="kcard"><p class="kc-addr">2-fam North End</p><p class="kc-sub">Okafor · Wed 5pm</p><p class="kc-val">$1.25M</p></div>
+        <div class="kcard kc-ghost">+ 7 more</div>
+      </div>
+      <div class="kcol">
+        <header><span>Offer</span><span class="kcount">5</span></header>
+        <div class="kcard hot"><p class="kc-addr">412 Linden Walk</p><p class="kc-sub">3 offers · respond by noon</p><p class="kc-val">$3.91M top</p></div>
+        <div class="kcard"><p class="kc-addr">31 Cobblers Ln</p><p class="kc-sub">Counter sent · 24h</p><p class="kc-val">$1.69M</p></div>
+        <div class="kcard kc-ghost">+ 3 more</div>
+      </div>
+      <div class="kcol">
+        <header><span>Escrow</span><span class="kcount">7</span></header>
+        <div class="kcard"><p class="kc-addr">88 Beacon Hill #4</p><p class="kc-sub">Appraisal Tue · clear</p><p class="kc-val">$2.40M</p></div>
+        <div class="kcard"><p class="kc-addr">14 Hawthorn Rd</p><p class="kc-sub">Walkthrough Fri</p><p class="kc-val">$2.65M</p></div>
+        <div class="kcard kc-ghost">+ 5 more</div>
+      </div>
+      <div class="kcol">
+        <header><span>Closing</span><span class="kcount">2</span></header>
+        <div class="kcard close"><p class="kc-addr">19 Fairway Cir</p><p class="kc-sub">Closes Thu 2pm</p><p class="kc-val">$2.10M</p></div>
+        <div class="kcard close"><p class="kc-addr">6 Mill Pond</p><p class="kc-sub">Closes next Tue</p><p class="kc-val">$1.78M</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================  MARKET  ======================== -->
+  <section class="view" data-view="market" data-screen-label="05 Market">
+    <header class="page-head">
+      <div>
+        <p class="kicker">Greater Boston · Last 90 days</p>
+        <h1>Market intelligence</h1>
+        <p class="subhead">Tracked across 14 ZIP codes — your trade area.</p>
+      </div>
+      <div class="page-head-actions">
+        <div class="seg">
+          <button class="seg-btn">30d</button>
+          <button class="seg-btn is-active">90d</button>
+          <button class="seg-btn">YTD</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="market-grid">
+      <section class="panel chart-panel">
+        <header class="panel-head tight">
+          <div><p class="panel-kicker">Median sold price</p><h2>$1.84M <span class="trend up">▲ 6.2%</span></h2></div>
+          <p class="panel-meta">vs. prior 90 days</p>
+        </header>
+        <svg class="chart" viewBox="0 0 600 220" preserveAspectRatio="none" aria-hidden="true">
+          <g class="grid"><line x1="0" y1="40" x2="600" y2="40"/><line x1="0" y1="100" x2="600" y2="100"/><line x1="0" y1="160" x2="600" y2="160"/></g>
+          <path d="M0 180 L60 170 L120 174 L180 150 L240 158 L300 130 L360 122 L420 110 L480 96 L540 88 L600 70 L600 220 L0 220 Z" class="area"/>
+          <polyline points="0,180 60,170 120,174 180,150 240,158 300,130 360,122 420,110 480,96 540,88 600,70" class="line"/>
+          <g class="dots"><circle cx="0" cy="180" r="3"/><circle cx="120" cy="174" r="3"/><circle cx="240" cy="158" r="3"/><circle cx="360" cy="122" r="3"/><circle cx="480" cy="96" r="3"/><circle cx="600" cy="70" r="3"/></g>
+        </svg>
+        <ul class="x-axis"><li>Mar</li><li>Apr</li><li>May</li><li>Jun</li><li>Jul</li><li>Aug</li></ul>
+      </section>
+
+      <section class="panel zip-panel">
+        <header class="panel-head tight"><div><p class="panel-kicker">By ZIP code</p><h2>Hot &amp; cool</h2></div></header>
+        <ul class="zip-list">
+          <li><span class="zip-code">02445</span><span class="zip-name">Brookline</span><span class="zip-bar"><b style="width:88%"></b></span><span class="zip-val up">+11.4%</span></li>
+          <li><span class="zip-code">02493</span><span class="zip-name">Weston</span><span class="zip-bar"><b style="width:72%"></b></span><span class="zip-val up">+8.1%</span></li>
+          <li><span class="zip-code">02108</span><span class="zip-name">Beacon Hill</span><span class="zip-bar"><b style="width:58%"></b></span><span class="zip-val up">+5.0%</span></li>
+          <li><span class="zip-code">02138</span><span class="zip-name">Cambridge</span><span class="zip-bar"><b style="width:46%"></b></span><span class="zip-val up">+2.9%</span></li>
+          <li><span class="zip-code">02465</span><span class="zip-name">West Newton</span><span class="zip-bar"><b style="width:30%" data-neg></b></span><span class="zip-val down">−1.6%</span></li>
+        </ul>
+      </section>
+
+      <section class="panel inv-panel">
+        <header class="panel-head tight"><div><p class="panel-kicker">Inventory</p><h2>Months of supply</h2></div></header>
+        <div class="big-stat">
+          <p class="big-num">2.1<span>mo</span></p>
+          <p class="big-sub">Seller's market — under 4mo</p>
+        </div>
+        <ul class="ladder">
+          <li><b>0–2 mo</b><span class="ld-bar ld-hot"><i style="width:100%"></i></span><span>Sellers</span></li>
+          <li><b>2–4 mo</b><span class="ld-bar"><i style="width:55%"></i></span><span>Balanced ↑</span></li>
+          <li><b>4–6 mo</b><span class="ld-bar"><i style="width:18%"></i></span><span>Balanced ↓</span></li>
+          <li><b>6+ mo</b><span class="ld-bar ld-cool"><i style="width:6%"></i></span><span>Buyers</span></li>
+        </ul>
+      </section>
+
+      <section class="panel note-panel">
+        <header class="panel-head tight"><div><p class="panel-kicker">Note for the week</p><h2>What we're watching</h2></div></header>
+        <p class="note-body">Inventory in the $3–5M tier has tightened sharply since March — three of our six expected listings in Weston and Wellesley have re-priced upward before going live. Expect a competitive Sunday for 7 Acorn Hollow.</p>
+        <p class="note-sign">— E.R.</p>
+      </section>
+    </div>
+  </section>
+
+</main>
+
+<script src="app.js"></script>
+
+</body>
+</html>
